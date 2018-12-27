@@ -9,6 +9,8 @@ public class IndexController {
    @RequestMapping("hhhh")
    public String hhhh() {
 	return "index";
+	
+	
 	   
    }
 }
