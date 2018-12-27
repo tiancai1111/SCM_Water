@@ -1,0 +1,13 @@
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/scm_water
+    username: root
+    password: 911816
+logging:
+  level: 
+    mapper: debug
