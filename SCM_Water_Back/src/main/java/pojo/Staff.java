@@ -42,8 +42,19 @@ public class Staff {
      * 密码
      */
     private String password;
+    
+    private int  roleId;
+    
 
-    public Integer getStaffid() {
+    public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
+	public Integer getStaffid() {
         return staffid;
     }
 
