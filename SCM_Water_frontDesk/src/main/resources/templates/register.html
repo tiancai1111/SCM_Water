@@ -122,23 +122,25 @@
 				 
 		<div class="modal_content">		
 			<h5>注册</h5>
+			<form id="fm1">
 			<div>
 				<label for="phone1">注册手机号：</label><br />
-				<input id="phone1" type="text" autocomplete="off" placeholder="请输入已绑定的手机号"/>				
+				<input id="phone1" name="phone" type="text" autocomplete="off" placeholder="请输入已绑定的手机号"/>				
 			</div> 
 			<div>
 				<label for="code1">验证码：</label>
 				<div class="code1">
-					<input id="code1" type="text" autocomplete="off" placeholder="短信验证码"/>				
+					<input id="code1"  type="text" autocomplete="off" placeholder="短信验证码"/>				
 					<input id="btnSendCode1" type="button" class="btn btn-default" value="获取验证码" onClick="sendMessage1()" />
 				</div>				
 			</div> 	
+			</form>
 			<div class="next">  			
 				<button onClick="binding()">确定</button>
 			</div>
 		</div>	 	
 		
-		<script type="text/javascript" src="static/zhuce/js/jquery.min.js"></script>
+		<script type="text/javascript" src="zhuce/js/jquery.min.js"></script>
 		<script type="text/javascript">
 			var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;//手机号正则 
 			var count = 60; //间隔函数，1秒执行
@@ -173,8 +175,24 @@
 			
 			/*提交*/
 			function binding(){
-				alert(1)
-			}
+				alert(1);
+                 var form=new FormData(document.getElementById("fm1"));
+                 $.ajax({
+                     url:"qqqq",
+                     type:"post",
+                     data:form,
+                     processData:false,
+                     contentType:false,
+                     success:function(data){
+                        alert(2);
+                     },
+                     error:function(e){
+                       alert(3);
+                     }
+                 });        
+                
+             }
+			
 		</script>
 		
 	</body>
