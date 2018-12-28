@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.MenuinfoMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Menuinfo" >
+        <id column="menuId" property="menuid" jdbcType="INTEGER" />
+        <result column="menuName" property="menuname" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        menuId, menuName
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from menuinfo
+        where menuId = #{menuid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from menuinfo
+        where menuId = #{menuid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Menuinfo" >
+        insert into menuinfo (menuId, menuName)
+        values (#{menuid,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Menuinfo" >
+        insert into menuinfo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="menuid != null" >
+                menuId,
+            </if>
+            <if test="menuname != null" >
+                menuName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="menuid != null" >
+                #{menuid,jdbcType=INTEGER},
+            </if>
+            <if test="menuname != null" >
+                #{menuname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Menuinfo" >
+        update menuinfo
+        <set >
+            <if test="menuname != null" >
+                menuName = #{menuname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where menuId = #{menuid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Menuinfo" >
+        update menuinfo
+        set menuName = #{menuname,jdbcType=VARCHAR}
+        where menuId = #{menuid,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -5,7 +5,7 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class Client {
     /**
@@ -47,6 +47,11 @@ public class Client {
      * 客户订单总金额
      */
     private Double clienttotalmoney;
+
+    /**
+     * 状态
+     */
+    private String status;
 
     public Integer getClientid() {
         return clientid;
@@ -110,5 +115,13 @@ public class Client {
 
     public void setClienttotalmoney(Double clienttotalmoney) {
         this.clienttotalmoney = clienttotalmoney;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 }

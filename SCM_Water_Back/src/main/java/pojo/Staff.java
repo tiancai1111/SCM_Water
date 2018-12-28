@@ -5,7 +5,7 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class Staff {
     /**
@@ -46,6 +46,7 @@ public class Staff {
     private int  roleId;
     
 
+
     public int getRoleId() {
 		return roleId;
 	}
@@ -54,7 +55,13 @@ public class Staff {
 		this.roleId = roleId;
 	}
 
-	public Integer getStaffid() {
+    /**
+     * 角色id
+     */
+    private Integer roleid;
+
+    public Integer getStaffid() {
+
         return staffid;
     }
 
@@ -108,5 +115,13 @@ public class Staff {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Integer getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 }

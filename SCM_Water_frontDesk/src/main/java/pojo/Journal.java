@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class Journal {
     /**

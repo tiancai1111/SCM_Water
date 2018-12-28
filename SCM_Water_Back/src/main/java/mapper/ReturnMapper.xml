@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ReturnMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Return" >
+        <id column="returnId" property="returnid" jdbcType="INTEGER" />
+        <result column="returnDate" property="returndate" jdbcType="TIMESTAMP" />
+        <result column="returnMoney" property="returnmoney" jdbcType="DOUBLE" />
+        <result column=" returnDiscounts" property="returndiscounts" jdbcType="DOUBLE" />
+        <result column=" returns" property="returns" jdbcType="DOUBLE" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        returnId, returnDate, returnMoney, " returnDiscounts", " returns"
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from return
+        where returnId = #{returnid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from return
+        where returnId = #{returnid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Return" >
+        insert into return (returnId, returnDate, returnMoney, 
+            " returnDiscounts", " returns")
+        values (#{returnid,jdbcType=INTEGER}, #{returndate,jdbcType=TIMESTAMP}, #{returnmoney,jdbcType=DOUBLE}, 
+            #{returndiscounts,jdbcType=DOUBLE}, #{returns,jdbcType=DOUBLE})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Return" >
+        insert into return
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="returnid != null" >
+                returnId,
+            </if>
+            <if test="returndate != null" >
+                returnDate,
+            </if>
+            <if test="returnmoney != null" >
+                returnMoney,
+            </if>
+            <if test="returndiscounts != null" >
+                " returnDiscounts",
+            </if>
+            <if test="returns != null" >
+                " returns",
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="returnid != null" >
+                #{returnid,jdbcType=INTEGER},
+            </if>
+            <if test="returndate != null" >
+                #{returndate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnmoney != null" >
+                #{returnmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="returndiscounts != null" >
+                #{returndiscounts,jdbcType=DOUBLE},
+            </if>
+            <if test="returns != null" >
+                #{returns,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Return" >
+        update return
+        <set >
+            <if test="returndate != null" >
+                returnDate = #{returndate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnmoney != null" >
+                returnMoney = #{returnmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="returndiscounts != null" >
+                " returnDiscounts" = #{returndiscounts,jdbcType=DOUBLE},
+            </if>
+            <if test="returns != null" >
+                " returns" = #{returns,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where returnId = #{returnid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Return" >
+        update return
+        set returnDate = #{returndate,jdbcType=TIMESTAMP},
+            returnMoney = #{returnmoney,jdbcType=DOUBLE},
+            " returnDiscounts" = #{returndiscounts,jdbcType=DOUBLE},
+            " returns" = #{returns,jdbcType=DOUBLE}
+        where returnId = #{returnid,jdbcType=INTEGER}
+    </update>
+</mapper>

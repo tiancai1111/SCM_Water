@@ -5,7 +5,7 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class Commodity {
     /**
@@ -32,6 +32,11 @@ public class Commodity {
      * 商品成本价
      */
     private Double commoditycost;
+
+    /**
+     * 桶装水图片
+     */
+    private String img;
 
     public Integer getCommodityid() {
         return commodityid;
@@ -71,5 +76,13 @@ public class Commodity {
 
     public void setCommoditycost(Double commoditycost) {
         this.commoditycost = commoditycost;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

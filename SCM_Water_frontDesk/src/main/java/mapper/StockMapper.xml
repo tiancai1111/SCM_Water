@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.StockMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Stock" >
+        <id column="stockId" property="stockid" jdbcType="INTEGER" />
+        <result column="stocknumbers" property="stocknumbers" jdbcType="INTEGER" />
+        <result column="stockTotalMoney" property="stocktotalmoney" jdbcType="DOUBLE" />
+        <result column="stockTotalQuantity" property="stocktotalquantity" jdbcType="INTEGER" />
+        <result column="stockTime" property="stocktime" jdbcType="TIMESTAMP" />
+        <result column="stockName" property="stockname" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        stockId, stocknumbers, stockTotalMoney, stockTotalQuantity, stockTime, stockName
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from stock
+        where stockId = #{stockid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from stock
+        where stockId = #{stockid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Stock" >
+        insert into stock (stockId, stocknumbers, stockTotalMoney, 
+            stockTotalQuantity, stockTime, stockName
+            )
+        values (#{stockid,jdbcType=INTEGER}, #{stocknumbers,jdbcType=INTEGER}, #{stocktotalmoney,jdbcType=DOUBLE}, 
+            #{stocktotalquantity,jdbcType=INTEGER}, #{stocktime,jdbcType=TIMESTAMP}, #{stockname,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Stock" >
+        insert into stock
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="stockid != null" >
+                stockId,
+            </if>
+            <if test="stocknumbers != null" >
+                stocknumbers,
+            </if>
+            <if test="stocktotalmoney != null" >
+                stockTotalMoney,
+            </if>
+            <if test="stocktotalquantity != null" >
+                stockTotalQuantity,
+            </if>
+            <if test="stocktime != null" >
+                stockTime,
+            </if>
+            <if test="stockname != null" >
+                stockName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="stockid != null" >
+                #{stockid,jdbcType=INTEGER},
+            </if>
+            <if test="stocknumbers != null" >
+                #{stocknumbers,jdbcType=INTEGER},
+            </if>
+            <if test="stocktotalmoney != null" >
+                #{stocktotalmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="stocktotalquantity != null" >
+                #{stocktotalquantity,jdbcType=INTEGER},
+            </if>
+            <if test="stocktime != null" >
+                #{stocktime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stockname != null" >
+                #{stockname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Stock" >
+        update stock
+        <set >
+            <if test="stocknumbers != null" >
+                stocknumbers = #{stocknumbers,jdbcType=INTEGER},
+            </if>
+            <if test="stocktotalmoney != null" >
+                stockTotalMoney = #{stocktotalmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="stocktotalquantity != null" >
+                stockTotalQuantity = #{stocktotalquantity,jdbcType=INTEGER},
+            </if>
+            <if test="stocktime != null" >
+                stockTime = #{stocktime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="stockname != null" >
+                stockName = #{stockname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where stockId = #{stockid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Stock" >
+        update stock
+        set stocknumbers = #{stocknumbers,jdbcType=INTEGER},
+            stockTotalMoney = #{stocktotalmoney,jdbcType=DOUBLE},
+            stockTotalQuantity = #{stocktotalquantity,jdbcType=INTEGER},
+            stockTime = #{stocktime,jdbcType=TIMESTAMP},
+            stockName = #{stockname,jdbcType=VARCHAR}
+        where stockId = #{stockid,jdbcType=INTEGER}
+    </update>
+</mapper>

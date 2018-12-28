@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.GiftcouponMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Giftcoupon" >
+        <id column="gc_id" property="gcId" jdbcType="INTEGER" />
+        <result column="gc_name" property="gcName" jdbcType="VARCHAR" />
+        <result column="gc_money" property="gcMoney" jdbcType="VARCHAR" />
+        <result column="gc_required" property="gcRequired" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        gc_id, gc_name, gc_money, gc_required
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from giftcoupon
+        where gc_id = #{gcId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from giftcoupon
+        where gc_id = #{gcId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Giftcoupon" >
+        insert into giftcoupon (gc_id, gc_name, gc_money, 
+            gc_required)
+        values (#{gcId,jdbcType=INTEGER}, #{gcName,jdbcType=VARCHAR}, #{gcMoney,jdbcType=VARCHAR}, 
+            #{gcRequired,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Giftcoupon" >
+        insert into giftcoupon
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="gcId != null" >
+                gc_id,
+            </if>
+            <if test="gcName != null" >
+                gc_name,
+            </if>
+            <if test="gcMoney != null" >
+                gc_money,
+            </if>
+            <if test="gcRequired != null" >
+                gc_required,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="gcId != null" >
+                #{gcId,jdbcType=INTEGER},
+            </if>
+            <if test="gcName != null" >
+                #{gcName,jdbcType=VARCHAR},
+            </if>
+            <if test="gcMoney != null" >
+                #{gcMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="gcRequired != null" >
+                #{gcRequired,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Giftcoupon" >
+        update giftcoupon
+        <set >
+            <if test="gcName != null" >
+                gc_name = #{gcName,jdbcType=VARCHAR},
+            </if>
+            <if test="gcMoney != null" >
+                gc_money = #{gcMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="gcRequired != null" >
+                gc_required = #{gcRequired,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where gc_id = #{gcId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Giftcoupon" >
+        update giftcoupon
+        set gc_name = #{gcName,jdbcType=VARCHAR},
+            gc_money = #{gcMoney,jdbcType=VARCHAR},
+            gc_required = #{gcRequired,jdbcType=VARCHAR}
+        where gc_id = #{gcId,jdbcType=INTEGER}
+    </update>
+</mapper>

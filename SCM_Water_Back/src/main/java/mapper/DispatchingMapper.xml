@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.DispatchingMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Dispatching" >
+        <id column="dispatchingId" property="dispatchingid" jdbcType="INTEGER" />
+        <result column="dispatchingMark" property="dispatchingmark" jdbcType="VARCHAR" />
+        <result column="dispatchingOrderTime" property="dispatchingordertime" jdbcType="TIMESTAMP" />
+        <result column="dispatchingMoney" property="dispatchingmoney" jdbcType="DOUBLE" />
+        <result column="dispatchingRegion" property="dispatchingregion" jdbcType="VARCHAR" />
+        <result column="dispatchingsite" property="dispatchingsite" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        dispatchingId, dispatchingMark, dispatchingOrderTime, dispatchingMoney, dispatchingRegion, 
+        dispatchingsite
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from dispatching
+        where dispatchingId = #{dispatchingid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from dispatching
+        where dispatchingId = #{dispatchingid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Dispatching" >
+        insert into dispatching (dispatchingId, dispatchingMark, dispatchingOrderTime, 
+            dispatchingMoney, dispatchingRegion, dispatchingsite
+            )
+        values (#{dispatchingid,jdbcType=INTEGER}, #{dispatchingmark,jdbcType=VARCHAR}, #{dispatchingordertime,jdbcType=TIMESTAMP}, 
+            #{dispatchingmoney,jdbcType=DOUBLE}, #{dispatchingregion,jdbcType=VARCHAR}, #{dispatchingsite,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Dispatching" >
+        insert into dispatching
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dispatchingid != null" >
+                dispatchingId,
+            </if>
+            <if test="dispatchingmark != null" >
+                dispatchingMark,
+            </if>
+            <if test="dispatchingordertime != null" >
+                dispatchingOrderTime,
+            </if>
+            <if test="dispatchingmoney != null" >
+                dispatchingMoney,
+            </if>
+            <if test="dispatchingregion != null" >
+                dispatchingRegion,
+            </if>
+            <if test="dispatchingsite != null" >
+                dispatchingsite,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dispatchingid != null" >
+                #{dispatchingid,jdbcType=INTEGER},
+            </if>
+            <if test="dispatchingmark != null" >
+                #{dispatchingmark,jdbcType=VARCHAR},
+            </if>
+            <if test="dispatchingordertime != null" >
+                #{dispatchingordertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dispatchingmoney != null" >
+                #{dispatchingmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="dispatchingregion != null" >
+                #{dispatchingregion,jdbcType=VARCHAR},
+            </if>
+            <if test="dispatchingsite != null" >
+                #{dispatchingsite,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Dispatching" >
+        update dispatching
+        <set >
+            <if test="dispatchingmark != null" >
+                dispatchingMark = #{dispatchingmark,jdbcType=VARCHAR},
+            </if>
+            <if test="dispatchingordertime != null" >
+                dispatchingOrderTime = #{dispatchingordertime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dispatchingmoney != null" >
+                dispatchingMoney = #{dispatchingmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="dispatchingregion != null" >
+                dispatchingRegion = #{dispatchingregion,jdbcType=VARCHAR},
+            </if>
+            <if test="dispatchingsite != null" >
+                dispatchingsite = #{dispatchingsite,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where dispatchingId = #{dispatchingid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Dispatching" >
+        update dispatching
+        set dispatchingMark = #{dispatchingmark,jdbcType=VARCHAR},
+            dispatchingOrderTime = #{dispatchingordertime,jdbcType=TIMESTAMP},
+            dispatchingMoney = #{dispatchingmoney,jdbcType=DOUBLE},
+            dispatchingRegion = #{dispatchingregion,jdbcType=VARCHAR},
+            dispatchingsite = #{dispatchingsite,jdbcType=VARCHAR}
+        where dispatchingId = #{dispatchingid,jdbcType=INTEGER}
+    </update>
+</mapper>
