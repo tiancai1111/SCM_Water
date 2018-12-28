@@ -5,7 +5,7 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class User {
     /**
@@ -52,6 +52,11 @@ public class User {
      * 余额
      */
     private Integer money;
+
+    /**
+     * 支付密码
+     */
+    private String zfpwd;
 
     public Integer getUserid() {
         return userid;
@@ -123,5 +128,13 @@ public class User {
 
     public void setMoney(Integer money) {
         this.money = money;
+    }
+
+    public String getZfpwd() {
+        return zfpwd;
+    }
+
+    public void setZfpwd(String zfpwd) {
+        this.zfpwd = zfpwd == null ? null : zfpwd.trim();
     }
 }

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ChargebackMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Chargeback" >
+        <id column="chargebackID" property="chargebackid" jdbcType="INTEGER" />
+        <result column="chargebackOrder" property="chargebackorder" jdbcType="INTEGER" />
+        <result column="chargebackApplyForDate" property="chargebackapplyfordate" jdbcType="TIMESTAMP" />
+        <result column="chargebackCause" property="chargebackcause" jdbcType="VARCHAR" />
+        <result column="chargebackQuantity" property="chargebackquantity" jdbcType="INTEGER" />
+        <result column="chargebackApprove" property="chargebackapprove" jdbcType="VARCHAR" />
+        <result column="chargebackDate" property="chargebackdate" jdbcType="TIMESTAMP" />
+        <result column=" chargebackMoney" property="chargebackmoney" jdbcType="DOUBLE" />
+        <result column="chargebackOperationName" property="chargebackoperationname" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        chargebackID, chargebackOrder, chargebackApplyForDate, chargebackCause, chargebackQuantity, 
+        chargebackApprove, chargebackDate, " chargebackMoney", chargebackOperationName
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from chargeback
+        where chargebackID = #{chargebackid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from chargeback
+        where chargebackID = #{chargebackid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Chargeback" >
+        insert into chargeback (chargebackID, chargebackOrder, chargebackApplyForDate, 
+            chargebackCause, chargebackQuantity, 
+            chargebackApprove, chargebackDate, 
+            " chargebackMoney", chargebackOperationName
+            )
+        values (#{chargebackid,jdbcType=INTEGER}, #{chargebackorder,jdbcType=INTEGER}, #{chargebackapplyfordate,jdbcType=TIMESTAMP}, 
+            #{chargebackcause,jdbcType=VARCHAR}, #{chargebackquantity,jdbcType=INTEGER}, 
+            #{chargebackapprove,jdbcType=VARCHAR}, #{chargebackdate,jdbcType=TIMESTAMP}, 
+            #{chargebackmoney,jdbcType=DOUBLE}, #{chargebackoperationname,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Chargeback" >
+        insert into chargeback
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="chargebackid != null" >
+                chargebackID,
+            </if>
+            <if test="chargebackorder != null" >
+                chargebackOrder,
+            </if>
+            <if test="chargebackapplyfordate != null" >
+                chargebackApplyForDate,
+            </if>
+            <if test="chargebackcause != null" >
+                chargebackCause,
+            </if>
+            <if test="chargebackquantity != null" >
+                chargebackQuantity,
+            </if>
+            <if test="chargebackapprove != null" >
+                chargebackApprove,
+            </if>
+            <if test="chargebackdate != null" >
+                chargebackDate,
+            </if>
+            <if test="chargebackmoney != null" >
+                " chargebackMoney",
+            </if>
+            <if test="chargebackoperationname != null" >
+                chargebackOperationName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="chargebackid != null" >
+                #{chargebackid,jdbcType=INTEGER},
+            </if>
+            <if test="chargebackorder != null" >
+                #{chargebackorder,jdbcType=INTEGER},
+            </if>
+            <if test="chargebackapplyfordate != null" >
+                #{chargebackapplyfordate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chargebackcause != null" >
+                #{chargebackcause,jdbcType=VARCHAR},
+            </if>
+            <if test="chargebackquantity != null" >
+                #{chargebackquantity,jdbcType=INTEGER},
+            </if>
+            <if test="chargebackapprove != null" >
+                #{chargebackapprove,jdbcType=VARCHAR},
+            </if>
+            <if test="chargebackdate != null" >
+                #{chargebackdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chargebackmoney != null" >
+                #{chargebackmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="chargebackoperationname != null" >
+                #{chargebackoperationname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Chargeback" >
+        update chargeback
+        <set >
+            <if test="chargebackorder != null" >
+                chargebackOrder = #{chargebackorder,jdbcType=INTEGER},
+            </if>
+            <if test="chargebackapplyfordate != null" >
+                chargebackApplyForDate = #{chargebackapplyfordate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chargebackcause != null" >
+                chargebackCause = #{chargebackcause,jdbcType=VARCHAR},
+            </if>
+            <if test="chargebackquantity != null" >
+                chargebackQuantity = #{chargebackquantity,jdbcType=INTEGER},
+            </if>
+            <if test="chargebackapprove != null" >
+                chargebackApprove = #{chargebackapprove,jdbcType=VARCHAR},
+            </if>
+            <if test="chargebackdate != null" >
+                chargebackDate = #{chargebackdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="chargebackmoney != null" >
+                " chargebackMoney" = #{chargebackmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="chargebackoperationname != null" >
+                chargebackOperationName = #{chargebackoperationname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where chargebackID = #{chargebackid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Chargeback" >
+        update chargeback
+        set chargebackOrder = #{chargebackorder,jdbcType=INTEGER},
+            chargebackApplyForDate = #{chargebackapplyfordate,jdbcType=TIMESTAMP},
+            chargebackCause = #{chargebackcause,jdbcType=VARCHAR},
+            chargebackQuantity = #{chargebackquantity,jdbcType=INTEGER},
+            chargebackApprove = #{chargebackapprove,jdbcType=VARCHAR},
+            chargebackDate = #{chargebackdate,jdbcType=TIMESTAMP},
+            " chargebackMoney" = #{chargebackmoney,jdbcType=DOUBLE},
+            chargebackOperationName = #{chargebackoperationname,jdbcType=VARCHAR}
+        where chargebackID = #{chargebackid,jdbcType=INTEGER}
+    </update>
+</mapper>

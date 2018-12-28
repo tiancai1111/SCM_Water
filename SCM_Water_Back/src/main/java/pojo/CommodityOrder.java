@@ -5,9 +5,9 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
-public class CommodityGoods {
+public class CommodityOrder {
     /**
      * Id
      */
@@ -21,7 +21,12 @@ public class CommodityGoods {
     /**
      * 订单Id
      */
-    private Integer goodsid;
+    private Integer orderid;
+
+    /**
+     * 数量
+     */
+    private Integer count;
 
     public Integer getId() {
         return id;
@@ -39,11 +44,19 @@ public class CommodityGoods {
         this.commodityid = commodityid;
     }
 
-    public Integer getGoodsid() {
-        return goodsid;
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public void setGoodsid(Integer goodsid) {
-        this.goodsid = goodsid;
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

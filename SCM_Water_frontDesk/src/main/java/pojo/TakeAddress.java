@@ -5,7 +5,7 @@ package pojo;
  * 
  * @author wcyong
  * 
- * @date 2018-12-27
+ * @date 2018-12-28
  */
 public class TakeAddress {
     /**

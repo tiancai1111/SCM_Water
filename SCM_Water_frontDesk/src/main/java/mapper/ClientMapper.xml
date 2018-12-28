@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.ClientMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Client" >
+        <id column="clientId" property="clientid" jdbcType="INTEGER" />
+        <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+        <result column="clientName" property="clientname" jdbcType="VARCHAR" />
+        <result column="clientRegion" property="clientregion" jdbcType="VARCHAR" />
+        <result column="clientPhone" property="clientphone" jdbcType="VARCHAR" />
+        <result column="clientDebt" property="clientdebt" jdbcType="DOUBLE" />
+        <result column="clientQuantity" property="clientquantity" jdbcType="INTEGER" />
+        <result column="clientTotalMoney" property="clienttotalmoney" jdbcType="DOUBLE" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        clientId, goodsId, clientName, clientRegion, clientPhone, clientDebt, clientQuantity, 
+        clientTotalMoney, status
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from client
+        where clientId = #{clientid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from client
+        where clientId = #{clientid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Client" >
+        insert into client (clientId, goodsId, clientName, 
+            clientRegion, clientPhone, clientDebt, 
+            clientQuantity, clientTotalMoney, status
+            )
+        values (#{clientid,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, #{clientname,jdbcType=VARCHAR}, 
+            #{clientregion,jdbcType=VARCHAR}, #{clientphone,jdbcType=VARCHAR}, #{clientdebt,jdbcType=DOUBLE}, 
+            #{clientquantity,jdbcType=INTEGER}, #{clienttotalmoney,jdbcType=DOUBLE}, #{status,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Client" >
+        insert into client
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="clientid != null" >
+                clientId,
+            </if>
+            <if test="goodsid != null" >
+                goodsId,
+            </if>
+            <if test="clientname != null" >
+                clientName,
+            </if>
+            <if test="clientregion != null" >
+                clientRegion,
+            </if>
+            <if test="clientphone != null" >
+                clientPhone,
+            </if>
+            <if test="clientdebt != null" >
+                clientDebt,
+            </if>
+            <if test="clientquantity != null" >
+                clientQuantity,
+            </if>
+            <if test="clienttotalmoney != null" >
+                clientTotalMoney,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="clientid != null" >
+                #{clientid,jdbcType=INTEGER},
+            </if>
+            <if test="goodsid != null" >
+                #{goodsid,jdbcType=INTEGER},
+            </if>
+            <if test="clientname != null" >
+                #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="clientregion != null" >
+                #{clientregion,jdbcType=VARCHAR},
+            </if>
+            <if test="clientphone != null" >
+                #{clientphone,jdbcType=VARCHAR},
+            </if>
+            <if test="clientdebt != null" >
+                #{clientdebt,jdbcType=DOUBLE},
+            </if>
+            <if test="clientquantity != null" >
+                #{clientquantity,jdbcType=INTEGER},
+            </if>
+            <if test="clienttotalmoney != null" >
+                #{clienttotalmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Client" >
+        update client
+        <set >
+            <if test="goodsid != null" >
+                goodsId = #{goodsid,jdbcType=INTEGER},
+            </if>
+            <if test="clientname != null" >
+                clientName = #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="clientregion != null" >
+                clientRegion = #{clientregion,jdbcType=VARCHAR},
+            </if>
+            <if test="clientphone != null" >
+                clientPhone = #{clientphone,jdbcType=VARCHAR},
+            </if>
+            <if test="clientdebt != null" >
+                clientDebt = #{clientdebt,jdbcType=DOUBLE},
+            </if>
+            <if test="clientquantity != null" >
+                clientQuantity = #{clientquantity,jdbcType=INTEGER},
+            </if>
+            <if test="clienttotalmoney != null" >
+                clientTotalMoney = #{clienttotalmoney,jdbcType=DOUBLE},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where clientId = #{clientid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Client" >
+        update client
+        set goodsId = #{goodsid,jdbcType=INTEGER},
+            clientName = #{clientname,jdbcType=VARCHAR},
+            clientRegion = #{clientregion,jdbcType=VARCHAR},
+            clientPhone = #{clientphone,jdbcType=VARCHAR},
+            clientDebt = #{clientdebt,jdbcType=DOUBLE},
+            clientQuantity = #{clientquantity,jdbcType=INTEGER},
+            clientTotalMoney = #{clienttotalmoney,jdbcType=DOUBLE},
+            status = #{status,jdbcType=VARCHAR}
+        where clientId = #{clientid,jdbcType=INTEGER}
+    </update>
+</mapper>

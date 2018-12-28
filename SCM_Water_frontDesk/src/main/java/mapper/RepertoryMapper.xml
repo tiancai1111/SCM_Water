@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.RepertoryMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Repertory" >
+        <id column="repertoryId" property="repertoryid" jdbcType="INTEGER" />
+        <result column="commodityId" property="commodityid" jdbcType="INTEGER" />
+        <result column="repertoryamount" property="repertoryamount" jdbcType="INTEGER" />
+        <result column="repertoryEmptyBarrel" property="repertoryemptybarrel" jdbcType="INTEGER" />
+        <result column="repertoryState" property="repertorystate" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        repertoryId, commodityId, repertoryamount, repertoryEmptyBarrel, repertoryState
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from repertory
+        where repertoryId = #{repertoryid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from repertory
+        where repertoryId = #{repertoryid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Repertory" >
+        insert into repertory (repertoryId, commodityId, repertoryamount, 
+            repertoryEmptyBarrel, repertoryState)
+        values (#{repertoryid,jdbcType=INTEGER}, #{commodityid,jdbcType=INTEGER}, #{repertoryamount,jdbcType=INTEGER}, 
+            #{repertoryemptybarrel,jdbcType=INTEGER}, #{repertorystate,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Repertory" >
+        insert into repertory
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="repertoryid != null" >
+                repertoryId,
+            </if>
+            <if test="commodityid != null" >
+                commodityId,
+            </if>
+            <if test="repertoryamount != null" >
+                repertoryamount,
+            </if>
+            <if test="repertoryemptybarrel != null" >
+                repertoryEmptyBarrel,
+            </if>
+            <if test="repertorystate != null" >
+                repertoryState,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="repertoryid != null" >
+                #{repertoryid,jdbcType=INTEGER},
+            </if>
+            <if test="commodityid != null" >
+                #{commodityid,jdbcType=INTEGER},
+            </if>
+            <if test="repertoryamount != null" >
+                #{repertoryamount,jdbcType=INTEGER},
+            </if>
+            <if test="repertoryemptybarrel != null" >
+                #{repertoryemptybarrel,jdbcType=INTEGER},
+            </if>
+            <if test="repertorystate != null" >
+                #{repertorystate,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Repertory" >
+        update repertory
+        <set >
+            <if test="commodityid != null" >
+                commodityId = #{commodityid,jdbcType=INTEGER},
+            </if>
+            <if test="repertoryamount != null" >
+                repertoryamount = #{repertoryamount,jdbcType=INTEGER},
+            </if>
+            <if test="repertoryemptybarrel != null" >
+                repertoryEmptyBarrel = #{repertoryemptybarrel,jdbcType=INTEGER},
+            </if>
+            <if test="repertorystate != null" >
+                repertoryState = #{repertorystate,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where repertoryId = #{repertoryid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Repertory" >
+        update repertory
+        set commodityId = #{commodityid,jdbcType=INTEGER},
+            repertoryamount = #{repertoryamount,jdbcType=INTEGER},
+            repertoryEmptyBarrel = #{repertoryemptybarrel,jdbcType=INTEGER},
+            repertoryState = #{repertorystate,jdbcType=VARCHAR}
+        where repertoryId = #{repertoryid,jdbcType=INTEGER}
+    </update>
+</mapper>

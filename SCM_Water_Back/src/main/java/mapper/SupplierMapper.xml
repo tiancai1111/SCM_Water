@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SupplierMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Supplier" >
+        <id column="supplierId" property="supplierid" jdbcType="INTEGER" />
+        <result column="supplierName" property="suppliername" jdbcType="VARCHAR" />
+        <result column="suppliePhone" property="suppliephone" jdbcType="VARCHAR" />
+        <result column="suppliersite" property="suppliersite" jdbcType="VARCHAR" />
+        <result column="supplierContacts" property="suppliercontacts" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        supplierId, supplierName, suppliePhone, suppliersite, supplierContacts
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from supplier
+        where supplierId = #{supplierid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from supplier
+        where supplierId = #{supplierid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Supplier" >
+        insert into supplier (supplierId, supplierName, suppliePhone, 
+            suppliersite, supplierContacts)
+        values (#{supplierid,jdbcType=INTEGER}, #{suppliername,jdbcType=VARCHAR}, #{suppliephone,jdbcType=VARCHAR}, 
+            #{suppliersite,jdbcType=VARCHAR}, #{suppliercontacts,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Supplier" >
+        insert into supplier
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="supplierid != null" >
+                supplierId,
+            </if>
+            <if test="suppliername != null" >
+                supplierName,
+            </if>
+            <if test="suppliephone != null" >
+                suppliePhone,
+            </if>
+            <if test="suppliersite != null" >
+                suppliersite,
+            </if>
+            <if test="suppliercontacts != null" >
+                supplierContacts,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="supplierid != null" >
+                #{supplierid,jdbcType=INTEGER},
+            </if>
+            <if test="suppliername != null" >
+                #{suppliername,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliephone != null" >
+                #{suppliephone,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliersite != null" >
+                #{suppliersite,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliercontacts != null" >
+                #{suppliercontacts,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Supplier" >
+        update supplier
+        <set >
+            <if test="suppliername != null" >
+                supplierName = #{suppliername,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliephone != null" >
+                suppliePhone = #{suppliephone,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliersite != null" >
+                suppliersite = #{suppliersite,jdbcType=VARCHAR},
+            </if>
+            <if test="suppliercontacts != null" >
+                supplierContacts = #{suppliercontacts,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where supplierId = #{supplierid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Supplier" >
+        update supplier
+        set supplierName = #{suppliername,jdbcType=VARCHAR},
+            suppliePhone = #{suppliephone,jdbcType=VARCHAR},
+            suppliersite = #{suppliersite,jdbcType=VARCHAR},
+            supplierContacts = #{suppliercontacts,jdbcType=VARCHAR}
+        where supplierId = #{supplierid,jdbcType=INTEGER}
+    </update>
+</mapper>

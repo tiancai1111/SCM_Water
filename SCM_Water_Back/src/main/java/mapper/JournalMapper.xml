@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.JournalMapper" >
+
+    <resultMap id="BaseResultMap" type="pojo.Journal" >
+        <id column="journalId" property="journalid" jdbcType="INTEGER" />
+        <result column="journalDate" property="journaldate" jdbcType="TIMESTAMP" />
+        <result column="journalOperatio" property="journaloperatio" jdbcType="VARCHAR" />
+        <result column="journalOperatioName" property="journaloperationame" jdbcType="VARCHAR" />
+        <result column="journalRemarks" property="journalremarks" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        journalId, journalDate, journalOperatio, journalOperatioName, journalRemarks
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from journal
+        where journalId = #{journalid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from journal
+        where journalId = #{journalid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="pojo.Journal" >
+        insert into journal (journalId, journalDate, journalOperatio, 
+            journalOperatioName, journalRemarks)
+        values (#{journalid,jdbcType=INTEGER}, #{journaldate,jdbcType=TIMESTAMP}, #{journaloperatio,jdbcType=VARCHAR}, 
+            #{journaloperationame,jdbcType=VARCHAR}, #{journalremarks,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pojo.Journal" >
+        insert into journal
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="journalid != null" >
+                journalId,
+            </if>
+            <if test="journaldate != null" >
+                journalDate,
+            </if>
+            <if test="journaloperatio != null" >
+                journalOperatio,
+            </if>
+            <if test="journaloperationame != null" >
+                journalOperatioName,
+            </if>
+            <if test="journalremarks != null" >
+                journalRemarks,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="journalid != null" >
+                #{journalid,jdbcType=INTEGER},
+            </if>
+            <if test="journaldate != null" >
+                #{journaldate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="journaloperatio != null" >
+                #{journaloperatio,jdbcType=VARCHAR},
+            </if>
+            <if test="journaloperationame != null" >
+                #{journaloperationame,jdbcType=VARCHAR},
+            </if>
+            <if test="journalremarks != null" >
+                #{journalremarks,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pojo.Journal" >
+        update journal
+        <set >
+            <if test="journaldate != null" >
+                journalDate = #{journaldate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="journaloperatio != null" >
+                journalOperatio = #{journaloperatio,jdbcType=VARCHAR},
+            </if>
+            <if test="journaloperationame != null" >
+                journalOperatioName = #{journaloperationame,jdbcType=VARCHAR},
+            </if>
+            <if test="journalremarks != null" >
+                journalRemarks = #{journalremarks,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where journalId = #{journalid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pojo.Journal" >
+        update journal
+        set journalDate = #{journaldate,jdbcType=TIMESTAMP},
+            journalOperatio = #{journaloperatio,jdbcType=VARCHAR},
+            journalOperatioName = #{journaloperationame,jdbcType=VARCHAR},
+            journalRemarks = #{journalremarks,jdbcType=VARCHAR}
+        where journalId = #{journalid,jdbcType=INTEGER}
+    </update>
+</mapper>
