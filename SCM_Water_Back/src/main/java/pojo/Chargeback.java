@@ -89,6 +89,9 @@ public class Chargeback {
 
     public Integer getChargebackquantity() {
         return chargebackquantity;
+        
+        
+        
     }
 
     public void setChargebackquantity(Integer chargebackquantity) {
