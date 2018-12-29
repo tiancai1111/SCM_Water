@@ -1,10 +1,14 @@
 package mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import pojo.Staff;
 
 public interface StaffMapper {
 
-	Staff Selects(String staffname);
+	Staff Selects(@Param("staffname")String staffname);
 
     int deleteByPrimaryKey(Integer staffid);
 
@@ -17,4 +21,7 @@ public interface StaffMapper {
     int updateByPrimaryKeySelective(Staff record);
 
     int updateByPrimaryKey(Staff record);
+
+    //c
+	List<Staff> SeleName(String string);
 }

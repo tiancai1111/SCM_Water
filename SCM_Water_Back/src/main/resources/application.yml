@@ -5,9 +5,9 @@ spring:
       suffix: .html
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.68.43.50:3306/scm_water
+    url: jdbc:mysql://localhost:3306/scm_water
     username: root
-    password: 911816
+    password: 1234
 logging:
   level: 
     mapper: debug

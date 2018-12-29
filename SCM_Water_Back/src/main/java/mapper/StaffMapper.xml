@@ -16,7 +16,16 @@
     <sql id="Base_Column_List" >
         staffId, staffName, staffPhone, staffSex, staffSite, staff, password, roleId
     </sql>
-
+    
+    <select id="Selects" resultMap="BaseResultMap">
+    SELECT * FROM Staff 
+    <where>
+     <if test="staffname!=null and staffname!=''">
+       staffname = #{staffname}
+     </if>
+     </where>
+     </select>
+    
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
         <include refid="Base_Column_List" />

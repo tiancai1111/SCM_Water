@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.Date;
+
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -40,17 +43,14 @@ public class IndexController {
    //登录提交跳转地址
    @ResponseBody
    @RequestMapping("loginpresent")
-   public String loginpresent(String staffname,String password,Model model) {
-	   /**//*****
+   public String loginpresent(String staffname,String password,Model model) {/*
+	   *//*****
 	    * **使用Shiro编写认证操作
 	    * ****//*
-*/	   
 	//1..获取Subject
 	Subject subject = SecurityUtils.getSubject();
-	
 	//2.封装用户数据
 	UsernamePasswordToken token =new UsernamePasswordToken(staffname,password);   
-	
 	//3.执行登陆方法
 	try {
 		//登陆成功!
@@ -65,5 +65,21 @@ public class IndexController {
 		model.addAttribute("model","用户名不存在");
 		return "login";
 	}
+   */
+		   Subject currentUser = SecurityUtils.getSubject();
+           UsernamePasswordToken token = new UsernamePasswordToken(staffname, password);
+           token.setRememberMe(true);
+           try {
+               currentUser.login(token);
+              return "/index";
+           } 
+           catch(IncorrectCredentialsException e){
+           	System.out.println("密码错误");
+           }
+           catch (AuthenticationException ae) {
+           	System.out.println("登录失败: " + ae.getMessage());
+           }
+		return "/failure";
+	
    }
 }
