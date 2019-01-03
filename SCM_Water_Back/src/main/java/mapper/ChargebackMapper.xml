@@ -12,6 +12,7 @@
         <result column="chargebackDate" property="chargebackdate" jdbcType="TIMESTAMP" />
         <result column=" chargebackMoney" property="chargebackmoney" jdbcType="DOUBLE" />
         <result column="chargebackOperationName" property="chargebackoperationname" jdbcType="VARCHAR" />
+        
     </resultMap>
 
     <sql id="Base_Column_List" >

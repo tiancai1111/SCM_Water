@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.RepertoryMapper" >
+ <resultMap id="BaseResultMap" type="pojo.Repertory" >
+        <id column="repertoryId" property="repertoryid"/>
+        <result column="commodityId" property="commodityid"/>
+        <result column="repertoryamount" property="repertoryamount"/>
+        <result column="repertoryEmptyBarrel" property="repertoryemptybarrel"/>
+        <result column="repertoryState" property="repertorystate"/>
+        <result column="commodityName" property="commodityname"/>
+         <result column="commodityId" property="commodityid"/>
+    </resultMap>
+    
+    <select id="repertory" resultType="pojo.Repertory" parameterType="pojo.Repertory">
+    SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId
+    </select>
+    
+    <select id="repertoryDetails" resultType="pojo.Repertory" parameterType="int">
+     SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId AND repertory.commodityId=#{repertoryid}
+    </select>
+    
+    <select id="repertorys" resultType="pojo.Repertory" parameterType="int">
+     SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId AND repertory.commodityId=#{repertoryid}
+    </select>
+    
+    <delete id="repertoryDel" parameterType="int">
+    DELETE FROM `repertory` WHERE repertoryId=#{repertoryid}
+    </delete>
+    
+    <update id="repertoryUpdate" parameterType="int">
+    UPDATE `repertory` SET  commodityName=#{commodityName},repertoryamount=#{repertoryamount},repertoryState=#{repertoryState},commodityEnter=#{commodityEnter},commoditySale=#{commoditySale} where repertoryId=#{repertoryId}
+    </update>
+</mapper>

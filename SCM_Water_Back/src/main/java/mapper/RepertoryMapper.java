@@ -1,17 +1,16 @@
 package mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import pojo.Repertory;
 
 public interface RepertoryMapper {
-    int deleteByPrimaryKey(Integer repertoryid);
-
-    int insert(Repertory record);
-
-    int insertSelective(Repertory record);
-
-    Repertory selectByPrimaryKey(Integer repertoryid);
-
-    int updateByPrimaryKeySelective(Repertory record);
-
-    int updateByPrimaryKey(Repertory record);
+	
+	List<Repertory> repertory();
+	Repertory repertoryDetails(@Param("repertoryid")int repertoryid);
+	int repertoryDel(@Param("repertoryid") int repertoryid);
+	Repertory repertorys(@Param("repertoryid")int repertoryid);
+	int repertoryUpdate(@Param("repertoryid")int repertoryid);
 }
