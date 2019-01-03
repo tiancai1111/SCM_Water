@@ -1,17 +1,9 @@
 package mapper;
 
+import java.util.List;
+
 import pojo.Shopping;
 
 public interface ShoppingMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Shopping record);
-
-    int insertSelective(Shopping record);
-
-    Shopping selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Shopping record);
-
-    int updateByPrimaryKey(Shopping record);
+	List<Shopping> selByUserId(int userId);
 }
