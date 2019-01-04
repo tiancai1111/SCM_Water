@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>便捷桶装水商城</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" href="lm/css/bootstrap.min.css">
+<link rel="stylesheet" href="lm/css/font-awesome.min.css">
+<link rel="stylesheet" href="lm/css/pe-icon-7-stroke.css">
+<link rel="stylesheet" href="lm/css/plugins.css">
+<link rel="stylesheet" href="lm/style.css">
+<link rel="stylesheet" href="lm/css/responsive.css">
+<script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
+<div class="wrapper">
+	<header class="header-section section sticker">
+		<div class="headerpage"></div>
+	</header>
+
+	<div class="home-slider-section section">
+		<div id="home-slider" class="slides">
+			<img src="lm/img/bg/bj11.jpg" alt="" title="#slider-caption-1" /> <img
+				src="lm/img/bg/ccc.jpg" alt="" title="#slider-caption-2" />
+		</div>
+	</div>
+	<div class="product-section section pt-120 pb-120">
+		<div class="container">
+			<div class="row">
+				<div class="isotope-product-filter col-xs-8">
+					<button class="active" data-filter="*">品牌</button>
+					<button th:each="commodity,iterStat:${commodityList}"
+						th:data-filter="'.'+${commodity.commodityname}"
+						th:text="${commodity.commodityname}"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="product-filter-wrapper"></div>
+				</div>
+			</div>
+			<div class="isotope-grid row">
+				<div th:each="commodity,iterStat:${commodityList}"
+					th:class="'isotope-item '+${commodity.commodityname}+' col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-50'">
+					<div class="product-item text-center">
+						<div class="product-img">
+							<a class="image" href="details"><img
+								th:src="'lm/img/shui/'+${commodity.img}" /></a> <a class="wishlist"
+								href="" title="Wishlist"><i class="pe-7s-like"></i></a>
+						</div>
+						<div class="product-info text-left">
+							<h5 class="title">
+								<a href="product-details.html" th:text="${commodity.state}"></a>
+							</h5>
+							<div class="price-ratting fix">
+								<span class="price float-left"><span class="new"
+									th:text="'￥'+${commodity.commoditysale}"></span></span> <span
+									class="ratting float-right"> <i
+									class="fa fa-star active"></i> <i class="fa fa-star active"></i>
+									<i class="fa fa-star active"></i> <i class="fa fa-star active"></i>
+									<i class="fa fa-star active"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footerpage"></div>
+</div>
+
+<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
+<script src="lm/js/bootstrap.min.js"></script>
+<script src="lm/js/plugins.js"></script>
+<script src="lm/js/ajax-mail.js"></script>
+<script src="lm/js/main.js"></script>
+<script type="text/javascript">
+	$(".headerpage").load("lm/header.html");
+	$(".footerpage").load("lm/footer.html");
+</script>
+</body>
+
+</html>
