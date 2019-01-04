@@ -12,6 +12,6 @@
     </resultMap>
 
     <select id="commoditySelect" resultType="pojo.Repertory" parameterType="pojo.Repertory">
-    SELECT * FROM  `commodity` WHERE commodityName LIKE '%娃%'
+    SELECT * FROM  `commodity` WHERE commodityName LIKE ('%'#{commodityname}'%')
     </select>
 </mapper>

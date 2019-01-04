@@ -16,9 +16,9 @@ import service.RepertoryService;
 public class RepertoryController {
 @Autowired
 private RepertoryService repertoryService;
-@RequestMapping("/jjj")
-public String repertory(Model model){
-	List<Repertory> repertory=repertoryService.repertory();
+@RequestMapping("/repertoryParticulars")
+public String repertory(@RequestParam(value="commodityName",defaultValue="")String commodityName,Model model){
+	List<Repertory> repertory=repertoryService.repertory(commodityName);
 	model.addAttribute("repertorylist", repertory);
 	return "repertory";
 }

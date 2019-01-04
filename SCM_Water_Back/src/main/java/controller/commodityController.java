@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pojo.Commodity;
 import service.CommodityService;
@@ -15,11 +16,12 @@ import service.CommodityService;
 public class commodityController {
 @Autowired
 private CommodityService commodityService;
-
+@ResponseBody
 @RequestMapping("/commodity")
 public String commodity(@RequestParam("commodityName")String commodityName,Model model) {
 	List<Commodity> commodity=commodityService.commoditySelect(commodityName);
-	model.addAttribute("commodity", commodity);
+/*	model.addAttribute("commodity", commodity);*/
+	model.addAttribute("repertorylist", commodity);
 	return "repertory";
 	
 }

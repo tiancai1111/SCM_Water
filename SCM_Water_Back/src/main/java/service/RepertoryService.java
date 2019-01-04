@@ -8,7 +8,7 @@ import pojo.Commodity;
 import pojo.Repertory;
 
 public interface RepertoryService {
-	List<Repertory> repertory();
+	List<Repertory> repertory(String commodityName);
 	Repertory repertoryDetails(int repertoryid);
 	int repertoryDel(int repertoryid);
 	Repertory repertorys(int repertoryid);

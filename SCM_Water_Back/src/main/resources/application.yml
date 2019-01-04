@@ -7,12 +7,14 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/scm_water
     username: root
-    password: 1234
+    password: 1234    
+  thymeleaf:
+    cache: false
 logging:
   level: 
     mapper: debug
-  thymeleaf:
-     cache:false
-     encoding:utf-8
+#  thymeleaf:
+#     cache:false
+#     encoding:utf-8
      
      
