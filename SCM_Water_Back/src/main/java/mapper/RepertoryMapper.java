@@ -13,4 +13,5 @@ public interface RepertoryMapper {
 	int repertoryDel(@Param("repertoryid") int repertoryid);
 	Repertory repertorys(@Param("repertoryid")int repertoryid);
 	int repertoryUpdate(@Param("repertoryid")int repertoryid);
+	
 }

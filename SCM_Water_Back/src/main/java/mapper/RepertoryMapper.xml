@@ -30,4 +30,6 @@
     <update id="repertoryUpdate" parameterType="int">
     UPDATE `repertory` SET  commodityName=#{commodityName},repertoryamount=#{repertoryamount},repertoryState=#{repertoryState},commodityEnter=#{commodityEnter},commoditySale=#{commoditySale} where repertoryId=#{repertoryId}
     </update>
+    
+    
 </mapper>
