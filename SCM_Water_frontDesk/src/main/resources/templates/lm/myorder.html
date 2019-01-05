@@ -1,47 +1,27 @@
 ﻿<!doctype html>
-<html class="no-js" lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>便捷桶装水商城</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Favicon -->
 <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
-<!-- All CSS Files -->
-<!-- Bootstrap css -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Icon Font -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/pe-icon-7-stroke.css">
-<!-- Plugins css file -->
-<link rel="stylesheet" href="css/plugins.css">
-<!-- Theme main style -->
-<link rel="stylesheet" href="style.css">
-<!-- Responsive css -->
-<link rel="stylesheet" href="css/responsive.css">
-
-<!-- Modernizr JS -->
 <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-
+<link rel="stylesheet" href="lm/css/bootstrap.min.css">
+<link rel="stylesheet" href="lm/css/font-awesome.min.css">
+<link rel="stylesheet" href="lm/css/pe-icon-7-stroke.css">
+<link rel="stylesheet" href="lm/css/plugins.css">
+<link rel="stylesheet" href="lm/style.css">
+<link rel="stylesheet" href="lm/css/responsive.css">
+<script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <body>
-
-
-
-	<!-- Body main wrapper start -->
 	<div class="wrapper">
-		<!-- START HEADER SECTION -->
 		<header class="header-section section sticker">
 			<div class="headerpage"></div>
 		</header>
-		<!-- END HEADER SECTION -->
-
-		<!-- PAGE BANNER SECTION -->
 		<div class="page-banner-section section">
 			<div class="container">
 				<div class="row">
@@ -49,7 +29,7 @@
 						<div class="page-banner-content">
 							<h1>我的订单</h1>
 							<ul class="breadcrumb">
-								<li><a href="#">主页面</a></li>
+								<li><a href="home">主页面</a></li>
 								<li class="active">我的订单</li>
 							</ul>
 						</div>
@@ -57,8 +37,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- PAGE SECTION START -->
 		<div class="page-section section pt-120 pb-80">
 			<div class="container">
 				<div class="row">
@@ -80,19 +58,23 @@
 										</tr>
 									</thead>
 									<tbody>
-										
-										<tr>
-											<td class="">1</td>
-											<td class="">2</td>
-											<td class="">3</td>
-											<td class="">4</td>
-											<td class="">5</td>
-											<td class="">6</td>
-											<td class="">7</td>
-											<td class="">8</td>
-											<td class="">
+
+										<tr th:each="order,iterStat:${orderList}">
+											<td class="" th:text="${order.numberr}"></td>
+											<td>
+											<span th:each="detail,status:${order.OrderDetails}">
+											<span th:text="${detail.state}"></span><span th:text="'×'+${detail.count}"></span><br>
+											</span>
+											</td>
+											<td  th:text="${order.address}"></td>
+											<td  th:text="${order.phone}"></td>
+											<td  th:text="${order.linkman}"></td>
+											<td  th:text="${#dates.format(order.ordertime, 'yyyy-MM-dd hh:mm:ss')}"></td>
+											<td  th:text="${order.money}"></td>
+											<td  th:text="${order.status}"></td>
+											<td>
 												<div class="cart-buttons">
-													<a href="#">签收</a>	<a href="#">取消订单</a>
+													<a href="#">签收</a> <a href="#">取消订单</a>
 												</div>
 											</td>
 										</tr>
@@ -104,28 +86,13 @@
 				</div>
 			</div>
 		</div>
-	
-		<!-- FOOTER BOTTOM SECTION START -->
 		<div class="footerpage"></div>
-		<!-- FOOTER BOTTOM SECTION END -->
-
-
 	</div>
-	<!-- Body main wrapper end -->
-
-
-	<!-- Placed JS at the end of the document so the pages load faster -->
-
-	<!-- jQuery latest version -->
-	<script src="js/vendor/jquery-3.1.1.min.js"></script>
-	<!-- Bootstrap js -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Plugins js -->
-	<script src="js/plugins.js"></script>
-	<!-- Ajax Mail js -->
-	<script src="js/ajax-mail.js"></script>
-	<!-- Main js -->
-	<script src="js/main.js"></script>
+	<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
+	<script src="lm/js/bootstrap.min.js"></script>
+	<script src="lm/js/plugins.js"></script>
+	<script src="lm/js/ajax-mail.js"></script>
+	<script src="lm/js/main.js"></script>
 	<script type="text/javascript">
 		$(".headerpage").load("header.html");
 		$(".footerpage").load("footer.html");

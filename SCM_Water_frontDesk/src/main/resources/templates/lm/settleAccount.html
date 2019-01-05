@@ -1,31 +1,18 @@
 ﻿<!doctype html>
-<html class="no-js" lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>便捷桶装水商城</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-
-<!-- All CSS Files -->
-<!-- Bootstrap css -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- Icon Font -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/pe-icon-7-stroke.css">
-<!-- Plugins css file -->
-<link rel="stylesheet" href="css/plugins.css">
-<!-- Theme main style -->
-<link rel="stylesheet" href="style.css">
-<!-- Responsive css -->
-<link rel="stylesheet" href="css/responsive.css">
-
-<!-- Modernizr JS -->
-<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<link rel="stylesheet" href="lm/css/bootstrap.min.css">
+<link rel="stylesheet" href="lm/css/font-awesome.min.css">
+<link rel="stylesheet" href="lm/css/pe-icon-7-stroke.css">
+<link rel="stylesheet" href="lm/css/plugins.css">
+<link rel="stylesheet" href="lm/style.css">
+<link rel="stylesheet" href="lm/css/responsive.css">
+<script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
 
@@ -33,18 +20,10 @@
 
 
 
-
-
-	<!-- Body main wrapper start -->
 	<div class="wrapper">
-
-		<!-- START HEADER SECTION -->
 		<header class="header-section section sticker">
 			<div class="headerpage"></div>
 		</header>
-		<!-- END HEADER SECTION -->
-
-		<!-- PAGE BANNER SECTION -->
 		<div class="page-banner-section section">
 			<div class="container">
 				<div class="row">
@@ -60,54 +39,36 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- PAGE SECTION START -->
 		<div class="page-section section pt-120 pb-80">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="customer-login mb-40">
-							<!-- LOGIN START -->
 							<h3></h3>
-
-							<!-- LOGIN END -->
 						</div>
 					</div>
-
 					<div class="checkout-form">
-
 						<div class="col-lg-6 col-md-6 mb-40">
-
 							<form action="#">
 								<h3>结账明细</h3>
 								<div class="coupon-form mb-30">
 									<h3>收货地址</h3>
-
 									<select>
-										<option>地址1</option>
-										<option>地址2</option>
-										<option>地址3</option>
+										<option th:each="takeAddress:${addlist}" th:text="${takeAddress.address}"></option>
 									</select>
-
 								</div>
-
 								<div class="coupon-form mb-30">
 									<h3>手机号码</h3>
-
-									<input type="text" />
-
+									<input type="text"/>
 								</div>
-
 								<div class="coupon-form mb-30">
 									<h3>联系人</h3>
-
 									<input type="text" />
 								</div>
 								<div class="row"></div>
 								<h3>
 									<label for="ship_form"> 需要添加收货地址?<a href="个人信息">点击这里</a></label>
 								</h3>
-
 								<div class="order-notes">
 									<label for="order_note">订单备注</label>
 									<textarea id="order_note" placeholder="请输入您的备注"></textarea>
@@ -165,14 +126,6 @@
 										</tfoot>
 									</table>
 								</div>
-								<!-- 	 <div class="action-btn fix">
-									<a href="#" data-toggle="modal" data-target="#quickViewModal"
-										title="Quick View"><i class="pe-7s-look"></i>Quick view</a> <a
-										href="#" title="Add to Cart"><i class="pe-7s-cart"></i>add
-										to cart</a>
-								</div>  -->
-
-
 								<div id="sbmorder" class="modal fade">
 									<div class="container">
 										<div class="modal-content row">
@@ -180,11 +133,9 @@
 												<button class="close" data-dismiss="modal">
 													<span aria-hidden="true">&times;</span>
 												</button>
-
 												<h3>支付</h3>
 												<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
 													<div class="coupon-form mb-30">
-
 														<div>
 															<p>请选择您的支付方式</p>
 															<select>
@@ -194,18 +145,14 @@
 															</select>
 														</div>
 													</div>
-
-												
 												</div>
 												<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
 													<div class="coupon-form mb-30">
 														<div>
 															<p>请输入钱包支付密码</p>
 															<input type="password"/>
-															
 															<br>
 									                   <a href="#" ><input type="submit" value="确认支付" /></a>
-								
 														</div>
 														<div style="display: none;">
 														<p>请扫码支付</p>
@@ -214,20 +161,13 @@
 													</div>
 												</div>
 											</div>
-
 										</div>
-
 									</div>
-
 								</div>
-
-
-
 								<div class="order-button">
 									<a href="#" data-toggle="modal" data-target="#sbmorder"><input
 										type="submit" value="下订单" /></a>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -235,33 +175,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- PAGE SECTION END -->
-
-	<!-- FOOTER TOP SECTION START -->
-	<div class="footerpage"></div>
-	<!-- FOOTER TOP SECTION END -->
-
-
-
-	<!-- Body main wrapper end -->
-
-
-	<!-- Placed JS at the end of the document so the pages load faster -->
-
-	<!-- jQuery latest version -->
-	<script src="js/vendor/jquery-3.1.1.min.js"></script>
-	<!-- Bootstrap js -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Plugins js -->
-	<script src="js/plugins.js"></script>
-	<!-- Ajax Mail js -->
-	<script src="js/ajax-mail.js"></script>
-	<!-- Main js -->
-	<script src="js/main.js"></script>
-	<script type="text/javascript">
-		$(".headerpage").load("header.html");
-		$(".footerpage").load("footer.html");
-	</script>
-</body>
-
+	<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
+	<script src="lm/js/bootstrap.min.js"></script>
+	<script src="lm/js/plugins.js"></script>
+	<script src="lm/js/ajax-mail.js"></script>
+	<script src="lm/js/main.js"></script>
+	</body>
 </html>

@@ -13,12 +13,8 @@
 <link rel="stylesheet" href="lm/style.css">
 <link rel="stylesheet" href="lm/css/responsive.css">
 <script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
-
 </head>
-
 <body>
-
-
 	<!-- Body main wrapper start -->
 	<div class="wrapper">
 		<!-- START HEADER SECTION -->
@@ -35,7 +31,7 @@
 						<div class="page-banner-content">
 							<h1>购物车页面</h1>
 							<ul class="breadcrumb">
-								<li><a href="index.html">主页面</a></li>
+								<li><a href="home">主页面</a></li>
 								<li class="active">购物车页面</li>
 							</ul>
 						</div>
@@ -43,7 +39,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- PAGE SECTION START -->
 		<div class="page-section section pt-120 pb-80">
 			<div class="container">
@@ -68,12 +63,12 @@
 													th:src="'lm/img/shui/'+${shopping.img}" /></a></td>
 											<td class="pro-title" th:text="${shopping.commodityName}"></td>
 											<td class="pro-price">￥<span class="amount"
-												th:text="${shopping.commoditySale}"></span></td>
+												th:text="${#numbers.formatDecimal(shopping.commoditySale, 0, 2)}"></span></td>
 											<td class="pro-quantity"><div class="product-quantity">
 													<input type="text" th:value="${shopping.count}" />
 												</div></td>
 											<td class="pro-subtotal">￥<span class="pro-total"
-												th:text="${shopping.money}">20.00</span></td>
+												th:text="${#numbers.formatDecimal(shopping.money, 0, 2)}"></span></td>
 											<td class="pro-remove"><a>×</a></td>
 										</tr>
 
@@ -83,7 +78,7 @@
 						</div>
 						<div class="col-md-8 col-sm-7 col-xs-12">
 							<div class="cart-buttons mb-30">
-								<a href="#">继续购物</a>
+								<a href="home">继续购物</a>
 							</div>
 						</div>
 						<div class="col-md-4 col-sm-5 col-xs-12">
@@ -94,7 +89,6 @@
 
 										<tr class="order-total">
 											<th>总</th>
-											<!-- class="amount" -->
 											<td style="font-weight: bold;"><span>￥</span><span
 												class="totals"></span></td>
 										</tr>
@@ -111,9 +105,7 @@
 		</div>
 
 
-		<!-- FOOTER BOTTOM SECTION START -->
 		<div class="footerpage"></div>
-		<!-- FOOTER BOTTOM SECTION END -->
 
 
 	</div>
@@ -123,12 +115,10 @@
 	<script src="lm/js/ajax-mail.js"></script>
 	<script src="lm/js/main.js"></script>
 	<script type="text/javascript">
-	
-	$(document).ready(function() {
+	$(function() {
 		showtotal();
-		selCart()
-	});
-	
+		selCart();
+	})
 		$(".headerpage").load("lm/header.html");
 		$(".footerpage").load("lm/footer.html");
 		$('.product-quantity')
