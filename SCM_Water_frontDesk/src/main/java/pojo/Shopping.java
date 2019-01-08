@@ -21,10 +21,19 @@ public class Shopping {
 	private String count;
 
 	private Integer userId;
-    private float money;
+	private float money;
 	private String commodityName;
 	private float commoditySale;
 	private String img;
+	private String state;
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
 
 	public float getMoney() {
 		return money;

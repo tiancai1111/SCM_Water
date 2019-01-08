@@ -31,7 +31,7 @@
 						<div class="page-banner-content">
 							<h1>结账页面</h1>
 							<ul class="breadcrumb">
-								<li><a href="index.html">主页面</a></li>
+								<li><a href="home">主页面</a></li>
 								<li class="active">结账页面</li>
 							</ul>
 						</div>
@@ -53,17 +53,23 @@
 								<h3>结账明细</h3>
 								<div class="coupon-form mb-30">
 									<h3>收货地址</h3>
-									<select>
-										<option th:each="takeAddress:${addlist}" th:text="${takeAddress.address}"></option>
+									<select id="addressId" onchange="address()">
+										<option th:each="takeAddress,status:${addlist}"
+											th:value="${takeAddress.taId}"
+											th:text="${takeAddress.address}"></option>
 									</select>
 								</div>
 								<div class="coupon-form mb-30">
 									<h3>手机号码</h3>
-									<input type="text"/>
+									<input type="text" name="phone"
+										th:each="takeAddress,status:${addlist}"
+										th:if="${status.count}==1" th:value="${takeAddress.phone}" />
 								</div>
 								<div class="coupon-form mb-30">
 									<h3>联系人</h3>
-									<input type="text" />
+									<input type="text" name="name"
+										th:each="takeAddress,status:${addlist}"
+										th:if="${status.count}==1" th:value="${takeAddress.name}" />
 								</div>
 								<div class="row"></div>
 								<h3>
@@ -71,7 +77,7 @@
 								</h3>
 								<div class="order-notes">
 									<label for="order_note">订单备注</label>
-									<textarea id="order_note" placeholder="请输入您的备注"></textarea>
+									<textarea id="order_note" name="remark" placeholder="请输入您的备注"></textarea>
 								</div>
 							</form>
 						</div>
@@ -80,10 +86,11 @@
 								<h3>您的优惠卷</h3>
 								<div>
 									<p>请选择您的优惠卷</p>
-									<select>
-										<option>优惠卷1</option>
-										<option>优惠卷2</option>
-										<option>优惠卷3</option>
+									<select id="giftcouponId" onchange="giftcoupon()">
+										<option value="0" selected>不使用优惠卷</option>
+										<option th:each="giftcoupon,status:${glist}"
+											th:value="${giftcoupon.id}" th:text="${giftcoupon.gc_name}">
+										</option>
 									</select>
 								</div>
 								<div style="display: none;">
@@ -101,27 +108,41 @@
 												<th class="product-total">总</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody th:if="${way}==1">
 											<tr>
-												<td class="product-name">桶装水a <strong
-													class="product-qty"> × 1</strong>
-												</td>
-												<td class="product-total"><span class="amount">￥165.00</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="product-name">桶装水b <strong
-													class="product-qty"> × 1</strong>
-												</td>
-												<td class="product-total"><span class="amount">￥50.00</span>
-												</td>
+												<td class="product-name"><strong class="product-qty"><span
+														th:text="${commodity.state}"></span><span>×</span><span
+														class="count" th:text="${count}"></span></strong></td>
+												<td class="product-total"><span class="amount"><span>￥</span><span
+														class="total"
+														th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span></td>
 											</tr>
 										</tbody>
-										<tfoot>
-
+										<tfoot th:if="${way}==1">
 											<tr>
 												<th>订单合计</th>
-												<td><strong>￥215.00</strong></td>
+												<td style="font-size: 16px"><strong>￥</strong><strong
+													class="totals"
+													th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong><strong>(优惠:</strong><strong
+													class="discounts"></strong><strong>)</strong></td>
+											</tr>
+										</tfoot>
+										<tbody th:if="${way}==0">
+											<tr th:each="shopping,status:${shoppingList}">
+												<td class="product-name"><strong class="product-qty"><span
+														th:text="${shopping.state}"></span><span>×</span><span
+														class="count" th:text="${shopping.count}"></span></strong></td>
+												<td class="product-total"><span class="amount"><span>￥</span><span
+														class="total"
+														th:text="${#numbers.formatDecimal(shopping.money, 0, 2)}"></span></span></td>
+											</tr>
+										</tbody>
+										<tfoot th:if="${way}==0">
+											<tr>
+												<th>订单合计</th>
+												<td><strong>￥</strong><strong class="totals"
+													th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong><strong>(优惠:</strong><strong
+													class="discounts"></strong><strong>)</strong></td>
 											</tr>
 										</tfoot>
 									</table>
@@ -150,12 +171,11 @@
 													<div class="coupon-form mb-30">
 														<div>
 															<p>请输入钱包支付密码</p>
-															<input type="password"/>
-															<br>
-									                   <a href="#" ><input type="submit" value="确认支付" /></a>
+															<input type="password" /> <br> <a href="#"><input
+																type="submit" value="确认支付" /></a>
 														</div>
 														<div style="display: none;">
-														<p>请扫码支付</p>
+															<p>请扫码支付</p>
 															二维码
 														</div>
 													</div>
@@ -180,5 +200,73 @@
 	<script src="lm/js/plugins.js"></script>
 	<script src="lm/js/ajax-mail.js"></script>
 	<script src="lm/js/main.js"></script>
-	</body>
+	<script>
+		$(function() {
+			var giftcouponId = $("#giftcouponId").val();
+			if (giftcouponId == 0) {
+				lastTotal = "不使用";
+				$(".discounts").html(lastTotal);
+			}
+		});
+		function address() {
+			var taId = $("#addressId option:selected").val();
+			$.ajax({
+				url : "selByTaId?taId=" + taId,
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				success : function(data) {
+					$("input[name=phone]").val(data.phone);
+					$("input[name=name]").val(data.name);
+				},
+				error : function() {
+					alert("失败");
+				}
+			});
+		}
+
+		function giftcoupon() {
+			var giftcouponId = $("#giftcouponId").val();
+			/* alert(giftcouponId); */
+			var totals = $(".totals").text();
+			var lastTotal;
+			if (giftcouponId == 0) {
+				lastTotal = "不使用";
+				$(".discounts").html(lastTotal);
+			} else {
+				$.ajax({
+					url : "selGiftcouponById?id=" + giftcouponId,
+					type : "POST",
+					dataType : "json",
+					contentType : "application/json;charset=UTF-8",
+					success : function(data) {
+						var discounts = data.gc_money;
+						if (totals > discounts) {
+							lastTotal = totals - discounts;
+						} else {
+							lastTotal = 0;
+						}
+						if (lastTotal % 1 == 0) {
+							lastTotal = lastTotal + ".00";
+						} else {
+							lastTotal = Math.round(lastTotal * 100) / 100;
+						}
+						if (discounts % 1 == 0) {
+							discounts = discounts + ".00";
+						} else {
+							discounts = Math.round(discounts * 100) / 100;
+						}
+						$(".discounts").html(discounts);
+						$(".totals").html(lastTotal);
+					},
+					error : function() {
+						alert("失败");
+					}
+				});
+			}
+
+		}
+	</script>
+</body>
+
 </html>
