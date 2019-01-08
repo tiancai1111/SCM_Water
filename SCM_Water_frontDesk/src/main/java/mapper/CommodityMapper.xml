@@ -13,4 +13,8 @@
     <select id="selCommodity" resultMap="BaseResultMap">
         SELECT * FROM `commodity`
     </select>
+    
+     <select id="selById" resultMap="BaseResultMap">
+        SELECT * FROM `commodity` where commodityId=#{id}
+    </select>
 </mapper>

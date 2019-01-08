@@ -1,6 +1,7 @@
 package pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
@@ -53,9 +54,48 @@ public class Order {
     /**
      * 订单总金额
      */
-    private Double money;
+    
+    
+    private Float money;
+    
+    private List<Order> OrderDetails;
 
-    public Integer getId() {
+    public List<Order> getOrderDetails() {
+		return OrderDetails;
+	}
+
+	public void setOrderDetails(List<Order> orderDetails) {
+		OrderDetails = orderDetails;
+	}
+
+	private int count;
+    private String state;
+    
+    public Float getMoney() {
+		return money;
+	}
+
+	public void setMoney(Float money) {
+		this.money = money;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -119,11 +159,4 @@ public class Order {
         this.status = status == null ? null : status.trim();
     }
 
-    public Double getMoney() {
-        return money;
-    }
-
-    public void setMoney(Double money) {
-        this.money = money;
-    }
 }

@@ -23,6 +23,7 @@
 
 	<div class="home-slider-section section">
 		<div id="home-slider" class="slides">
+		
 			<img src="lm/img/bg/bj11.jpg" alt="" title="#slider-caption-1" /> <img
 				src="lm/img/bg/ccc.jpg" alt="" title="#slider-caption-2" />
 		</div>
@@ -47,17 +48,17 @@
 					th:class="'isotope-item '+${commodity.commodityname}+' col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-50'">
 					<div class="product-item text-center">
 						<div class="product-img">
-							<a class="image" href="details"><img
+							<a th:href="'details?id='+${commodity.commodityid}" class="image"><img
 								th:src="'lm/img/shui/'+${commodity.img}" /></a> <a class="wishlist"
 								href="" title="Wishlist"><i class="pe-7s-like"></i></a>
 						</div>
 						<div class="product-info text-left">
 							<h5 class="title">
-								<a href="product-details.html" th:text="${commodity.state}"></a>
+								<a href="'details?id='+${commodity.commodityid}" th:text="${commodity.state}"></a>
 							</h5>
 							<div class="price-ratting fix">
 								<span class="price float-left"><span class="new"
-									th:text="'￥'+${commodity.commoditysale}"></span></span> <span
+									th:text="'￥'+${#numbers.formatDecimal(commodity.commoditysale, 0, 2)}"></span></span> <span
 									class="ratting float-right"> <i
 									class="fa fa-star active"></i> <i class="fa fa-star active"></i>
 									<i class="fa fa-star active"></i> <i class="fa fa-star active"></i>
@@ -70,6 +71,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="footerpage"></div>
 </div>
 

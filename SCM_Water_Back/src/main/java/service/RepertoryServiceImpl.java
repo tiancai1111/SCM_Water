@@ -12,9 +12,9 @@ public class RepertoryServiceImpl implements RepertoryService {
 @Autowired
 private RepertoryMapper repertoryMapper;
 	@Override
-	public List<Repertory> repertory() {
+	public List<Repertory> repertory(String commodityName) {
 		// TODO Auto-generated method stub
-		return repertoryMapper.repertory();
+		return repertoryMapper.repertory(commodityName);
 	}
 	@Override
 	public Repertory repertoryDetails(int repertoryid) {

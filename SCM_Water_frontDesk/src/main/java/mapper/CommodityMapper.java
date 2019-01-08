@@ -6,4 +6,5 @@ import pojo.Commodity;
 
 public interface CommodityMapper {
 	List<Commodity> selCommodity();
+	Commodity selById(int id);
 }

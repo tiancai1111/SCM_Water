@@ -12,7 +12,10 @@
     </resultMap>
     
     <select id="repertory" resultType="pojo.Repertory" parameterType="pojo.Repertory">
-    SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId
+    SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId 
+    <if test="commodityName != '' and commodityName != null">
+    and commodityName  LIKE CONCAT('%',#{commodityName},'%')
+    </if>
     </select>
     
     <select id="repertoryDetails" resultType="pojo.Repertory" parameterType="int">

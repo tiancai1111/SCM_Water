@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.SettleAccountMapper">
+	<resultMap  id="BaseResultMap" type="pojo.TakeAddress">
+		<id column="ta_id" property="taId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="address" property="address" />
+		<result column="phone" property="phone" />
+		<result column="name" property="name" />
+	</resultMap>
+	<select id="selTakeAddressByUserId" resultMap="BaseResultMap" parameterType="int">
+		SELECT * FROM `take_address` WHERE user_id=#{userId}
+	</select>
+	
+	<select id="selByTaId" resultMap="BaseResultMap" parameterType="int">
+		SELECT * FROM `take_address` WHERE ta_id=#{taId}
+	</select>
+	
+	<select id="selGiftcouponByUserId" resultType="pojo.UserGiftcoupon" parameterType="int">
+	SELECT * FROM `user_giftcoupon` t1,`giftcoupon` t2 WHERE t1.`gcid`=t2.`gc_id` AND uid=#{userId}
+	</select>
+	<select id="selGiftcouponByUserIdAndId" resultType="pojo.UserGiftcoupon" parameterType="int">
+	SELECT * FROM `user_giftcoupon` t1,`giftcoupon` t2 WHERE t1.`gcid`=t2.`gc_id` AND  uid=#{userId} AND id=#{id}
+	</select>
+	
+	
+	
+</mapper>

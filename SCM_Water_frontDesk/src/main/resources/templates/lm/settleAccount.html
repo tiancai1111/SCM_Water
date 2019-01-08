@@ -1,0 +1,272 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>便捷桶装水商城</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lm/css/bootstrap.min.css">
+<link rel="stylesheet" href="lm/css/font-awesome.min.css">
+<link rel="stylesheet" href="lm/css/pe-icon-7-stroke.css">
+<link rel="stylesheet" href="lm/css/plugins.css">
+<link rel="stylesheet" href="lm/style.css">
+<link rel="stylesheet" href="lm/css/responsive.css">
+<script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+	<div class="wrapper">
+		<header class="header-section section sticker">
+			<div class="headerpage"></div>
+		</header>
+		<div class="page-banner-section section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="page-banner-content">
+							<h1>结账页面</h1>
+							<ul class="breadcrumb">
+								<li><a href="home">主页面</a></li>
+								<li class="active">结账页面</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page-section section pt-120 pb-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="customer-login mb-40">
+							<h3></h3>
+						</div>
+					</div>
+					<div class="checkout-form">
+						<div class="col-lg-6 col-md-6 mb-40">
+							<form action="#">
+								<h3>结账明细</h3>
+								<div class="coupon-form mb-30">
+									<h3>收货地址</h3>
+									<select id="addressId" onchange="address()">
+										<option th:each="takeAddress,status:${addlist}"
+											th:value="${takeAddress.taId}"
+											th:text="${takeAddress.address}"></option>
+									</select>
+								</div>
+								<div class="coupon-form mb-30">
+									<h3>手机号码</h3>
+									<input type="text" name="phone"
+										th:each="takeAddress,status:${addlist}"
+										th:if="${status.count}==1" th:value="${takeAddress.phone}" />
+								</div>
+								<div class="coupon-form mb-30">
+									<h3>联系人</h3>
+									<input type="text" name="name"
+										th:each="takeAddress,status:${addlist}"
+										th:if="${status.count}==1" th:value="${takeAddress.name}" />
+								</div>
+								<div class="row"></div>
+								<h3>
+									<label for="ship_form"> 需要添加收货地址?<a href="个人信息">点击这里</a></label>
+								</h3>
+								<div class="order-notes">
+									<label for="order_note">订单备注</label>
+									<textarea id="order_note" name="remark" placeholder="请输入您的备注"></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+							<div class="coupon-form mb-30">
+								<h3>您的优惠卷</h3>
+								<div>
+									<p>请选择您的优惠卷</p>
+									<select id="giftcouponId" onchange="giftcoupon()">
+										<option value="0" selected>不使用优惠卷</option>
+										<option th:each="giftcoupon,status:${glist}"
+											th:value="${giftcoupon.id}" th:text="${giftcoupon.gc_name}">
+										</option>
+									</select>
+								</div>
+								<div style="display: none;">
+									<p>您没有优惠卷是否去兑换?</p>
+									<a href="积分商城">点击我兑换</a>
+								</div>
+							</div>
+							<div class="order-wrapper">
+								<h3>您的订单</h3>
+								<div class="order-table table-responsive mb-30">
+									<table>
+										<thead>
+											<tr>
+												<th class="product-name">商品</th>
+												<th class="product-total">总</th>
+											</tr>
+										</thead>
+										<tbody th:if="${way}==1">
+											<tr>
+												<td class="product-name"><strong class="product-qty"><span
+														th:text="${commodity.state}"></span><span>×</span><span
+														class="count" th:text="${count}"></span></strong></td>
+												<td class="product-total"><span class="amount"><span>￥</span><span
+														class="total"
+														th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span></td>
+											</tr>
+										</tbody>
+										<tfoot th:if="${way}==1">
+											<tr>
+												<th>订单合计</th>
+												<td style="font-size: 16px"><strong>￥</strong><strong
+													class="totals"
+													th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong><strong>(优惠:</strong><strong
+													class="discounts"></strong><strong>)</strong></td>
+											</tr>
+										</tfoot>
+										<tbody th:if="${way}==0">
+											<tr th:each="shopping,status:${shoppingList}">
+												<td class="product-name"><strong class="product-qty"><span
+														th:text="${shopping.state}"></span><span>×</span><span
+														class="count" th:text="${shopping.count}"></span></strong></td>
+												<td class="product-total"><span class="amount"><span>￥</span><span
+														class="total"
+														th:text="${#numbers.formatDecimal(shopping.money, 0, 2)}"></span></span></td>
+											</tr>
+										</tbody>
+										<tfoot th:if="${way}==0">
+											<tr>
+												<th>订单合计</th>
+												<td><strong>￥</strong><strong class="totals"
+													th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong><strong>(优惠:</strong><strong
+													class="discounts"></strong><strong>)</strong></td>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<div id="sbmorder" class="modal fade">
+									<div class="container">
+										<div class="modal-content row">
+											<div class="modal-body">
+												<button class="close" data-dismiss="modal">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h3>支付</h3>
+												<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+													<div class="coupon-form mb-30">
+														<div>
+															<p>请选择您的支付方式</p>
+															<select>
+																<option>微信</option>
+																<option>支付宝</option>
+																<option>我的钱包</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+													<div class="coupon-form mb-30">
+														<div>
+															<p>请输入钱包支付密码</p>
+															<input type="password" /> <br> <a href="#"><input
+																type="submit" value="确认支付" /></a>
+														</div>
+														<div style="display: none;">
+															<p>请扫码支付</p>
+															二维码
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="order-button">
+									<a href="#" data-toggle="modal" data-target="#sbmorder"><input
+										type="submit" value="下订单" /></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
+	<script src="lm/js/bootstrap.min.js"></script>
+	<script src="lm/js/plugins.js"></script>
+	<script src="lm/js/ajax-mail.js"></script>
+	<script src="lm/js/main.js"></script>
+	<script>
+		$(function() {
+			var giftcouponId = $("#giftcouponId").val();
+			if (giftcouponId == 0) {
+				lastTotal = "不使用";
+				$(".discounts").html(lastTotal);
+			}
+		});
+		function address() {
+			var taId = $("#addressId option:selected").val();
+			$.ajax({
+				url : "selByTaId?taId=" + taId,
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				success : function(data) {
+					$("input[name=phone]").val(data.phone);
+					$("input[name=name]").val(data.name);
+				},
+				error : function() {
+					alert("失败");
+				}
+			});
+		}
+
+		function giftcoupon() {
+			var giftcouponId = $("#giftcouponId").val();
+			/* alert(giftcouponId); */
+			var totals = $(".totals").text();
+			var lastTotal;
+			if (giftcouponId == 0) {
+				lastTotal = "不使用";
+				$(".discounts").html(lastTotal);
+			} else {
+				$.ajax({
+					url : "selGiftcouponById?id=" + giftcouponId,
+					type : "POST",
+					dataType : "json",
+					contentType : "application/json;charset=UTF-8",
+					success : function(data) {
+						var discounts = data.gc_money;
+						if (totals > discounts) {
+							lastTotal = totals - discounts;
+						} else {
+							lastTotal = 0;
+						}
+						if (lastTotal % 1 == 0) {
+							lastTotal = lastTotal + ".00";
+						} else {
+							lastTotal = Math.round(lastTotal * 100) / 100;
+						}
+						if (discounts % 1 == 0) {
+							discounts = discounts + ".00";
+						} else {
+							discounts = Math.round(discounts * 100) / 100;
+						}
+						$(".discounts").html(discounts);
+						$(".totals").html(lastTotal);
+					},
+					error : function() {
+						alert("失败");
+					}
+				});
+			}
+
+		}
+	</script>
+</body>
+
+</html>

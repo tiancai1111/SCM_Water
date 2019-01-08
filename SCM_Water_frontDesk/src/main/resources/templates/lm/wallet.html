@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>便捷桶装水商城</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lm/css/bootstrap.min.css">
+<link rel="stylesheet" href="lm/css/font-awesome.min.css">
+<link rel="stylesheet" href="lm/css/pe-icon-7-stroke.css">
+<link rel="stylesheet" href="lm/css/plugins.css">
+<link rel="stylesheet" href="lm/style.css">
+<link rel="stylesheet" href="lm/css/responsive.css">
+<script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header-section section sticker">
+			<div class="headerpage"></div>
+		</header>
+		<div class="page-banner-section section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="page-banner-content">
+							<h1>我的钱包</h1>
+							<ul class="breadcrumb">
+								<li><a href="home">主页面</a></li>
+								<li class="active">我的钱包</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page-section section pt-120 pb-120">
+			<div class="container">
+			
+				<div class="row mb-40">
+					<div class="col-md-5 col-sm-6 col-xs-12 mb-40">
+						<div class="tab-content mb-10">
+							<div  class="pro-large-img tab-pane active" id="pro-large-img-1">
+								<img  th:src="${userWallet.portrait}"  style="width: 200px;height:200px "/>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-7 col-sm-6 col-xs-12 mb-40">
+						<div class="product-details section">
+							<h3 style="font-weight: bold;" th:text="${userWallet.name}"></h3>
+							<br>
+							<div class="price-ratting section">
+								<h5 class="pd-sub-title">钱包余额(元)</h5>
+								<span class="price float-left">￥<span class="new" th:text="${#numbers.formatDecimal(userWallet.money, 0, 2)}">
+										</span></span>
+							</div>
+							<div class="quantity-cart section">
+							<h4 style="font-weight: bold;"><span style="font-size:13px">现在充值</span><span style="text-decoration: underline;">9折</span></h4>
+								<div>
+									<button class="add-to-cart">去充值</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footerpage"></div>
+		</div>
+	</div>
+	<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
+	<script src="lm/js/bootstrap.min.js"></script>
+	<script src="lm/js/plugins.js"></script>
+	<script src="lm/js/ajax-mail.js"></script>
+	<script src="lm/js/main.js"></script>
+	<script type="text/javascript">
+		$(".headerpage").load("lm/header.html");
+		$(".footerpage").load("lm/footer.html");
+	</script>
+</body>
+
+</html>

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.RolemenuMapper" >
 
-    <resultMap id="BaseResultMap" type="pojo.Rolemenu" >
-        <id column="roleMenuId" property="rolemenuid" jdbcType="INTEGER" />
-        <result column="roleId" property="roleid" jdbcType="INTEGER" />
-        <result column="menuId" property="menuid" jdbcType="INTEGER" />
+    <resultMap id="BaseResultMap" type="pojo.Rolemenu">
+        <id column="roleMenuId" property="rolemenuid" jdbcType="INTEGER"/>
+        <result column="roleId" property="roleid" jdbcType="INTEGER"/>
+        <result column="menuId" property="menuid" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
