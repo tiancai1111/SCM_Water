@@ -12,5 +12,4 @@ spring:
     cache: false
 logging:
   level: 
-    mapper: debug
-      
+    mapper: debug    
