@@ -9,47 +9,53 @@
     <div class="layui-row">
         <div class="layui-col-lg12">
             <fieldset class="layui-elem-field">
-                <legend>仓库管理 - 详细信息</legend>
+                <legend>商品管理 - 详细信息</legend>
                 <div class="layui-field-box">
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品序号</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly/>
+                            <input th:value="${commodity.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
-                     <input th:value="${repertoryDetails.commodityname}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">库存数量</label>
-                            <div class="layui-input-inline">
-                           <input th:value="${repertoryDetails.repertoryamount}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">库存充裕状态</label>
-                            <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.repertorystate}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
-                            </div>
+                     <input th:value="${commodity.commodityname}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input"readonly>                            </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品进价</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commodityenter}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+                           <input th:value="${commodity.commodityenter}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品销售价</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commoditysale}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+                            <input th:value="${commodity.commoditysale}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品成本价</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commoditycost}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品说明</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.state}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品销量</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commodityQuantity}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品图片</label>
                             <div class="layui-input-inline">
-                           <img th:src="'image/'+${repertoryDetails.img}" width="140px" height="140px">
+                           <img th:src="'image/'+${commodity.img}" width="140px" height="140px">
                             </div>
                         </div>
                         <div class="layui-form-item">

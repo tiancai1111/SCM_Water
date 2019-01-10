@@ -37,8 +37,30 @@ public class Commodity {
      * 桶装水图片
      */
     private String img;
+    /**
+     * 桶装水销售数量
+     */
+    private String state;
+    
+    public String getState() {
+		return state;
+	}
 
-    public Integer getCommodityid() {
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	private int commodityQuantity;
+
+    public int getCommodityQuantity() {
+		return commodityQuantity;
+	}
+
+	public void setCommodityQuantity(int commodityQuantity) {
+		this.commodityQuantity = commodityQuantity;
+	}
+
+	public Integer getCommodityid() {
         return commodityid;
     }
 

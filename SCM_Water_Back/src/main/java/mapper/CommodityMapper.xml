@@ -8,10 +8,44 @@
         <result column="commodityEnter" property="commodityenter" jdbcType="DOUBLE" />
         <result column="commoditySale" property="commoditysale" jdbcType="DOUBLE" />
         <result column="commodityCost" property="commoditycost" jdbcType="DOUBLE" />
+        <result column="state" property="state" jdbcType="DOUBLE" />
+        <result column="commodityQuantity" property="commodityQuantity" jdbcType="DOUBLE" />
         <result column="img" property="img" jdbcType="VARCHAR" />
     </resultMap>
-
-    <select id="commoditySelect" resultType="pojo.Repertory" parameterType="pojo.Repertory">
-    SELECT * FROM  `commodity` WHERE commodityName LIKE ('%'#{commodityname}'%')
+    <select id="commodity" resultType="pojo.Commodity">
+                SELECT * FROM  `commodity` 
     </select>
+    
+    <select id="commoditySelect" resultType="pojo.Commodity">
+                SELECT * FROM  `commodity` 
+                <where>
+                <if test="commodityName != null and commodityName != ''">
+                commodityName  LIKE CONCAT('%',#{commodityName},'%')
+                </if>
+                </where>
+    </select>
+    <select id="commoditys" resultType="pojo.Commodity">
+    SELECT * FROM `commodity` WHERE commodityId=#{commodityid}
+    </select>
+    
+    <delete id="commodityDel" parameterType="int">
+    delete from commodity  WHERE commodityId=#{commodityid}
+    </delete>
+    
+    <update id="commodityUpdate">
+    UPDATE `commodity` SET commodityName=#{Commodity},commodityEnter=#{Commodity},commoditySale=#{Commodity},commodityCost=#{Commodity},state=#{Commodity},commodityQuantity=#{Commodity},img=#{Commodity} where commodityId=#{commodityid}
+    </update>
+    
+    <select id="Commoditys" resultType="pojo.Commodity">
+    SELECT * FROM `commodity` WHERE commodityId=#{commodityid}
+    </select>
+    
+    <select id="commodityss" resultType="pojo.Commodity">
+           SELECT * FROM  `commodity`
+          <!--  SELECT * FROM `commodity` WHERE `commodityId`=#{commodityid} -->
+    </select>
+    
+    <insert id="commodityInsert" parameterType="pojo.Commodity">
+    INSERT INTO`commodity`(`commodityName`,`commodityEnter`,`commoditySale`,`commodityCost`,`state`,`commodityQuantity`,`img`)VALUES (#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity})
+    </insert>
 </mapper>

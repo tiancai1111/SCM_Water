@@ -30,9 +30,19 @@
     DELETE FROM `repertory` WHERE repertoryId=#{repertoryid}
     </delete>
     
-    <update id="repertoryUpdate" parameterType="int">
-    UPDATE `repertory` SET  commodityName=#{commodityName},repertoryamount=#{repertoryamount},repertoryState=#{repertoryState},commodityEnter=#{commodityEnter},commoditySale=#{commoditySale} where repertoryId=#{repertoryId}
+    <update id="repertoryUpdate" parameterType="pojo.Repertory">
+    UPDATE `repertory` SET  repertoryState=#{repertorystate} where repertoryId=#{repertoryid};
     </update>
     
+    <insert id="repertoryInsert" parameterType="pojo.Repertory">
+    INSERT INTO `repertory` (commodityId,repertoryamount,repertoryEmptyBarrel,repertoryState) VALUES (#{commodityid},#{repertoryamount},#{repertoryemptybarrel},#{repertorystate});
+    </insert>
     
+    <update id="repertoryStock" parameterType="pojo.Repertory">
+    UPDATE `repertory` SET repertoryamount=#{repertoryamount} WHERE repertoryId=#{commodityid}
+    </update>
+    
+    <select id="repertoryss" resultType="java.lang.Integer">
+        SELECT repertoryamount FROM `repertory` WHERE `commodityId` =#{commodityId}
+    </select>
 </mapper>
