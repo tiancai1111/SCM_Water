@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>My JSP 'echartsTest.jsp' starting page</title>
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script type="text/javascript" src="text/echarts.min.js"></script>
+<script type="text/javascript" src="text/jquery-1.12.3.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var myPie = echarts.init(document.getElementById("pie"));
+		myPie.setOption({
+			tooltip : {
+				formatter : "{a} <br/>{b}:{c}({d}%)"
+			},
+			legend : {
+				orient : 'vertical', //horizontal妯�  vertical绔�
+				x : "left",
+				data : []
+			},
+			series : [ {
+				name : '销量',
+				type : 'pie',
+				radius : '55%',
+				data : []
+			} ]
+		})
+		jiazais();
+	})
+	function jiazai() {
+		var myPie = echarts.init(document.getElementById("pie"));
+		var chargebackcause = [];
+		var chargebackquantity = [];
+		$.ajax({
+			type : "post",
+			url : "chargeback",
+			dataType : "json", //杩斿洖鏁版嵁褰㈠紡涓簀son
+			success : function(result) {
+				if (result) {
+					for (var i = 0; i < result.length; i++) {
+						chargebackcause.push(result[i].chargebackcause);
+						chargebackquantity.push(result[i].chargebackquantity);
+					}
+				}
+				myPie.setOption({
+					legend : {
+						orient : 'vertical', //horizontal妯�  vertical绔�
+						x : "left",
+						data : (function() {
+							return chargebackcause;
+						})()
+					},
+					series : [ {
+						data : (function() {
+							var res = [];
+							for (var i = 0; i < result.length; i++) {
+								res.push({
+								name:result[i].chargebackcause,
+								value:result[i].chargebackquantity,
+								});
+							}
+							return res;
+						})()
+					} ]
+				})
+			}
+		});
+	}
+	function jiazais() {
+		var myPie = echarts.init(document.getElementById("pie"));
+		var commodityname = [];
+		var commodityQuantity = [];
+		$.ajax({
+			type : "post",
+			url : "commodity",
+			dataType : "json", //杩斿洖鏁版嵁褰㈠紡涓簀son
+			success : function(result) {
+				if (result) {
+					for (var i = 0; i < result.length; i++) {
+						commodityname.push(result[i].commodityname);
+						commodityQuantity.push(result[i].commodityQuantity);
+					}
+				}
+				myPie.setOption({
+					legend : {
+						orient : 'vertical', //horizontal妯�  vertical绔�
+						x : "left",
+						data : (function() {
+							return commodityname;
+						})()
+					},
+					series : [ {
+						data : (function() {
+							var res = [];
+							for (var i = 0; i < result.length; i++) {
+								res.push({
+								name:result[i].commodityname,
+								value:result[i].commodityQuantity,
+								});
+							}
+							return res;
+						})()
+					} ]
+				})
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="pie" style="width: 600px;height: 400px"></div>
+	<input type="button" value="商品统计" onclick="jiazais();">
+	<input type="button" value="退货原因统计" onclick="jiazai();">
+</body>
+</html>

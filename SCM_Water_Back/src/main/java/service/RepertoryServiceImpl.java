@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mapper.RepertoryMapper;
+import pojo.Commodity;
 import pojo.Repertory;
 @Service
 public class RepertoryServiceImpl implements RepertoryService {
@@ -32,10 +33,30 @@ private RepertoryMapper repertoryMapper;
 		return repertoryMapper.repertorys(repertoryid);
 	}
 	@Override
-	public int repertoryUpdate(int repertoryid) {
+	public int repertoryUpdate(int repertoryid, String repertorystate) {
 		// TODO Auto-generated method stub
-		return repertoryMapper.repertoryUpdate(repertoryid);
+		return repertoryMapper.repertoryUpdate(repertoryid, repertorystate);
 	}
+	@Override
+	public int repertoryInsert(Repertory repertory) {
+		// TODO Auto-generated method stub
+		return repertoryMapper.repertoryInsert(repertory);
+	}
+	@Override
+	public int repertoryStock(int commodityid,int repertoryamount) {
+		// TODO Auto-generated method stub
+		return repertoryMapper.repertoryStock(commodityid, repertoryamount);
+	}
+	@Override
+	public int repertoryss(int commodityId) {
+		// TODO Auto-generated method stub
+		return repertoryMapper.repertoryss(commodityId);
+	}
+	 
+	
+	
+	 
+	 
 	
 
 }

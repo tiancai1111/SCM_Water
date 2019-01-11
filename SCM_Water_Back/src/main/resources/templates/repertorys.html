@@ -62,7 +62,7 @@
                 <a href="javascript:;">仓库管理</a>
                 <dl class="layui-nav-child">
                     <dd><a class="layui-this" href="repertoryParticulars">仓库详情</a></dd>
-                    <dd><a class="layui-this" href="commoditys">商品管理</a></dd>
+                    <dd><a class="layui-this" href="repertoryParticulars">商品管理</a></dd>
                 </dl>
             </li>
         <li class="layui-nav-item">
@@ -87,7 +87,7 @@
     <!-- 内容主体区域 -->
     <div style="padding: 15px;">
         <fieldset class="layui-elem-field">
-            <legend>仓库管理 - 仓库</legend>
+            <legend>商品管理</legend>
             <div class="layui-field-box">
               <form class="layui-form" action="">
                 <div class="layui-form-item" style="text-align:center;">
@@ -105,9 +105,9 @@
               </form>
               <hr>
               <div class="layui-btn-group">
-                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityss" dw-title="进货" dw-width="50%" dw-height="50%">
-                      <i class="layui-icon">&#xe654;</i>进货
-                  </button>
+                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityadd" dw-title="新增用户" dw-width="50%" dw-height="50%">
+                      <i class="layui-icon">&#xe654;</i>新增
+                  </button> 
                  <!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
                       <i class="layui-icon">&#xe6 c40;</i>删除
                   </button> -->
@@ -129,29 +129,35 @@
                     <!--   <th class="selectAll"><input type="checkbox"></th> -->
                       <th style="text-align: center;">商品序号</th>
                       <th style="text-align: center;">商品名称</th>
-                      <th style="text-align: center;">库存数量</th>
-                       <th style="text-align: center;">库存充裕状态</th>
-                       <th style="text-align: center;">商品图片</th>
+                      <th style="text-align: center;">商品进价</th>
+                       <th style="text-align: center;">商品销售价</th>
+                       <th style="text-align: center;">商品成本价</th>
+                       <th style="text-align: center;">商品说明</th>
+                       <th style="text-align: center;">商品销量</th>
+                       <th style="text-align: center;">桶装水图片</th>
                       <th style="text-align:center;">操作</th>
                       </tr> 
                   </thead>
                   <tbody>
-                      <tr class="text-c" th:each="repertory,repertoryyy:${repertorylist}">
+                      <tr class="text-c" th:each="commoditys,commoditysyyy:${commodityslist}">
 							<!-- <td><input type="checkbox" name="id" value="1"></td> -->
-							 <td th:text="${repertory.commodityid}" style="text-align: center;"></td>
-							<td th:text="${repertory.commodityname}" style="text-align: center;"></td>
-							<td th:text="${repertory.repertoryamount}" style="text-align: center;"></td>
-							<td th:text="${repertory.repertorystate}" style="text-align: center;"></td>
-							<td><img th:src="'image/'+${repertory.img}" style="text-align: center;"></td>
+							 <td th:text="${commoditys.commodityid}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityname}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityenter}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commoditysale}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commoditycost}" style="text-align: center;"></td>
+							<td th:text="${commoditys.state}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityQuantity}" style="text-align: center;"></td>
+							<td><img th:src="'image/'+${commoditys.img}" style="text-align: center;"></td>
                       <td class="text-center">
                           <div class="layui-btn-group">
-                              <button th:dw-url="'repertoryDetails?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
+                              <button th:dw-url="'Commodity?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
                                 <i class="layui-icon">&#xe642;</i>查看
                               </button>
-                              <button th:dw-url="'repertoryDel?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-danger dw-delete">
+                              <button th:dw-url="'commodityDel?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-danger dw-delete">
                                 <i class="layui-icon">&#xe640;</i>删除
                               </button>
-                               <button th:dw-url="'repertorys?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
+                               <button th:dw-url="'Commoditys?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
                                 <i class="layui-icon">&#xe642;</i>修改
                               </button>
                             </div>
@@ -173,8 +179,8 @@
 <script type="text/javascript" src="./javascript/dw.js"></script>
 <script type="text/javascript">
 function chaxun() {
-	 var commodityname=$("input[name=commodityname]").val();
-	 window.location.href="repertoryParticulars?commodityName="+commodityname; 
+	 var commodityname=$("input[name=commodityName]").val();
+	 window.location.href="commoditySelect?commodityName="+commodityname; 
 /* 	$.ajax({
 		url : "/repertoryParticulars?commodityName="+commodityname,
 		type : "POST",
@@ -183,9 +189,6 @@ function chaxun() {
 	});  */
 }
 	/* */
-
-
-
 </script>
 </body>
 </html>

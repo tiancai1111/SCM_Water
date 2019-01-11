@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<div class="layui-container">  
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>商品修改 </legend>
+                <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品序号</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+                     <input th:value="${commodity.commodityname}" type="text" name="commodityname" required lay-verify="required"  autocomplete="off" class="layui-input">                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品进价</label>
+                            <div class="layui-input-inline">
+                           <input th:value="${commodity.commodityenter}" type="text" name="commodityenter" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品销售价</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commoditysale}" type="text" name="commoditysale" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品成本价</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commoditycost}" type="text" name="commoditycost" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品说明</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.state}" type="text" name="state" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品销量</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${commodity.commodityQuantity}" type="text" name="commodityQuantity" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品图片</label>
+                            <div class="layui-input-inline">
+                           <input type="file" name="file1"/><img th:src="'image/'+${commodity.img}" width="50px" height="50px">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                            <button class="layui-btn" th:onclick="'update('+${commodity.commodityid}+')'">修改</button>
+                            <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button>  -->
+                            </div>
+                        </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div> 
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
+<script type="text/javascript">
+/* function update(id) {
+	$.ajax({
+		url : "commodityUpdate?repertoryid="+id+"&commodityname="+commodityname+"&commodityenter="+commodityenter+"&commoditysale="+commoditysale+"&commoditycost="+commoditycost+"&state="+state+"&commodityQuantity="+commodityQuantity+"&img="+img,
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+		success : function(data) {
+		if(data>0){
+			 window.layer.close(1);
+			 window.parent.location.reload();
+			 alert("成功");
+		}
+		},
+		error : function(result) {
+			alert("失败");
+		}
+	});  
+} */
+
+</script>
+</body>
+</html>
