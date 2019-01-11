@@ -11,12 +11,9 @@
             <fieldset class="layui-elem-field">
                 <legend>商品修改 </legend>
                 <div class="layui-field-box">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">商品序号</label>
-                            <div class="layui-input-inline">
-                            <input th:value="${commodity.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
+                <form  action="update"
+                    method="post" enctype="multipart/form-data">
+                        <input th:value="${commodity.commodityid}" type="hidden">
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
@@ -55,7 +52,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品图片</label>
                             <div class="layui-input-inline">
-                           <input type="file" name="file1"/><img th:src="'image/'+${commodity.img}" width="50px" height="50px">
+                           <input type="file" name="myFile" /><img th:src="'image/'+${commodity.img}" width="50px" height="50px">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -64,10 +61,11 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                            <button class="layui-btn" th:onclick="'update('+${commodity.commodityid}+')'">修改</button>
+                            <button class="layui-btn" type="submit">修改</button>
                             <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button>  -->
                             </div>
                         </div>
+                         </form>
                 </div>
             </fieldset>
         </div>

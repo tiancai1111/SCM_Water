@@ -5,11 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.jasper.tagplugins.jstl.core.Redirect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -101,7 +99,6 @@ public String commodityAdd(
 		@RequestParam(value = "commodityQuantity")int commodityQuantity,
 		@RequestParam(value = "myFile") MultipartFile myFile,
 		HttpServletRequest request) {
-	
 	String name=myFile.getOriginalFilename();//获取文件名
 	/*String prefix =name.substring(name.lastIndexOf(".")+1);*/
 	String path=request.getSession().getServletContext().getRealPath("/image");
@@ -131,5 +128,44 @@ public String commodityAdd(
 	return "redirect:commodityadd";
 	
 }
+}
+@RequestMapping("/update")
+public String update(
+		@RequestParam(value = "commodityname")String commodityname,
+		@RequestParam(value = "commodityenter")double commodityenter,
+		@RequestParam(value = "commoditysale")double commoditysale,
+		@RequestParam(value = "commoditycost")double commoditycost,
+		@RequestParam(value = "state")String state,
+		@RequestParam(value = "commodityQuantity")int commodityQuantity,
+		@RequestParam(value = "myFile") MultipartFile myFile,
+		HttpServletRequest request) {
+	String name=myFile.getOriginalFilename();
+	/*String prefix =name.substring(name.lastIndexOf(".")+1);*/
+	String path=request.getSession().getServletContext().getRealPath("/image");
+	String imgName="";
+	try {
+		File files=new File(path, name);
+		imgName=files.getName();
+		if (!files.exists()) {
+			files.mkdirs();
+		}
+		myFile.transferTo(files);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	Commodity commodity=new Commodity();
+	commodity.setCommodityname(commodityname);
+	commodity.setCommodityenter(commodityenter);
+	commodity.setCommoditysale(commoditysale);
+	commodity.setCommoditycost(commoditycost);
+	commodity.setState(state);
+	commodity.setCommodityQuantity(commodityQuantity);
+	commodity.setImg(imgName);
+	int update=commodityService.commodityUpdate(commodity);
+	if(update>0) {
+		return "commoditys";
+	}
+	return "redirect:createss";
+	
 }
 }
