@@ -32,8 +32,8 @@
     delete from commodity  WHERE commodityId=#{commodityid}
     </delete>
     
-    <update id="commodityUpdate">
-    UPDATE `commodity` SET commodityName=#{Commodity},commodityEnter=#{Commodity},commoditySale=#{Commodity},commodityCost=#{Commodity},state=#{Commodity},commodityQuantity=#{Commodity},img=#{Commodity} where commodityId=#{commodityid}
+    <update id="commodityUpdate" parameterType="pojo.Commodity">
+    UPDATE `commodity` SET commodityName=#{commodityname},commodityEnter=#{commodityenter},commoditySale=#{commoditysale},commodityCost=#{commoditycost},state=#{state},commodityQuantity=#{commodityQuantity},img=#{img} where commodityId=#{commodityid}
     </update>
     
     <select id="Commoditys" resultType="pojo.Commodity">

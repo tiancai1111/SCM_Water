@@ -12,7 +12,7 @@ public interface CommodityMapper {
 	List<Commodity> commoditySelect(@Param("commodityName")String commodityName);
 	Commodity commoditys(@Param("commodityid")int commodityid);
 	int commodityDel(@Param("commodityid")int commodityid);
-	int commodityUpdate(@Param("commodity")Commodity commodity);
+	int commodityUpdate(Commodity commodity);
 	Commodity Commoditys(@Param("commodityid")int commodityid);
 	int commodityInsert(Commodity commodity);
 	

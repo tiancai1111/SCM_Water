@@ -148,7 +148,7 @@
 							<td th:text="${commoditys.commoditycost}" style="text-align: center;"></td>
 							<td th:text="${commoditys.state}" style="text-align: center;"></td>
 							<td th:text="${commoditys.commodityQuantity}" style="text-align: center;"></td>
-							<td><img th:src="'image/'+${commoditys.img}" style="text-align: center;"></td>
+							<td><img th:src="'../'+${commoditys.img}" style="text-align: center;"></td>
                       <td class="text-center">
                           <div class="layui-btn-group">
                               <button th:dw-url="'Commodity?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
