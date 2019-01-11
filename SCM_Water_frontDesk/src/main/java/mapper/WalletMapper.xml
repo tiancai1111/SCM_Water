@@ -4,4 +4,7 @@
 	<select id="selUserMoneyById" resultType="pojo.User">
 		SELECT * FROM `user` WHERE userid=#{userId}
 	</select>
+	<update id="updUserMoney">
+		UPDATE `user` SET `money`=#{money}  WHERE userid=#{userId}
+	</update>
 </mapper>

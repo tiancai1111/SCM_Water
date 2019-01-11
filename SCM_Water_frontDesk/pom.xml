@@ -11,11 +11,16 @@
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
-  		<version>4.11</version>
   	</dependency>
   	<dependency>
   		<groupId>org.thymeleaf</groupId>
   		<artifactId>thymeleaf-spring5</artifactId>
+  	</dependency>
+
+  	<dependency>
+  		<groupId>com.alipay</groupId>
+  		<artifactId>sdk-Java</artifactId>
+  		<version>20170324180803</version>
   	</dependency>
   </dependencies>
 </project>

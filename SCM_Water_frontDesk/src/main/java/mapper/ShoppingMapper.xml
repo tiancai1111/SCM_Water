@@ -24,27 +24,21 @@
 		t1.`commodityId`=t2.`commodity_id`
 		AND user_id =2
 	</select>
+	<insert id="addCart" parameterType="pojo.Shopping">
+		INSERT INTO shopping
+		VALUES
+		(0,#{commodityId},#{count},#{userId},#{money});
+	</insert>
 
-	<!-- <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" 
-		> </select> <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" 
-		> delete from shopping where id = #{id,jdbcType=INTEGER} </delete> <insert 
-		id="insert" parameterType="pojo.Shopping" > insert into shopping (id, commodity_id, 
-		count, user_id) values (#{id,jdbcType=INTEGER}, #{commodityId,jdbcType=INTEGER}, 
-		#{count,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}) </insert> <insert 
-		id="insertSelective" parameterType="pojo.Shopping" > insert into shopping 
-		<trim prefix="(" suffix=")" suffixOverrides="," > <if test="id != null" > 
-		id, </if> <if test="commodityId != null" > commodity_id, </if> <if test="count 
-		!= null" > count, </if> <if test="userId != null" > user_id, </if> </trim> 
-		<trim prefix="values (" suffix=")" suffixOverrides="," > <if test="id != 
-		null" > #{id,jdbcType=INTEGER}, </if> <if test="commodityId != null" > #{commodityId,jdbcType=INTEGER}, 
-		</if> <if test="count != null" > #{count,jdbcType=VARCHAR}, </if> <if test="userId 
-		!= null" > #{userId,jdbcType=INTEGER}, </if> </trim> </insert> <update id="updateByPrimaryKeySelective" 
-		parameterType="pojo.Shopping" > update shopping <set > <if test="commodityId 
-		!= null" > commodity_id = #{commodityId,jdbcType=INTEGER}, </if> <if test="count 
-		!= null" > count = #{count,jdbcType=VARCHAR}, </if> <if test="userId != null" 
-		> user_id = #{userId,jdbcType=INTEGER}, </if> </set> where id = #{id,jdbcType=INTEGER} 
-		</update> <update id="updateByPrimaryKey" parameterType="pojo.Shopping" > 
-		update shopping set commodity_id = #{commodityId,jdbcType=INTEGER}, count 
-		= #{count,jdbcType=VARCHAR}, user_id = #{userId,jdbcType=INTEGER} where id 
-		= #{id,jdbcType=INTEGER} </update> -->
+	<delete id="deleteShopping" parameterType="int">
+		DELETE
+		FROM shopping
+		WHERE id =#{shoppingId}
+	</delete>
+	<update id="updateShopping">
+		update shopping
+		set `count` = #{count},`money` = #{money}
+		where `id` = #{id};
+	</update>
+
 </mapper>

@@ -15,6 +15,7 @@
 <script src="lm/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
+
 	<div class="wrapper">
 		<header class="header-section section sticker">
 			<div class="headerpage"></div>
@@ -36,12 +37,13 @@
 		</div>
 		<div class="page-section section pt-120 pb-120">
 			<div class="container">
-			
+
 				<div class="row mb-40">
 					<div class="col-md-5 col-sm-6 col-xs-12 mb-40">
 						<div class="tab-content mb-10">
-							<div  class="pro-large-img tab-pane active" id="pro-large-img-1">
-								<img  th:src="${userWallet.portrait}"  style="width: 200px;height:200px "/>
+							<div class="pro-large-img tab-pane active" id="pro-large-img-1">
+								<img th:src="${userWallet.portrait}"
+									style="width: 200px; height: 200px" />
 							</div>
 						</div>
 					</div>
@@ -51,13 +53,78 @@
 							<br>
 							<div class="price-ratting section">
 								<h5 class="pd-sub-title">钱包余额(元)</h5>
-								<span class="price float-left">￥<span class="new" th:text="${#numbers.formatDecimal(userWallet.money, 0, 2)}">
-										</span></span>
+								<span class="price float-left">￥<span class="new"
+									th:text="${#numbers.formatDecimal(userWallet.money, 0, 2)}">
+								</span></span>
 							</div>
+							<!-- 	------------------------------------------- -->
+							<div class="checkout-form">
+								<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+									<form action="topUp" method="post" onsubmit="return payment()">
+										<div id="sbmtopUp" class="modal fade">
+											<div class="container">
+												<div class="modal-content row">
+													<div class="modal-body">
+														<button class="close" data-dismiss="modal">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h3>充值</h3>
+														<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+															<div class="coupon-form mb-30">
+																<div>
+																	<p>请选择您的充值金额</p>
+																	<select name="amount">
+																		<option value="50">50元</option>
+																		<option value="100">100元</option>
+																		<option value="200">200元</option>
+																		<option value="500">500元</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+															<div class="coupon-form mb-30">
+																<div>
+																	<p>请选择您的支付方式</p>
+																	<select id="way">
+																 		<option value="1">微信</option>
+																		<option value="2">支付宝</option>
+																	</select>
+																	<p></p>
+																	<input type="submit" value="去支付" />
+																</div>
+															</div>
+														</div>
+														<!-- 	<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
+															<div class="coupon-form mb-30">
+																<div>
+																	<p>请输入钱包支付密码</p>
+																	<input type="password" /> <br> <a href="#"><input
+																		type="submit" value="确认支付" /></a>
+																</div>
+																<div>
+																	<p>请扫码支付</p>
+																	二维码
+																</div>
+															</div>
+														</div> -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<!-- 							------------------------------------------------ -->
 							<div class="quantity-cart section">
-							<h4 style="font-weight: bold;"><span style="font-size:13px">现在充值</span><span style="text-decoration: underline;">9折</span></h4>
+								<h4 style="font-weight: bold;">
+									<span style="font-size: 13px">现在充值</span><span
+										style="text-decoration: underline;">9折</span>
+								</h4>
 								<div>
-									<button class="add-to-cart">去充值</button>
+									<button class="add-to-cart" data-toggle="modal"
+										data-target="#sbmtopUp">去充值</button>
 								</div>
 							</div>
 						</div>
@@ -67,6 +134,7 @@
 			<div class="footerpage"></div>
 		</div>
 	</div>
+
 	<script src="lm/js/vendor/jquery-3.1.1.min.js"></script>
 	<script src="lm/js/bootstrap.min.js"></script>
 	<script src="lm/js/plugins.js"></script>
@@ -75,6 +143,11 @@
 	<script type="text/javascript">
 		$(".headerpage").load("lm/header.html");
 		$(".footerpage").load("lm/footer.html");
+		function payment() {
+			if($("#way").val()==1){
+				return false;
+			}
+		}
 	</script>
 </body>
 

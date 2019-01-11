@@ -167,6 +167,7 @@
 														</div>
 													</div>
 												</div>
+
 												<div class="col-lg-6 col-md-6 col-xs-12 mb-40">
 													<div class="coupon-form mb-30">
 														<div>
@@ -224,15 +225,22 @@
 				}
 			});
 		}
-
+		var index = 0;
+		var totals;
 		function giftcoupon() {
 			var giftcouponId = $("#giftcouponId").val();
-			/* alert(giftcouponId); */
-			var totals = $(".totals").text();
+			var oldTotal;
+			index++;
+			if (index == 1) {
+				totals = $(".totals").text();
+			}
 			var lastTotal;
+			var discounts
 			if (giftcouponId == 0) {
-				lastTotal = "不使用";
-				$(".discounts").html(lastTotal);
+				lastTotal = totals;
+				discounts = "不使用";
+				$(".discounts").html(discounts);
+				$(".totals").html(lastTotal);
 			} else {
 				$.ajax({
 					url : "selGiftcouponById?id=" + giftcouponId,
@@ -240,7 +248,7 @@
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
 					success : function(data) {
-						var discounts = data.gc_money;
+						discounts = data.gc_money;
 						if (totals > discounts) {
 							lastTotal = totals - discounts;
 						} else {
@@ -264,7 +272,6 @@
 					}
 				});
 			}
-
 		}
 	</script>
 </body>

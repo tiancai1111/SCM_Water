@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class buyController {
+public class BuyController {
 	
 	@RequestMapping("buy")
 	public String cart(Model model,@RequestParam("commodityid")int commodityid,@RequestParam("count")int count,@RequestParam("total")Float total) {
