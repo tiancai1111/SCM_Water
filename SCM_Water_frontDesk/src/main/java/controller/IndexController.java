@@ -1,6 +1,8 @@
 package controller;
 
 import javax.annotation.Resource;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,15 @@ public class IndexController {
    public String goRegister() {
 	return "register";	   
    }
+   @GetMapping("goMy")
+   public String goMy(Model model,User user) {
+	  
+	return "my";	   
+   }
+   @GetMapping("goPersonal_information")
+   public String goPersonal_information() {
+	   return "Personal_information";
+   }
    @ResponseBody
    @PostMapping("findByPhone")
    public String findByPhone(User user) {
@@ -43,17 +54,15 @@ public class IndexController {
 	   String json=JSON.toJSONString(num);
 	return json;	   
    }
-   @ResponseBody
    @PostMapping("login")
    public String login(HttpSession session,User user) {
-	   User users=userService.findByUser(user);
+	   User users=userService.findByUser(user);	  
 	   if(users.getUserid()!=0) {
 		   System.out.println(users.getName());
 		   session.setAttribute("userid",users.getUserid());
-		   
+		 
 	   }	  
-	   String json=JSON.toJSONString(users);
-	return json;	   
+	return "redirect:home";	   
    }
    @ResponseBody
    @PostMapping("findByUser")
@@ -62,4 +71,5 @@ public class IndexController {
 	   System.out.println(users);
 	return users;	   
    }
+  
 }
