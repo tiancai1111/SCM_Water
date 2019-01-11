@@ -46,6 +46,7 @@ layui.use(['element', 'layer'], function () {
       content: dw_url,
       cancel: function (index, layero) {
         $(".dw-refresh").trigger('click');
+        layer.close(index);
         return false;
       }
     });

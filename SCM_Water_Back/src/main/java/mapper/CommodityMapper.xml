@@ -46,6 +46,6 @@
     </select>
     
     <insert id="commodityInsert" parameterType="pojo.Commodity">
-    INSERT INTO`commodity`(`commodityName`,`commodityEnter`,`commoditySale`,`commodityCost`,`state`,`commodityQuantity`,`img`)VALUES (#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity},#{Commodity})
+    INSERT INTO`commodity`(`commodityName`,`commodityEnter`,`commoditySale`,`commodityCost`,`state`,`commodityQuantity`,`img`) VALUES (#{commodityname},#{commodityenter},#{commoditysale},#{commoditycost},#{state},#{commodityQuantity},#{img})
     </insert>
 </mapper>

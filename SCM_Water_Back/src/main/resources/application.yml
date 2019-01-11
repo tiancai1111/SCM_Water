@@ -10,11 +10,6 @@ spring:
     password: 1234    
   thymeleaf:
     cache: false
-  servlet:
-    multipart:
-      enabled: false
-      max-file-size: 2MB
-      max-request-size: 20MB 
 logging:
   level: 
     mapper: debug

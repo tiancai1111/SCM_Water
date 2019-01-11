@@ -90,37 +90,46 @@ public String commodityadd() {
 	return "commodityAdd";
 	
 }
-@ResponseBody
-@PostMapping("/commodityAdd")
+
+@RequestMapping("commodityAdd")
 public String commodityAdd(
-		@RequestParam("commodityName")String commodityName,
-		@RequestParam("commodityEnter")int commodityEnter,
-		@RequestParam("commoditySale")int commoditySale,
-		@RequestParam("commodityCost")int commodityCost,
-		@RequestParam("state")String state,
-		@RequestParam("commodityQuantity")int commodityQuantity,
-		@RequestParam(value = "file") MultipartFile file,
+		@RequestParam(value = "commodityName")String commodityName,
+		@RequestParam(value = "commodityEnter")double commodityEnter,
+		@RequestParam(value = "commoditySale")double commoditySale,
+		@RequestParam(value = "commodityCost")double commodityCost,
+		@RequestParam(value = "state")String state,
+		@RequestParam(value = "commodityQuantity")int commodityQuantity,
+		@RequestParam(value = "myFile") MultipartFile myFile,
 		HttpServletRequest request) {
-	String name=file.getOriginalFilename();//获取文件名
-	String prefix =name.substring(name.lastIndexOf(".")+1);
+	
+	String name=myFile.getOriginalFilename();//获取文件名
+	/*String prefix =name.substring(name.lastIndexOf(".")+1);*/
 	String path=request.getSession().getServletContext().getRealPath("/image");
+	String imgName="";
 	try {
-		File files=new File(path, prefix);
+		File files=new File(path, name);
+		imgName=files.getName();
 		if (!files.exists()) {
 			files.mkdirs();
 		}
-		file.transferTo(files);
+		myFile.transferTo(files);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	Commodity commodity=new Commodity();
+	commodity.setCommodityname(commodityName);
+	commodity.setCommodityenter(commodityEnter);
+	commodity.setCommoditysale(commoditySale);
+	commodity.setCommoditycost(commodityCost);
+	commodity.setState(state);
+	commodity.setCommodityQuantity(commodityQuantity);
+	commodity.setImg(imgName);
 	int commodityAdd=commodityService.commodityInsert(commodity);
 	if(commodityAdd>0) {
 		return "commoditys";
 	}else {
-		return "redirect:commodityadd";
-	}
+	return "redirect:commodityadd";
 	
-	
+}
 }
 }

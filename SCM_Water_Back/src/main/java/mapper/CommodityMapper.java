@@ -14,6 +14,6 @@ public interface CommodityMapper {
 	int commodityDel(@Param("commodityid")int commodityid);
 	int commodityUpdate(@Param("commodity")Commodity commodity);
 	Commodity Commoditys(@Param("commodityid")int commodityid);
-	int commodityInsert(@Param("commodity")Commodity commodity);
+	int commodityInsert(Commodity commodity);
 	
 }
