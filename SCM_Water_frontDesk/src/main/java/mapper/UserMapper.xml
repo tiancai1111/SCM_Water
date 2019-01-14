@@ -13,6 +13,7 @@
             <if test="password != null and password!=''" >
                 password = #{password,jdbcType=VARCHAR},
             </if>
+            
             <if test="email != null and email!=''" >
                 email = #{email,jdbcType=VARCHAR},
             </if>
