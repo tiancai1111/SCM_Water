@@ -30,10 +30,10 @@ public class Commodity {
 
     /**
      * 商品成本价
-     */
+     */ 
     private Double commoditycost;
 
-    /**
+	/**
      * 桶装水图片
      */
     private String img;

@@ -14,4 +14,5 @@ public interface ClientMapper {
     int updateByPrimaryKeySelective(Client record);
 
     int updateByPrimaryKey(Client record);
+
 }

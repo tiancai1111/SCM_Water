@@ -11,6 +11,8 @@
         <result column="staff" property="staff" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="roleId" property="roleid" jdbcType="INTEGER" />
+        <result column="roleId" property="money" jdbcType="INTEGER" />
+        <result column="roleId" property="money" jdbcType="INTEGER" />
     </resultMap>
 
     <sql id="Base_Column_List" >

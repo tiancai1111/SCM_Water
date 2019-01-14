@@ -10,6 +10,19 @@
         <result column="supplierContacts" property="suppliercontacts" jdbcType="VARCHAR" />
     </resultMap>
 
+
+    
+    <select id="SupplierAll" resultMap="BaseResultMap">
+    SELECT * FROM supplier 
+    <where>
+     <if test="suppliername!=null and suppliername!=''">
+      and suppliername like CONCAT('%',#{suppliername},'%')
+     </if>
+     </where>
+     </select>
+    
+    
+    
     <sql id="Base_Column_List" >
         supplierId, supplierName, suppliePhone, suppliersite, supplierContacts
     </sql>

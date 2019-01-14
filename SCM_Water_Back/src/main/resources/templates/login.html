@@ -14,7 +14,7 @@
             <h1>dwCms后台管理系统</h1>
         </header>
         <div class="beg-login-main">
-            <form action="login.html" class="layui-form" id="present" method="post">
+            <form  class="layui-form" id="present">
                 <div class="layui-form-item">
                     <label class="beg-login-icon">
                         <i class="layui-icon">&#xe612;</i>
@@ -45,8 +45,7 @@
     <script type="text/javascript" src="./layui/layui.js"></script>
     <script type="text/javascript" src="./javascript/login.js"></script>
     <script type="text/javascript">
-    function binding(){
-		alert(1);
+     function binding(){
          var form=new FormData(document.getElementById("present"));
          $.ajax({
              url:"loginpresent",
@@ -55,13 +54,16 @@
              processData:false,
              contentType:false,
              success:function(data){
-                alert(2);
+            	 if(data=="index"){
+            		 location.href = "index";
+            	 }else{
+            		 location.href = "login";
+            	 }
              },
              error:function(e){
-               alert(3);
              }
          });        
-     }
+     } 
     </script>
 </body>
 </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<div class="layui-container">  
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>用户管理 - 修改用户</legend>
+                <div class="layui-field-box">
+                    <form class="layui-form" id="Update" >
+                    <input th:value="${sum.staffid}" name="staffid"  type="text" hidden="hidden"/>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">员工姓名</label>
+                            <div class="layui-input-block">
+                            <input th:value="${sum.staffname}" type="text" name="staffname" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">员工电话</label>
+                            <div class="layui-input-inline">
+                            <input th:value="${sum.staffphone}" type="text" name="staffphone" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                          
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                            <input type="radio" name="staffsex" th:checked="${sum.staffsex=='男'}"  value="男" title="男">
+                            <input type="radio" name="staffsex" th:checked="${sum.staffsex=='女'}"  value="女" title="女">
+                            </div>
+                        </div>
+                        
+                        
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">员工地址</label>
+                            <div class="layui-input-block">
+                            <input th:value="${sum.staffsite}" type="text" name="staffsite" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        
+                        
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">员工身份证</label>
+                            <div class="layui-input-block">
+                            <input th:value="${sum.staff}"  type="text" name="staff" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        
+                        
+                        
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-block">
+                            <input th:value="${sum.password}" type="password" name="password" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        
+                                
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">角色</label>
+                            <div class="layui-input-block">
+                            <select name="roleid" lay-verify="required">
+                                <option value="1" th:selected="${sum.roleid==1}">超级管理员</option>
+                                <option value="2" th:selected="${sum.roleid==2}">管理员</option>
+                            </select>
+                            </div>
+                            </div>
+                       
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                            <button class="layui-btn" onclick="Update()" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
+<script type="text/javascript">
+function Update(){
+    var form=new FormData(document.getElementById("Update"));
+    $.ajax({
+        url:"StaffUpdate",
+        type:"post",
+        data:form,
+        processData:false,
+        contentType:false,
+        success:function(data){
+       	 if(data>0){
+       		 parent.layer.close(1);
+       		 window.parent.location.reload();
+       		 location.href = "head";
+       		 
+       	 }
+        },
+        error:function(e){
+        }
+    });        
+} 
+</script>
+</body>
+</html>

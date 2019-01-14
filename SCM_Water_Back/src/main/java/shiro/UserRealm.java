@@ -49,7 +49,7 @@ public class UserRealm extends AuthorizingRealm{
 	 * *******/
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		UsernamePasswordToken Token = (UsernamePasswordToken) token;
+	    UsernamePasswordToken Token = (UsernamePasswordToken) token;
 		String staffname;
 		Staff staff;
 		try {
@@ -59,18 +59,15 @@ public class UserRealm extends AuthorizingRealm{
 				return null;
 			}
 			char[] apw = Token.getPassword();
-			String realmName  = getName();
-			System.out.println(apw);
-			SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(staff,apw,realmName);
-			return info;
+			if(apw!=null) {
+				String realmName  = getName();
+				SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(staff,staff.getPassword(),realmName);
+				return info;
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		
 		return null;
-		
 	}
-
-
 }
