@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-lg12">
+			<fieldset class="layui-elem-field">
+				<legend>仓库管理 - 进货</legend>
+				<div class="layui-field-box">
+					<div class="layui-form-item">
+						<div class="layui-input-inline">
+							<select id="commodityId" onchange="chaxun()">
+								<option value="0" selected>请选择</option>
+								<option th:each="commodity,commoditys:${commodityss}"
+									th:value="${commodity.commodityid}"
+									th:text="${commodity.state}"></option>
+							</select>
+							
+							<div class="layui-form-item">
+								<label class="layui-form-label">库存数量</label>
+								<div class="layui-input-inline">
+									<input  type="text" name="repertoryamount" required lay-verify="required"  autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block"></div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" onclick="insert()">进货</button>
+								<!-- <a th:href="sss"><button class="layui-btn">返回</button></a> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
+<script type="text/javascript">
+    var oldRepertory;
+	function insert() {
+		var commodityid=$("#commodityId").val();
+		var repertory = parseInt($("input[name=repertoryamount]").val());
+		var newRepertory=oldRepertory+repertory;
+		$.ajax({
+			url : "repertoryStock?commodityid=" + commodityid
+					+ "&repertoryamount=" + newRepertory,
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json;charset=UTF-8",
+			success : function(data) {
+				if (data > 0) {
+					window.layer.close(1);
+					window.parent.location.reload();
+					alert("进货成功");
+				}
+			},
+			error : function(result) {
+				alert("进货失败");
+			}
+		});
+		/* location="repertoryUpdate?repertoryid="+id+"&repertorystate="+repertorystate; */
+	}
+	function chaxun() {
+		/* 	alert(1)
+		 var commodityid=$("#commodityId").val();
+		 alert(commodityid);
+		 $.ajax({
+		 url :  "repertoryss?commodityid="+commodityid,
+		 type : "POST",
+		 dataType : "json",
+		 contentType : "application/json;charset=UTF-8",
+		 success : function(data) {
+		 alert(data);
+		 }
+		 },
+		 error : function(result) {
+		 alert("进货失败");
+		 }
+		 }) */
+		 var commodityid=$("#commodityId").val();
+		$.ajax({
+			url : "repertoryss?commodityId=" + commodityid,
+			type : "POST",
+			dataType : "json",
+			contentType : "application/json;charset=UTF-8",
+			success : function(data) {
+				oldRepertory=parseInt(data);
+			},
+			error : function(result) {
+				alert("失败");
+			}
+		});
+	}
+
+</script>
+
+</body>
+</html>

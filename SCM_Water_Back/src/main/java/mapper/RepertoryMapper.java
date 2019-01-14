@@ -12,6 +12,9 @@ public interface RepertoryMapper {
 	Repertory repertoryDetails(@Param("repertoryid")int repertoryid);
 	int repertoryDel(@Param("repertoryid") int repertoryid);
 	Repertory repertorys(@Param("repertoryid")int repertoryid);
-	int repertoryUpdate(@Param("repertoryid")int repertoryid);
+	int repertoryUpdate(@Param("repertoryid")int repertoryid,@Param("repertorystate")String repertorystate);
+	int repertoryInsert(Repertory repertory);
+	int repertoryStock(@Param("commodityid")int commodityid,@Param("repertoryamount")int repertoryamount);
+	int repertoryss(@Param("commodityId")int commodityId);
 	
 }

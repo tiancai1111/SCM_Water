@@ -14,4 +14,5 @@ public interface UserGiftcouponMapper {
     int updateByPrimaryKeySelective(UserGiftcoupon record);
 
     int updateByPrimaryKey(UserGiftcoupon record);
+    
 }

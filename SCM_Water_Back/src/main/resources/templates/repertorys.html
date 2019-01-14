@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./icheck/icheck.js"></script>
+<script type="text/javascript" src="./javascript/dw.js"></script>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./icheck/minimal/red.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <!-- <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="admin.html">用户列表</a></li>
+      <li class="layui-nav-item"><a href="member.html">会员列表</a></li>
+    </ul> -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          贤心
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item"><a href="index.html">控制台</a></li>
+        <li class="layui-nav-item">
+          <a class="" href="javascript:;">系统设置</a>
+          <dl class="layui-nav-child">
+            <dd><a href="sysConfig.html">系统变量</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">用户管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="admin.html">用户列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">权限管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="rule.html">规则列表</a></dd>
+                <dd><a href="role.html">角色列表</a></dd>
+                <dd><a href="adminRole.html">用户角色</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">仓库管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a class="layui-this" href="repertoryParticulars">仓库详情</a></dd>
+                    <dd><a class="layui-this" href="repertoryParticulars">商品管理</a></dd>
+                </dl>
+            </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">统计信息</a>
+            <dl class="layui-nav-child">
+                <dd><a href="echartsTests">统计</a></dd>
+                <!-- <dd><a href="control.html">商品统计</a></dd>
+                <dd><a href="control.html">退单原因统计</a></dd> -->
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">系统管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="upload.html">文件上传</a></dd>
+                <dd><a href="upload.html">Execel导出</a></dd>
+            </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field">
+            <legend>商品管理</legend>
+            <div class="layui-field-box">
+              <form class="layui-form" action="">
+                <div class="layui-form-item" style="text-align:center;">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input autocomplete="off" class="layui-input" placeholder="请输入名称" type="text" name="commodityName" value="">
+                    </div>
+                  </div>
+                  <div class="layui-inline" style="text-align:left;">
+                    <div class="layui-input-inline">
+                       <button class="layui-btn" onclick="chaxun()"><i class="layui-icon">&#xe615;查询</i></button> 
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <hr>
+              <div class="layui-btn-group">
+                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityadd" dw-title="新增用户" dw-width="50%" dw-height="50%">
+                      <i class="layui-icon">&#xe654;</i>新增
+                  </button> 
+                 <!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
+                      <i class="layui-icon">&#xe6 c40;</i>删除
+                  </button> -->
+                  <!-- <button th:dw-url="repertoryParticulars" class="layui-btn layui-btn-xs dw-refresh">
+                      <i class="layui-icon">&#x1002;</i>刷新
+                  </button> -->
+              </div>
+              <hr>
+              <table class="layui-table">
+                  <colgroup>
+                      <col width="150">
+                      <col width="150">
+                      <col width="200">
+                      <col>
+                      <col>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                    <!--   <th class="selectAll"><input type="checkbox"></th> -->
+                      <th style="text-align: center;">商品序号</th>
+                      <th style="text-align: center;">商品名称</th>
+                      <th style="text-align: center;">商品进价</th>
+                       <th style="text-align: center;">商品销售价</th>
+                       <th style="text-align: center;">商品成本价</th>
+                       <th style="text-align: center;">商品说明</th>
+                       <th style="text-align: center;">商品销量</th>
+                       <th style="text-align: center;">桶装水图片</th>
+                      <th style="text-align:center;">操作</th>
+                      </tr> 
+                  </thead>
+                  <tbody>
+                      <tr class="text-c" th:each="commoditys,commoditysyyy:${commodityslist}">
+							<!-- <td><input type="checkbox" name="id" value="1"></td> -->
+							 <td th:text="${commoditys.commodityid}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityname}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityenter}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commoditysale}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commoditycost}" style="text-align: center;"></td>
+							<td th:text="${commoditys.state}" style="text-align: center;"></td>
+							<td th:text="${commoditys.commodityQuantity}" style="text-align: center;"></td>
+							<td><img th:src="'../'+${commoditys.img}" style="text-align: center;"></td>
+                      <td class="text-center">
+                          <div class="layui-btn-group">
+                              <button th:dw-url="'Commodity?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
+                                <i class="layui-icon">&#xe642;</i>查看
+                              </button>
+                              <button th:dw-url="'commodityDel?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-danger dw-delete">
+                                <i class="layui-icon">&#xe640;</i>删除
+                              </button>
+                               <button th:dw-url="'Commoditys?commodityid='+${commoditys.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
+                                <i class="layui-icon">&#xe642;</i>修改
+                              </button>
+                            </div>
+                      </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </fieldset>
+    </div>
+  </div>
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+  </div>
+</div>
+
+<script type="text/javascript">
+function chaxun() {
+	 var commodityname=$("input[name=commodityName]").val();
+	 window.location.href="commoditySelect?commodityName="+commodityname; 
+/* 	$.ajax({
+		url : "/repertoryParticulars?commodityName="+commodityname,
+		type : "POST",
+		dataType : "json",
+		contentType : "application/json;charset=UTF-8",
+	});  */
+}
+	/* */
+</script>
+</body>
+</html>

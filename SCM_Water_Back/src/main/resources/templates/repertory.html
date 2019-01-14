@@ -62,16 +62,16 @@
                 <a href="javascript:;">仓库管理</a>
                 <dl class="layui-nav-child">
                     <dd><a class="layui-this" href="repertoryParticulars">仓库详情</a></dd>
-                    <dd><a class="layui-this" href="repertoryParticulars">仓库进货</a></dd>
+                    <dd><a class="layui-this" href="commoditys">商品管理</a></dd>
                 </dl>
             </li>
         <li class="layui-nav-item">
             <a href="javascript:;">统计信息</a>
-           <!--  <dl class="layui-nav-child">
-                <dd><a href="control.html">现金统计</a></dd>
-                <dd><a href="control.html">商品统计</a></dd>
-                <dd><a href="control.html">退单原因统计</a></dd>
-            </dl> -->
+            <dl class="layui-nav-child">
+                <dd><a href="echartsTests">统计</a></dd>
+                <!-- <dd><a href="control.html">商品统计</a></dd>
+                <dd><a href="control.html">退单原因统计</a></dd> -->
+            </dl>
         </li>
         <li class="layui-nav-item">
             <a href="javascript:;">系统管理</a>
@@ -83,7 +83,6 @@
       </ul>
     </div>
   </div>
-  
   <div class="layui-body">
     <!-- 内容主体区域 -->
     <div style="padding: 15px;">
@@ -106,15 +105,15 @@
               </form>
               <hr>
               <div class="layui-btn-group">
-                  <!-- <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create" dw-title="新增用户" dw-width="100%" dw-height="100%">
-                      <i class="layui-icon">&#xe654;</i>新增
+                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityss" dw-title="进货" dw-width="50%" dw-height="50%">
+                      <i class="layui-icon">&#xe654;</i>进货
+                  </button>
+                 <!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
+                      <i class="layui-icon">&#xe6 c40;</i>删除
                   </button> -->
-                  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
-                      <i class="layui-icon">&#xe640;</i>删除
-                  </button>
-                  <button class="layui-btn layui-btn-xs dw-refresh">
+                  <!-- <button th:dw-url="repertoryParticulars" class="layui-btn layui-btn-xs dw-refresh">
                       <i class="layui-icon">&#x1002;</i>刷新
-                  </button>
+                  </button> -->
               </div>
               <hr>
               <table class="layui-table">
@@ -127,21 +126,23 @@
                   </colgroup>
                   <thead>
                       <tr>
-                      <th class="selectAll"><input type="checkbox"></th>
-                      <th>商品序号</th>
-                      <th>商品名称</th>
-                      <th>库存数量</th>
-                       <th>库存充裕状态</th>
+                    <!--   <th class="selectAll"><input type="checkbox"></th> -->
+                      <th style="text-align: center;">商品序号</th>
+                      <th style="text-align: center;">商品名称</th>
+                      <th style="text-align: center;">库存数量</th>
+                       <th style="text-align: center;">库存充裕状态</th>
+                       <th style="text-align: center;">商品图片</th>
                       <th style="text-align:center;">操作</th>
                       </tr> 
                   </thead>
                   <tbody>
                       <tr class="text-c" th:each="repertory,repertoryyy:${repertorylist}">
-							<td><input type="checkbox" name="id" value="1"></td>
-							 <td th:text="${repertory.commodityid}"></td>
-							<td th:text="${repertory.commodityname}"></td>
-							<td th:text="${repertory.repertoryamount}"></td>
-							<td th:text="${repertory.repertorystate}"></td>
+							<!-- <td><input type="checkbox" name="id" value="1"></td> -->
+							 <td th:text="${repertory.commodityid}" style="text-align: center;"></td>
+							<td th:text="${repertory.commodityname}" style="text-align: center;"></td>
+							<td th:text="${repertory.repertoryamount}" style="text-align: center;"></td>
+							<td th:text="${repertory.repertorystate}" style="text-align: center;"></td>
+							<td><img th:src="'image/'+${repertory.img}" style="text-align: center;"></td>
                       <td class="text-center">
                           <div class="layui-btn-group">
                               <button th:dw-url="'repertoryDetails?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">

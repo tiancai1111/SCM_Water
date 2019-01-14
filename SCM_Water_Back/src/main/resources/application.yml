@@ -13,8 +13,8 @@ spring:
 logging:
   level: 
     mapper: debug
-#  thymeleaf:
-#     cache:false
-#     encoding:utf-8
-     
+    
+        
+ 
+ 
      

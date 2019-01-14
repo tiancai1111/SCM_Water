@@ -14,44 +14,44 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品序号</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            <input th:value="${repertoryDetails.commodityid}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly/>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
-                     <input th:value="${repertoryDetails.commodityname}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">                            </div>
+                     <input th:value="${repertoryDetails.commodityname}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>                            </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">库存数量</label>
                             <div class="layui-input-inline">
-                           <input th:value="${repertoryDetails.repertoryamount}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                           <input th:value="${repertoryDetails.repertoryamount}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">库存充裕状态</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.repertorystate}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            <input th:value="${repertoryDetails.repertorystate}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品进价</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commodityenter}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            <input th:value="${repertoryDetails.commodityenter}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品销售价</label>
                             <div class="layui-input-inline">
-                            <input th:value="${repertoryDetails.commoditysale}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input">
+                            <input th:value="${repertoryDetails.commoditysale}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
-                       <!--  <div class="layui-form-item">
+                        <div class="layui-form-item">
                             <label class="layui-form-label">商品图片</label>
                             <div class="layui-input-inline">
-                           <img th:src="">
+                           <img th:src="'image/'+${repertoryDetails.img}" width="140px" height="140px">
                             </div>
-                        </div> -->
+                        </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                             </div>

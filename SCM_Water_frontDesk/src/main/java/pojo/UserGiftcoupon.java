@@ -8,42 +8,62 @@ package pojo;
  * @date 2018-12-28
  */
 public class UserGiftcoupon {
-    /**
-     * 编号
-     */
-    private Integer id;
+	/**
+	 * 编号
+	 */
+	private Integer id;
 
-    /**
-     * 用户表外键
-     */
-    private Integer uid;
+	/**
+	 * 用户表外键
+	 */
+	private Integer uid;
 
-    /**
-     * 奖券表外键
-     */
-    private Integer gcid;
+	/**
+	 * 奖券表外键
+	 */
+	private Integer gcid;
 
-    public Integer getId() {
-        return id;
-    }
+	private String gc_name;
+	private Float gc_money;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Integer getUid() {
-        return uid;
-    }
+	public String getGc_name() {
+		return gc_name;
+	}
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+	public void setGc_name(String gc_name) {
+		this.gc_name = gc_name;
+	}
 
-    public Integer getGcid() {
-        return gcid;
-    }
+	public Float getGc_money() {
+		return gc_money;
+	}
 
-    public void setGcid(Integer gcid) {
-        this.gcid = gcid;
-    }
+	public void setGc_money(Float gc_money) {
+		this.gc_money = gc_money;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	public Integer getGcid() {
+		return gcid;
+	}
+
+	public void setGcid(Integer gcid) {
+		this.gcid = gcid;
+	}
 }

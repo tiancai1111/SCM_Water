@@ -8,6 +8,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<title>绑定信息</title>
+		
 		<!-- Bootstrap core CSS-->
 	 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -123,9 +124,11 @@
 		<div class="modal_content">		
 			<h5>注册</h5>
 			<form id="fm1">
+			
 			<div>
+			
 				<label for="phone1">注册手机号：</label><br />
-				<input id="phone1" name="phone" type="text" autocomplete="off" placeholder="请输入已绑定的手机号"/>				
+				<input onblur="blurPhone()" id="phone1" name="phone" type="text" autocomplete="off" placeholder="请输入已绑定的手机号"/><b id="phoneCount" style="display: none;color: red" >手机号已被注册!</b> 					
 			</div> 
 			<div>
 				<label for="code1">验证码：</label>
@@ -133,7 +136,8 @@
 					<input id="code1"  type="text" autocomplete="off" placeholder="短信验证码"/>				
 					<input id="btnSendCode1" type="button" class="btn btn-default" value="获取验证码" onClick="sendMessage1()" />
 				</div>				
-			</div> 	
+			</div>
+			
 			</form>
 			<div class="next">  			
 				<button onClick="binding()">确定</button>
@@ -174,24 +178,50 @@
 			} 
 			
 			/*提交*/
-			function binding(){
-				alert(1);
+			function blurPhone(){
                  var form=new FormData(document.getElementById("fm1"));
                  $.ajax({
-                     url:"qqqq",
+                     url:"findByPhone",
                      type:"post",
                      data:form,
                      processData:false,
                      contentType:false,
                      success:function(data){
-                        alert(2);
+                        if(data=="1"){
+                        	$("#phoneCount").show();
+                        }else{
+                        	$("#phoneCount").hide();
+                        	
+                        }
                      },
                      error:function(e){
                        alert(3);
                      }
                  });        
              }
-			
+			function binding(){
+				alert(1);
+                 var form=new FormData(document.getElementById("fm1"));
+                 $.ajax({
+                     url:"findByPhone",
+                     type:"post",
+                     data:form,
+                     processData:false,
+                     contentType:false,
+                     success:function(data){
+                        alert(2);
+                        if(data=="1"){
+                        	$("#phoneCount").show();
+                        }else{
+                        	$("#phoneCount").hide();
+                        	
+                        }
+                     },
+                     error:function(e){
+                       alert(3);
+                     }
+                 });        
+             }
 		</script>
 		
 	</body>

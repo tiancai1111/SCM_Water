@@ -33,6 +33,13 @@ public class Commodity {
      */ 
     private Double commoditycost;
 
+	/**
+     * 桶装水图片
+     */
+    private String img;
+    /**
+     * 桶装水销售数量
+     */
     private String state;
     
     public String getState() {
@@ -43,12 +50,17 @@ public class Commodity {
 		this.state = state;
 	}
 
-	/**
-     * 桶装水图片
-     */
-    private String img;
+	private int commodityQuantity;
 
-    public Integer getCommodityid() {
+    public int getCommodityQuantity() {
+		return commodityQuantity;
+	}
+
+	public void setCommodityQuantity(int commodityQuantity) {
+		this.commodityQuantity = commodityQuantity;
+	}
+
+	public Integer getCommodityid() {
         return commodityid;
     }
 

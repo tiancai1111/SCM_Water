@@ -33,6 +33,8 @@ public class Supplier {
      */
     private String suppliercontacts;
 
+    
+    
     public Integer getSupplierid() {
         return supplierid;
     }

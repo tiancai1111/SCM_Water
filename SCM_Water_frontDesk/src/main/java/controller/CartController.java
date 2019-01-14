@@ -16,19 +16,36 @@ public class CartController {
 	@Autowired
 	private ShoppingMapper shoppingMapper;
 
-	
 	@RequestMapping("cart")
 	public String cart(Model model) {
-     List<Shopping> list = shoppingMapper.selByUserId(2);
+		List<Shopping> list = shoppingMapper.selByUserId(2);
 		model.addAttribute("shoppingList", list);
 		return "lm/cart";
 	}
+
+	@ResponseBody
+	@RequestMapping("addCart")
+	public int addCart(Shopping shopping) {
+		shopping.setUserId(2);
+		int result = shoppingMapper.addCart(shopping);
+		return result;
+	}
 	
-	/*@ResponseBody
-	@RequestMapping("selCart")
-	public List<Shopping> selCart(Model model) {
-		List<Shopping> list = shoppingMapper.selByUserId(2);
-		
-		return list;
-	}*/
+	@ResponseBody
+	@RequestMapping("delCart")
+	public int delCart(int shoppingId) {
+		int result = shoppingMapper.deleteShopping(shoppingId);
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("updCart")
+	public int updCart(Shopping shopping) {
+		int result = shoppingMapper.updateShopping(shopping);
+		return result;
+	}
+	
+	
+	
+
 }
