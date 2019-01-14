@@ -38,9 +38,9 @@ public class GiftcouponController {
    }
 	@ResponseBody
 	@PostMapping("addUser_Giftcoupon")
-	   public String addUser_Giftcoupon(Model model,@RequestParam(name="gcId")Integer gcId,HttpServletRequest request) {
-		int id=(int)request.getSession().getAttribute("userid") ;
-		int num=giftcouponSerice.addUser_Giftcoupon(gcId,id);
+	   public String addUser_Giftcoupon(Model model,@RequestParam(name="gcId")Integer gcId,@RequestParam(name="gcRequired")Integer gcRequired,HttpServletRequest request) {
+		int id=(int)request.getSession().getAttribute("userid") ;		
+		int num=giftcouponSerice.addUser_Giftcoupon(gcId,id,gcRequired);
 		String json=JSON.toJSONString(num);
 		System.out.println("用户id="+id);
 		System.out.println(gcId);

@@ -16,11 +16,7 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectByPhone(user);
 	}
 
-	@Override
-	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return userMapper.updateUser(user);
-	}
+
 
 	@Override
 	public int addUser(User user) {
@@ -46,6 +42,14 @@ public class UserServiceImpl implements UserService {
 	public User selectUser(int id) {
 		// TODO Auto-generated method stub
 		return userMapper.selectUser(id);
+	}
+
+
+
+	@Override
+	public int updateUser(User user) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

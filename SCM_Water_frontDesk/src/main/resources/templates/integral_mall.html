@@ -38,7 +38,7 @@
             <section class="aui-scrollView">
                 <div class="aui-flex aui-flex-color">
                     <div class="aui-flex-box">
-                        <h2>您拥有的积分: <em th:text="${user.integrate}"></em></h2>
+                        <h2>您拥有的积分: <em id="integrate" th:text="${user.integrate}"></em></h2>
                     </div>
                     <div class="aui-arrow"></div>
                 </div>
@@ -46,12 +46,12 @@
                     <a href="javascript:;" class="aui-list-theme-item">
                         <div class="aui-list-img">
                             <h2><em>￥</em><b th:text="${giftcoupon.gcMoney}"></b></h2>
-                            <h3>满1000元可用</h3>
+                            <h3>无限制</h3>
                             <h4 th:text="${giftcoupon.gcName}"></h4>
                         </div>
                         <div class="aui-list-title">
-                            <h3><em>100</em>积分</h3>
-                            <button th:onclick="'binding(\''+${giftcoupon.gcId}+'\')'">兑换</button>
+                            <h3><em th:text="${giftcoupon.gcRequired}"></em>积分</h3>
+                            <button th:onclick="'binding(\''+${giftcoupon.gcId}+'\',\''+${giftcoupon.gcRequired}+'\')'">兑换</button>
                         </div>
                     </a>
                 </div>
@@ -61,10 +61,10 @@
     </body>
     	<script type="text/javascript" src="lm/js/vendor/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-    function binding(gcId){
+    function binding(gcId,gcRequired){
 		 console.log("点击生效");
          $.ajax({
-             url:"addUser_Giftcoupon?gcId="+gcId,
+             url:"addUser_Giftcoupon?gcId="+gcId+"&gcRequired="+gcRequired,
              type:"POST",
              contentType : "application/json;charset=UTF-8",
              processData:false,
@@ -72,14 +72,17 @@
              success:function(data){
             	 console.log("数据返回："+data);
                 if(data=="1"){
-                	alert("兑换成功");
+                	alert("兑换成功！");                	
+                    var integrate=$("#integrate").text(); 
+                    console.log(integrate);
+                    $("#integrate").text(integrate-gcRequired);
                 }else{
-                	alert("兑换失败");
+                	alert("所需积分不足！");
                 	
                 }
              },
              error:function(e){
-               alert("报错");
+               alert("积分不足");
              }
          });        
      }

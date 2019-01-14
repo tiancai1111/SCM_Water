@@ -7,6 +7,6 @@ import pojo.Giftcoupon;
 public interface GiftcouponSerice {
    List<Giftcoupon> findGiftcouponList();
 
-   int addUser_Giftcoupon(Integer gcId, int id);
+   int addUser_Giftcoupon(Integer gcId, int id, Integer gcRequired);
    
 }
