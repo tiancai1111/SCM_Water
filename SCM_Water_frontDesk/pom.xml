@@ -20,6 +20,6 @@
   		<groupId>com.alipay</groupId>
   		<artifactId>sdk-Java</artifactId>
   		<version>20170324180803</version>
-  	</dependency>
+  	</dependency>  	
   </dependencies>
 </project>

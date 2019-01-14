@@ -15,5 +15,7 @@ public interface UserMapper {
 	int login(User user);
 	@Select("select * from user where phone=#{phone}")
 	User findByUser(User user);
-	    
+	@Select("select * from user where userid=#{id}")
+	User selectUser(int id);
+	
 }
