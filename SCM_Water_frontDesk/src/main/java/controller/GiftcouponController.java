@@ -33,6 +33,7 @@ public class GiftcouponController {
 		User user=userService.selectUser(id);
 		model.addAttribute("user",user);
 		model.addAttribute("giftcouponList",giftcouponList);
+		
 	return "integral_mall";	    
    }
 	@ResponseBody
