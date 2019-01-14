@@ -25,6 +25,52 @@
      </if>
      </where>
      </select>
+     
+ <!--     <select id="staffAll" resultMap="pojo.Staff">
+       SELECT * FROM Staff 
+     </select> -->
+     
+  <select id="staffAll" resultMap="BaseResultMap" resultType="pojo.Staff">
+     SELECT * FROM Staff
+     <where>
+     <if test="staffname!=null and staffname!=''">
+       and staffname like CONCAT('%',#{staffname},'%')
+     </if>
+     </where>
+  </select>
+    
+    
+     <insert id="staffInsert" parameterType="pojo.Staff" >
+        INSERT INTO Staff
+            (`staffName`, `staffPhone`, `staffSex`,
+             `staffSite`,`staff`,`password`,`roleId`)
+         VALUES (#{staffName},#{staffPhone},#{staffSex},#{staffSite}
+         ,#{staff},#{password},#{roleId});
+    </insert>
+    
+    <select id="staffUpdate" resultMap="BaseResultMap">
+     select * from Staff where staffId = #{staffId}
+    </select>
+    
+   <update id="StaffUp">
+    UPDATE `staff`
+  SET `staffname` = #{staffname},
+  `staffphone` = #{staffphone},
+  `staffsex` = #{staffsex},
+  `staffsite` = #{staffsite},
+  `staff` = #{staff},
+  `password` = #{password},
+  `roleid` = #{roleid}
+  WHERE `staffid` = #{staffid};
+  </update>
+    
+<!--     <delete id="createdelete" parameterType="pojo.Staff">
+    DELETE FROM `staff` WHERE staffid = #{staffid};
+    </delete> -->
+    
+    
+    
+    
     
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 

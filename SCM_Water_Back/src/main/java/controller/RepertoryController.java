@@ -35,19 +35,18 @@ public String repertory(@RequestParam(value="repertoryid",required=false)int rep
 	Repertory repertoryDetails=repertoryService.repertorys(repertoryid);
 	model.addAttribute("repertoryDetails", repertoryDetails);
 	return "creates";
-	
 }
+
 @RequestMapping("/repertoryUpdate")
 public String repertoryUpdate(@RequestParam(value="repertoryid",required=false)int repertoryid,Model model) {
 	int repertoryDetails=repertoryService.repertoryUpdate(repertoryid);
 	model.addAttribute("repertoryDetails", repertoryDetails);
 	return "redirect:jjj";
-	
 }
+
 @RequestMapping("/repertoryDel")
 public String repertoryDel(@RequestParam("repertoryid")int repertoryid) {
 	int repertoryDel=repertoryService.repertoryDel(repertoryid);
-	return "redirect:jjj";
-	
+	return "redirect:jjj";	
 }
 }

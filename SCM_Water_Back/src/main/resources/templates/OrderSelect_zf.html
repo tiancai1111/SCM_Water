@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<div class="layui-container">  
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>订单详情</legend>
+                <div class="layui-field-box">
+                <div class="layui-form-item">
+                            <label class="layui-form-label"></label>
+                            
+                        
+                       <div class="layui-form-item">
+                        <label class="layui-form-label">订单派送员</label>
+                            <div class="layui-input-inline">
+                            <input type="text" th:value="${order.deliveryman}"   readonly="readonly"  class="layui-input">
+                        </div>
+                        </div>
+                        
+                      
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">派送时间</label>
+                            <div class="layui-input-inline">
+                            <input type="text" th:value="${#dates.format(order.deliverytime,'yyyy-MM-dd hh:mm:ss')}"   readonly="readonly"  class="layui-input">
+                        </div>
+                        </div>       
+                            
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">订单数量</label>
+                            <div class="layui-input-inline">
+                            <input type="text" value="4"   readonly="readonly"  class="layui-input">
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">订单商品</label>
+                            <div class="layui-input-inline">
+                            <input type="text" th:each="entries,stat:${orderAll}" th:value="${entries.state}+x+${entries.count}"   readonly="readonly"  class="layui-input">
+                        </div>
+                        </div>
+                        
+                           <!--  <div>
+                            <tr th:each="entries,stat:${orderAll}">
+                            <div class="layui-input-inline">
+                              <input type="text" th:value="${entries.commodityname}+￥+${entries.commoditysale}*${entries.count}"   readonly="readonly"  class="layui-input">
+                            </div>
+                            </tr>
+                            </div> -->
+                            
+                                       
+                </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>
