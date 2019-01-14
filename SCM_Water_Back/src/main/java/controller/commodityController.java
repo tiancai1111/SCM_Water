@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,20 +105,6 @@ public String commodityAdd(
 		@RequestParam(value = "commodityQuantity")int commodityQuantity,
 		@RequestParam(value = "myFile") MultipartFile myFile,
 		HttpServletRequest request) {
-	
-//	String name=myFile.getOriginalFilename();//获取文件名
-//	String path=request.getSession().getServletContext().getRealPath("/image");
-//	String imgName="";
-//	try {
-//		File files=new File(path, name);
-//		imgName=files.getName();
-//		if (!files.exists()) {
-//			files.mkdirs();
-//		}
-//		myFile.transferTo(files);
-//	} catch (Exception e) {
-//		e.printStackTrace();
-//	}
 	Commodity commodity=new Commodity();
 	String uuid = UUID.randomUUID().toString();
 	if (myFile.getOriginalFilename() != null && !myFile.getOriginalFilename().equals("")) {
@@ -129,8 +116,6 @@ public String commodityAdd(
 		String filePath03 = statics + "\\images\\" + dataStr;
 		String filePath04 = filePath03 + "\\" + uuid + "." + suffix;
 		String filePath05 = filePath04.substring(filePath04.indexOf("statics"), filePath04.length());
-//		appInfo.setLogoLocPath(filePath05);
-//		appInfo.setLogoPicPath(filePath05);
 		commodity.setImg(filePath05);
 		try {
 			FileUploadUtil.uploadFile(myFile, filePath03, filePath04);
@@ -149,7 +134,53 @@ public String commodityAdd(
 	
 	int commodityAdd=commodityService.commodityInsert(commodity);
 	if(commodityAdd>0) {
-		return "commoditys";
+		return "redirect:commoditys";
+	}else {
+	return "redirect:commodityadd";
+	}
+
+}
+@RequestMapping("update")
+public String update(
+		@RequestParam(value = "commodityid")int commodityid,
+		@RequestParam(value = "commodityname")String commodityname,
+		@RequestParam(value = "commodityenter")double commodityenter,
+		@RequestParam(value = "commoditysale")double commoditysale,
+		@RequestParam(value = "commoditycost")double commoditycost,
+		@RequestParam(value = "state")String state,
+		@RequestParam(value = "commodityQuantity")int commodityQuantity,
+		@RequestParam(value = "myFile") MultipartFile myFile,
+		HttpServletRequest request) {
+	Commodity commodity=new Commodity();
+	String uuid = UUID.randomUUID().toString();
+	if (myFile.getOriginalFilename() != null && !myFile.getOriginalFilename().equals("")) {
+		String oldFileName = myFile.getOriginalFilename();
+		String suffix = FilenameUtils.getExtension(oldFileName);
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd\\HH\\mm\\ss");
+		String dataStr = format.format(new Date());
+		String statics = request.getSession().getServletContext().getRealPath("statics");
+		String filePath03 = statics + "\\images\\" + dataStr;
+		String filePath04 = filePath03 + "\\" + uuid + "." + suffix;
+		String filePath05 = filePath04.substring(filePath04.indexOf("statics"), filePath04.length());
+		commodity.setImg(filePath05);
+		try {
+			FileUploadUtil.uploadFile(myFile, filePath03, filePath04);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	commodity.setCommodityid(commodityid);
+	commodity.setCommodityname(commodityname);
+	commodity.setCommodityenter(commodityenter);
+	commodity.setCommoditysale(commoditysale);
+	commodity.setCommoditycost(commoditycost);
+	commodity.setState(state);
+	commodity.setCommodityQuantity(commodityQuantity);
+	
+	int update=commodityService.commodityUpdate(commodity);
+	if(update>0) {
+		return "redirect:commoditys";
 	}else {
 	return "redirect:commodityadd";
 	}
