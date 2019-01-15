@@ -1,10 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.WalletMapper">
-	<select id="selUserMoneyById" resultType="pojo.User">
-		SELECT * FROM `user` WHERE userid=#{userId}
+	<select id="selUserById" resultType="pojo.User">
+		SELECT * FROM `user` WHERE
+		userid=#{userId}
+	</select>
+	<select id="selMaxOderId" resultType="int">
+		SELECT MAX(id) FROM `order`
 	</select>
 	<update id="updUserMoney">
-		UPDATE `user` SET `money`=#{money}  WHERE userid=#{userId}
+		UPDATE `user` SET `money`=#{money} WHERE
+		userid=#{userId}
 	</update>
+	<insert id="addOrder">
+		INSERT INTO `order`
+		VALUES (0, #{numberr}, #{userid},
+		#{address},#{phone}, #{linkman},
+		now(),'已下单',#{money}, #{remark});
+	</insert>
+	<delete id="delCartByUserId">
+		DELETE
+		FROM `shopping`
+		WHERE `user_id` = #{userId};
+	</delete>
+	<insert id="addCommodityOrder">
+		INSERT INTO `commodity_order`
+		VALUES
+		<foreach collection="shoppingList" item="shopping"
+			separator=",">
+			(0,#{shopping.commodityId},#{orderId},#{shopping.count})
+		</foreach>
+	</insert>
+
+	<insert id="insertCommodityOrder">
+		INSERT INTO `commodity_order`
+		VALUES
+		(0,#{commodityIdd},#{orderId},#{count})
+	</insert>
+
+	<delete id="delUserGiftcouponById">
+		<if test="id != 0">
+			DELETE
+			FROM `user_giftcoupon`
+			WHERE `id` = #{id};
+		</if>
+	</delete>
 </mapper>

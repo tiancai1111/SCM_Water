@@ -3,9 +3,11 @@ package shiro;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,17 +39,19 @@ public class ShiroConfig {
 	        //验证失败的跳转页面(authc)
 	        shiroFilterFactoryBean.setLoginUrl("/failure");
 	        
-	        filterChainDefinitionMap.put("/admin","anon");
-	        filterChainDefinitionMap.put("/index","authc");
+	        filterChainDefinitionMap.put("/member.html", "anon");
+	        filterChainDefinitionMap.put("/show.html", "anon");
+	        filterChainDefinitionMap.put("/index", "anon");
+	        filterChainDefinitionMap.put("/login", "anon");
+	        filterChainDefinitionMap.put("/loginpresent", "anon");
+	        filterChainDefinitionMap.put("/static/**", "anon");
 	        
-	
+/*	        filterChainDefinitionMap.put("/**", "authc");*/
+	        
 	        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 	        
-	        System.out.println("Shiro成功");
 	        return shiroFilterFactoryBean;
 	}
-	
-
 	
     /**
      ***创建DefaultWebSecurityManager

@@ -28,5 +28,12 @@ public interface UserService {
 	 * @return User
 	 */
 	User findByUser(User user);
+	/**
+	 * 
+	 * 根据userid查询个人信息
+	 * @param user
+	 * @return User
+	 */
+	User selectUser(int id);
 	
 }

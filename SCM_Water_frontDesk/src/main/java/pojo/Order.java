@@ -14,6 +14,7 @@ public class Order {
     /**
      * id
      */
+
     private Integer id;
 
     /**
@@ -70,8 +71,17 @@ public class Order {
 
 	private int count;
     private String state;
+    private String remark;
     
-    public Float getMoney() {
+    public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Float getMoney() {
 		return money;
 	}
 

@@ -12,7 +12,12 @@
     <sql id="Base_Column_List" >
         gc_id, gc_name, gc_money, gc_required
     </sql>
-
+    
+     <select id="findGiftcouponList" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from giftcoupon
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
         <include refid="Base_Column_List" />

@@ -14,19 +14,35 @@
 		<result column="status" property="status" jdbcType="VARCHAR" />
 		<result column="money" property="money" jdbcType="DOUBLE" />
 	</resultMap>
+
 	<select id="selOrderById" resultMap="BaseResultMap"
 		parameterType="int">
-		SELECT * FROM `order` WHERE userid=#{userid}
+		SELECT * FROM `order` WHERE userid=#{userid} order by
+		`ordertime` desc
 	</select>
 
 	<select id="selOrderDetailsBy" resultMap="BaseResultMap"
 		parameterType="int">
 		SELECT state,COUNT
-		FROM `commodity_order` t1,`order` t2,`commodity` t3
+		FROM `commodity_order` t1,`order`
+		t2,`commodity` t3
 		WHERE t1.`orderId`=t2.`id`
-		AND t1.`commodityId`=t3.`commodityId`
+		AND
+		t1.`commodityId`=t3.`commodityId`
 		AND t1.`orderId`=#{orderId}
 	</select>
+
+	<select id="selectOrder" resultType="pojo.Order">
+		select * from `order` where
+		id=#{id}
+	</select>
+
+	<update id="updStatusById" parameterType="int">
+		update `order`
+		set
+		`status`='已签收'
+		where `id` = #{id};
+	</update>
 
 
 </mapper>

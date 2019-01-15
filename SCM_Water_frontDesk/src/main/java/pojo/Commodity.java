@@ -40,7 +40,6 @@ public class Commodity {
     /**
      * 桶装水销售数量
      */
-    
     private int commodityQuantity;
     
     public int getCommodityQuantity() {

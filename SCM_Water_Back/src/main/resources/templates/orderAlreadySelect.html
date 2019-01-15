@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>layout 后台大布局 - Layui</title>
+<link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<div class="layui-container">
+	<div class="layui-row">
+		<div class="layui-col-lg12">
+			<fieldset class="layui-elem-field">
+				<legend>用户管理 - 修改用户</legend>
+				<div class="layui-field-box">
+					<form class="layui-form" id="Update">
+						       <div class="layui-btn-group">
+                              <button  class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url=""  dw-title="编辑用户">
+                                <i class="layui-icon">&#xe642;</i>确定接单
+                              </button>
+                           
+                              <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url=""  dw-title="小明">
+                                <i class="layui-icon">&#xe640;</i>取消接单
+                              </button>
+                            </div>
+					</form>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./layui/layui.js"></script>
+<script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
+<script type="text/javascript">
+	 function Update() {
+		var form = new FormData(document.getElementById("Update"));
+		$.ajax({
+			url : "UserUp",
+			type : "post",
+			data : form,
+			processData : false,
+			contentType : false,
+			success : function(data) {
+				if (data > 0) {
+					parent.layer.close(1);
+					window.parent.location.reload();
+					location.href = "customer";
+				}
+			},
+			error : function(e) {
+			}
+		});
+	}
+</script>
+</body>
+</html>

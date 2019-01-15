@@ -53,7 +53,77 @@ public class Order {
     /**
      * 订单总金额
      */
-    private Double money;
+    
+    private String name;
+    private String state;
+    
+    
+    public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	private String commodityname;
+    private int commoditysale;
+    private int count;
+    
+    private Date deliverytime;
+    private String deliveryman;
+    
+
+    
+	public Date getDeliverytime() {
+		return deliverytime;
+	}
+
+	public void setDeliverytime(Date deliverytime) {
+		this.deliverytime = deliverytime;
+	}
+
+	public String getDeliveryman() {
+		return deliveryman;
+	}
+
+	public void setDeliveryman(String deliveryman) {
+		this.deliveryman = deliveryman;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getCommodityname() {
+		return commodityname;
+	}
+
+	public void setCommodityname(String commodityname) {
+		this.commodityname = commodityname;
+	}
+
+	public int getCommoditysale() {
+		return commoditysale;
+	}
+
+	public void setCommoditysale(int commoditysale) {
+		this.commoditysale = commoditysale;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private Double money;
 
     public Integer getId() {
         return id;
