@@ -71,10 +71,10 @@
 											<td  th:text="${order.linkman}"></td>
 											<td  th:text="${#dates.format(order.ordertime, 'yyyy-MM-dd hh:mm:ss')}"></td>
 											<td  th:text="${order.money}"></td>
-											<td  th:text="${order.status}"></td>
+											<td th:class="'status'+${order.id}" th:text="${order.status}"></td>
 											<td>
 												<div class="cart-buttons">
-													<a href="#">签收</a> <a href="#">取消订单</a>
+													<a th:onclick="'sign('+${order.id}+')'">签收</a> <a onclick="cancel()">取消订单</a>
 												</div>
 											</td>
 										</tr>
@@ -96,6 +96,44 @@
 	<script type="text/javascript">
 		$(".headerpage").load("lm/header.html");
 		$(".footerpage").load("lm/footer.html");
+		//签收
+		function sign(id) {
+			
+			$.ajax({
+				url : "selectOrderById?id="+id,
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				success : function(data) {
+					if(data.status=="已签收"){
+						alert("您已经签收过了!")
+					}else{
+						$.ajax({
+							url : "sign?id="+id,
+							type : "POST",
+							dataType : "json",
+							contentType : "application/json;charset=UTF-8",
+							success : function(data) {
+								if(data>0){
+									alert("签收成功!");
+									$(".status"+id).html('已签收');
+								}
+							},
+							error : function() {
+								alert("失败");
+							}
+						});
+					}
+				},
+				error : function() {
+					alert("失败");
+				}
+			});
+		}
+		//取消订单
+		function cancel() {
+			alert(2);
+		}
 	</script>
 </body>
 

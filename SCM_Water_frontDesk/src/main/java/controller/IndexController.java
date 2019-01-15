@@ -52,7 +52,7 @@ public class IndexController {
    public String updateUser(User user) {
 	   int num=userService.updateUser(user);
 	   String json=JSON.toJSONString(num);
-	return json;	   
+	return json;
    }
    @PostMapping("login")
    public String login(HttpSession session,User user) {

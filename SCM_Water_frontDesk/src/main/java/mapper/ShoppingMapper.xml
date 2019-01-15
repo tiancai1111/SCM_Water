@@ -14,15 +14,15 @@
 			jdbcType="FLOAT" />
 		<result column="img" property="img" jdbcType="VARCHAR" />
 	</resultMap>
-
-	<select id="selByUserId" resultMap="BaseResultMap">
+	<select id="selByUserId" resultMap="BaseResultMap"
+		parameterType="int">
 		SELECT
 		* FROM
 		`commodity`
 		t1,`shopping` t2
 		WHERE
 		t1.`commodityId`=t2.`commodity_id`
-		AND user_id =2
+		AND user_id = #{userId}
 	</select>
 	<insert id="addCart" parameterType="pojo.Shopping">
 		INSERT INTO shopping
@@ -37,7 +37,8 @@
 	</delete>
 	<update id="updateShopping">
 		update shopping
-		set `count` = #{count},`money` = #{money}
+		set `count` = #{count},`money` =
+		#{money}
 		where `id` = #{id};
 	</update>
 

@@ -1,14 +1,15 @@
-package mapper;
+package service;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import pojo.Order;
 import pojo.Shopping;
 import pojo.User;
-
-public interface WalletMapper {
+@Transactional
+public interface WalletService {
 	User selUserById(int userId);
 
 	int selMaxOderId();
