@@ -15,5 +15,6 @@ public interface CommodityMapper {
 	int commodityUpdate(Commodity commodity);
 	Commodity Commoditys(@Param("commodityid")int commodityid);
 	int commodityInsert(Commodity commodity);
+	int count(@Param("commodityName")String commodityName);
 	
 }

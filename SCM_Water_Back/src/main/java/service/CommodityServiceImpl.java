@@ -18,11 +18,7 @@ public List<Commodity> commodity() {
 	return commodityMapper.commodity();
 }
 
-@Override
-public List<Commodity> commoditySelect(String commodityName) {
-	// TODO Auto-generated method stub
-	return commodityMapper.commoditySelect(commodityName);
-}
+
 
 @Override
 public Commodity commoditys(int commodityid) {
@@ -62,6 +58,14 @@ public int commodityInsert(Commodity commodity) {
 
 
 
-
-	
+@Override
+public List<Commodity> commoditySelect(String commodityName) {
+	// TODO Auto-generated method stub
+	return commodityMapper.commoditySelect(commodityName);
+}
+@Override
+public int count(String commodityName) {
+	// TODO Auto-generated method stub
+	return commodityMapper.count(commodityName);
+}
 }

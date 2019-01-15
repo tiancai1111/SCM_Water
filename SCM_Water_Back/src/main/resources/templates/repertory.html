@@ -6,186 +6,217 @@
 <script type="text/javascript" src="text/./layui/layui.js"></script>
 <script type="text/javascript" src="text/./icheck/icheck.js"></script>
 <script type="text/javascript" src="text/./javascript/dw.js"></script>
-  <link rel="stylesheet" href="./layui/css/layui.css">
-  <link rel="stylesheet" href="./css/global.css">
-  <link rel="stylesheet" href="./icheck/minimal/red.css">
+<link rel="stylesheet" href="./layui/css/layui.css">
+<link rel="stylesheet" href="./css/global.css">
+<link rel="stylesheet" href="./icheck/minimal/red.css">
 </head>
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-  <div class="layui-header">
-    <!-- 头部区域（可配合layui已有的水平导航） -->
-    <!-- <ul class="layui-nav layui-layout-left">
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<!-- <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="admin.html">用户列表</a></li>
       <li class="layui-nav-item"><a href="member.html">会员列表</a></li>
     </ul> -->
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item">
-        <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          贤心
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
-        </dl>
-      </li>
-      <li class="layui-nav-item"><a href="">退了</a></li>
-    </ul>
-  </div>
-  
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item"><a href="index.html">控制台</a></li>
-        <li class="layui-nav-item">
-          <a class="" href="javascript:;">系统设置</a>
-          <dl class="layui-nav-child">
-            <dd><a href="sysConfig.html">系统变量</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">用户管理</a>
-          <dl class="layui-nav-child">
-            <dd><a href="admin.html">用户列表</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">权限管理</a>
-            <dl class="layui-nav-child">
-                <dd><a href="rule.html">规则列表</a></dd>
-                <dd><a href="role.html">角色列表</a></dd>
-                <dd><a href="adminRole.html">用户角色</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">仓库管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a class="layui-this" href="repertoryParticulars">仓库详情</a></dd>
-                    <dd><a class="layui-this" href="commoditys">商品管理</a></dd>
-                </dl>
-            </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">统计信息</a>
-            <dl class="layui-nav-child">
-                <dd><a href="echartsTests">统计</a></dd>
-                <!-- <dd><a href="control.html">商品统计</a></dd>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item"><a href="javascript:;"> <img
+						src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+				</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="">基本资料</a>
+						</dd>
+						<dd>
+							<a href="">安全设置</a>
+						</dd>
+					</dl></li>
+				<li class="layui-nav-item"><a href="">退了</a></li>
+			</ul>
+		</div>
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<li class="layui-nav-item"><a href="index.html">控制台</a></li>
+					<li class="layui-nav-item"><a class="" href="javascript:;">系统设置</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="sysConfig.html">系统变量</a>
+							</dd>
+						</dl></li>
+					<li class="layui-nav-item"><a href="javascript:;">用户管理</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="admin.html">用户列表</a>
+							</dd>
+						</dl></li>
+					<li class="layui-nav-item"><a href="javascript:;">权限管理</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="rule.html">规则列表</a>
+							</dd>
+							<dd>
+								<a href="role.html">角色列表</a>
+							</dd>
+							<dd>
+								<a href="adminRole.html">用户角色</a>
+							</dd>
+						</dl></li>
+					<li class="layui-nav-item layui-nav-itemed"><a
+						href="javascript:;">仓库管理</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a class="layui-this" href="repertoryParticulars">仓库详情</a>
+							</dd>
+							<dd>
+								<a class="layui-this" href="commoditySelect">商品管理</a>
+							</dd>
+						</dl></li>
+					<li class="layui-nav-item"><a href="javascript:;">统计信息</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="echartsTests">统计</a>
+							</dd>
+							<!-- <dd><a href="control.html">商品统计</a></dd>
                 <dd><a href="control.html">退单原因统计</a></dd> -->
-            </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">系统管理</a>
-            <dl class="layui-nav-child">
-                <dd><a href="upload.html">文件上传</a></dd>
-                <dd><a href="upload.html">Execel导出</a></dd>
-            </dl>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="layui-body">
-    <!-- 内容主体区域 -->
-    <div style="padding: 15px;">
-        <fieldset class="layui-elem-field">
-            <legend>仓库管理 - 仓库</legend>
-            <div class="layui-field-box">
-              <form class="layui-form" action="">
-                <div class="layui-form-item" style="text-align:center;">
-                  <div class="layui-inline">
-                    <div class="layui-input-inline">
-                      <input autocomplete="off" class="layui-input" placeholder="请输入名称" type="text" name="commodityName" value="">
-                    </div>
-                  </div>
-                  <div class="layui-inline" style="text-align:left;">
-                    <div class="layui-input-inline">
-                       <button class="layui-btn" onclick="chaxun()"><i class="layui-icon">&#xe615;查询</i></button> 
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <hr>
-              <div class="layui-btn-group">
-                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityss" dw-title="进货" dw-width="50%" dw-height="50%">
-                      <i class="layui-icon">&#xe654;</i>进货
-                  </button>
-                 <!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
+						</dl></li>
+				</ul>
+			</div>
+		</div>
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+			<div style="padding: 15px;">
+				<fieldset class="layui-elem-field">
+					<legend>仓库管理 - 仓库</legend>
+					<div class="layui-field-box">
+						<form class="layui-form" action="">
+							<div class="layui-form-item" style="text-align: center;">
+								<div class="layui-inline">
+									<div class="layui-input-inline">
+										<input autocomplete="off" class="layui-input"
+											placeholder="请输入名称" type="text" name="commodityName" value="">
+									</div>
+								</div>
+								<div class="layui-inline" style="text-align: left;">
+									<div class="layui-input-inline">
+										<button class="layui-btn" onclick="chaxun()">
+											<i class="layui-icon">&#xe615;查询</i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						<hr>
+						<div class="layui-btn-group">
+							<button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog"
+								th:dw-url="commodityss" dw-title="进货" dw-width="50%"
+								dw-height="50%">
+								<i class="layui-icon">&#xe654;</i>进货
+							</button>
+							<button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog"
+								onclick="exportt()" dw-title="进货" dw-width="50%" dw-height="50%">
+								<i class="layui-icon">&#xe654;</i>导出
+							</button>
+							<!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
                       <i class="layui-icon">&#xe6 c40;</i>删除
                   </button> -->
-                  <!-- <button th:dw-url="repertoryParticulars" class="layui-btn layui-btn-xs dw-refresh">
+							<!-- <button th:dw-url="repertoryParticulars" class="layui-btn layui-btn-xs dw-refresh">
                       <i class="layui-icon">&#x1002;</i>刷新
                   </button> -->
-              </div>
-              <hr>
-              <table class="layui-table">
-                  <colgroup>
-                      <col width="150">
-                      <col width="150">
-                      <col width="200">
-                      <col>
-                      <col>
-                  </colgroup>
-                  <thead>
-                      <tr>
-                    <!--   <th class="selectAll"><input type="checkbox"></th> -->
-                      <th style="text-align: center;">商品序号</th>
-                      <th style="text-align: center;">商品名称</th>
-                      <th style="text-align: center;">库存数量</th>
-                       <th style="text-align: center;">库存充裕状态</th>
-                       <th style="text-align: center;">商品图片</th>
-                      <th style="text-align:center;">操作</th>
-                      </tr> 
-                  </thead>
-                  <tbody>
-                      <tr class="text-c" th:each="repertory,repertoryyy:${repertorylist}">
-							<!-- <td><input type="checkbox" name="id" value="1"></td> -->
-							 <td th:text="${repertory.commodityid}" style="text-align: center;"></td>
-							<td th:text="${repertory.commodityname}" style="text-align: center;"></td>
-							<td th:text="${repertory.repertoryamount}" style="text-align: center;"></td>
-							<td th:text="${repertory.repertorystate}" style="text-align: center;"></td>
-							<td><img th:src="'image/'+${repertory.img}" style="text-align: center;"></td>
-                      <td class="text-center">
-                          <div class="layui-btn-group">
-                              <button th:dw-url="'repertoryDetails?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
-                                <i class="layui-icon">&#xe642;</i>查看
-                              </button>
-                              <button th:dw-url="'repertoryDel?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-danger dw-delete">
-                                <i class="layui-icon">&#xe640;</i>删除
-                              </button>
-                               <button th:dw-url="'repertorys?repertoryid='+${repertory.commodityid}" class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-title="查看详情">
-                                <i class="layui-icon">&#xe642;</i>修改
-                              </button>
-                            </div>
-                      </td>
-                      </tr>
-                  </tbody>
-              </table>
-            </div>
-        </fieldset>
-    </div>
-  </div>
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-  </div>
-</div>
-<script type="text/javascript" src="./javascript/jquery.min.js"></script>
-<script type="text/javascript" src="./layui/layui.js"></script>
-<script type="text/javascript" src="./icheck/icheck.js"></script>
-<script type="text/javascript" src="./javascript/dw.js"></script>
-<script type="text/javascript">
-function chaxun() {
-	 var commodityname=$("input[name=commodityname]").val();
-	 window.location.href="repertoryParticulars?commodityName="+commodityname; 
-/* 	$.ajax({
-		url : "/repertoryParticulars?commodityName="+commodityname,
-		type : "POST",
-		dataType : "json",
-		contentType : "application/json;charset=UTF-8",
-	});  */
-}
-	/* */
+						</div>
+						<hr>
+						<table class="layui-table">
+							<colgroup>
+								<col width="150">
+								<col width="150">
+								<col width="200">
+								<col>
+								<col>
+							</colgroup>
+							<thead>
+								<tr>
+									<!--   <th class="selectAll"><input type="checkbox"></th> -->
+									<th style="text-align: center;">商品序号</th>
+									<th style="text-align: center;">商品名称</th>
+									<th style="text-align: center;">库存数量</th>
+									<th style="text-align: center;">库存充裕状态</th>
+									<th style="text-align: center;">商品图片</th>
+									<th style="text-align: center;">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="text-c" th:each="repertory:${commodityPageInfo.list}">
+									<!-- <td><input type="checkbox" name="id" value="1"></td> -->
+									<td th:text="${repertory.commodityid}"style="text-align: center;"></td>
+									<td th:text="${repertory.commodityname}"style="text-align: center;"></td>
+									<td th:text="${repertory.repertoryamount}"style="text-align: center;"></td>
+									<td th:text="${repertory.repertorystate}"style="text-align: center;"></td>
+									<td><img th:src="'../'+${repertory.img}"style="text-align: center;"></td>
+									<td class="text-center">
+										<div class="layui-btn-group">
+											<button
+												th:dw-url="'repertoryDetails?repertoryid='+${repertory.commodityid}"
+												class="layui-btn layui-btn-xs layui-btn-normal dw-dailog"
+												dw-title="查看详情">
+												<i class="layui-icon">&#xe642;</i>查看
+											</button>
+											<button
+												th:dw-url="'repertoryDel?repertoryid='+${repertory.commodityid}"
+												class="layui-btn layui-btn-xs layui-btn-danger dw-delete">
+												<i class="layui-icon">&#xe640;</i>删除
+											</button>
+											<button
+												th:dw-url="'repertorys?repertoryid='+${repertory.commodityid}"
+												class="layui-btn layui-btn-xs layui-btn-normal dw-dailog"
+												dw-title="查看详情">
+												<i class="layui-icon">&#xe642;</i>修改
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+				<div class="layui-btn-group" style="display: block;">
+					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.firstPage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.firstPage}" class="layui-btn">首页</button></a>
+					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.prePage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.prePage}" class="layui-btn">上一页</button></a>
+					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.nextPage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.nextPage}"  class="layui-btn">下一页</button></a>
+					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.lastPage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.lastPage}" class="layui-btn">末页</button></a>
+				</div>
+			</div>
+		</div>
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+		</div>
+	</div>
+	<script type="text/javascript" src="./javascript/jquery.min.js"></script>
+	<script type="text/javascript" src="./layui/layui.js"></script>
+	<script type="text/javascript" src="./icheck/icheck.js"></script>
+	<script type="text/javascript" src="./javascript/dw.js"></script>
+	<script type="text/javascript">
+		function chaxun() {
+			var commodityname = $("input[name=commodityname]").val();
+			window.location.href = "repertoryParticulars?commodityName="
+					+ commodityname;
+		}
 
-
-
-</script>
+		function exportt() {
+			$.ajax({
+				url : "export",
+				type : "POST",
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				success : function(data) {
+					if (data > 0) {
+						alert("导出成功");
+					}
+				},
+				error : function() {
+					alert("失败");
+				}
+			});
+		}
+	</script>
 </body>
 </html>

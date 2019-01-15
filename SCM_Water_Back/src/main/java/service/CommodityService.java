@@ -14,5 +14,6 @@ public interface CommodityService {
 	int commodityUpdate(Commodity commodity);
 	Commodity Commoditys(int commodityid);
 	int commodityInsert(Commodity commodity);
+	int count(String commodityName);
 
 }

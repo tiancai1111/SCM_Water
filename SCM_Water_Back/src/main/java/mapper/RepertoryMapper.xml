@@ -18,6 +18,10 @@
     </if>
     </select>
     
+     <select id="list" resultType="pojo.Repertory" parameterType="pojo.Repertory">
+    SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId 
+    </select>
+    
     <select id="repertoryDetails" resultType="pojo.Repertory" parameterType="int">
      SELECT * FROM  commodity,repertory WHERE commodity.commodityId=repertory.commodityId AND repertory.commodityId=#{repertoryid}
     </select>

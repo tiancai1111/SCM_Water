@@ -61,7 +61,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                            <button class="layui-btn" type="submit">修改</button>
+                            <button class="layui-btn" type="submit" onclick="closee()">修改</button>
                             <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button>  -->
                             </div>
                         </div>
@@ -75,6 +75,10 @@
 <script type="text/javascript" src="./layui/layui.js"></script>
 <script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
 <script type="text/javascript">
+function closee() {
+	window.layer.close(1);
+	window.parent.location.reload();
+}
 /* function update(id) {
 	$.ajax({
 		url : "commodityUpdate?repertoryid="+id+"&commodityname="+commodityname+"&commodityenter="+commodityenter+"&commoditysale="+commoditysale+"&commoditycost="+commoditycost+"&state="+state+"&commodityQuantity="+commodityQuantity+"&img="+img,
