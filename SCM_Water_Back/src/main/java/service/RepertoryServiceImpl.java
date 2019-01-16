@@ -52,6 +52,11 @@ private RepertoryMapper repertoryMapper;
 		// TODO Auto-generated method stub
 		return repertoryMapper.repertoryss(commodityId);
 	}
+	@Override
+	public List<Repertory> list() {
+		// TODO Auto-generated method stub
+		return repertoryMapper.list();
+	}
 	 
 	
 	

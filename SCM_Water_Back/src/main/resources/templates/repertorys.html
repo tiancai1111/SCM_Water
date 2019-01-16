@@ -62,7 +62,7 @@
                 <a href="javascript:;">仓库管理</a>
                 <dl class="layui-nav-child">
                     <dd><a class="layui-this" href="repertoryParticulars">仓库详情</a></dd>
-                    <dd><a class="layui-this" href="repertoryParticulars">商品管理</a></dd>
+                    <dd><a class="layui-this" href="commoditySelect">商品管理</a></dd>
                 </dl>
             </li>
         <li class="layui-nav-item">
@@ -72,14 +72,6 @@
                 <!-- <dd><a href="control.html">商品统计</a></dd>
                 <dd><a href="control.html">退单原因统计</a></dd> -->
             </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">系统管理</a>
-            <dl class="layui-nav-child">
-                <dd><a href="upload.html">文件上传</a></dd>
-                <dd><a href="upload.html">Execel导出</a></dd>
-            </dl>
-        </li>
       </ul>
     </div>
   </div>
@@ -105,7 +97,7 @@
               </form>
               <hr>
               <div class="layui-btn-group">
-                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityadd" dw-title="新增用户" dw-width="50%" dw-height="50%">
+                  <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="commodityadd" on dw-title="新增用户" dw-width="50%" dw-height="50%">
                       <i class="layui-icon">&#xe654;</i>新增
                   </button> 
                  <!--  <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
@@ -139,7 +131,7 @@
                       </tr> 
                   </thead>
                   <tbody>
-                      <tr class="text-c" th:each="commoditys,commoditysyyy:${commodityslist}">
+                      <tr class="text-c" th:each="commoditys:${commodityPageInfos.list}">
 							<!-- <td><input type="checkbox" name="id" value="1"></td> -->
 							 <td th:text="${commoditys.commodityid}" style="text-align: center;"></td>
 							<td th:text="${commoditys.commodityname}" style="text-align: center;"></td>
@@ -167,25 +159,23 @@
               </table>
             </div>
         </fieldset>
+        <div class="layui-btn-group" style="display: block;">
+					<a th:href="@{commoditySelect}+'?num='+${commodityPageInfos.firstPage}"><button th:onclick="'window.location.href='+@{commoditySelect}+'?num='+${commodityPageInfos.firstPage}" class="layui-btn">首页</button></a>
+					<a th:href="@{commoditySelect}+'?num='+${commodityPageInfos.prePage}"><button th:onclick="'window.location.href='+@{commoditySelect}+'?num='+${commodityPageInfos.prePage}" class="layui-btn">上一页</button></a>
+					<a th:href="@{commoditySelect}+'?num='+${commodityPageInfos.nextPage}"><button th:onclick="'window.location.href='+@{commoditySelect}+'?num='+${commodityPageInfos.nextPage}"  class="layui-btn">下一页</button></a>
+					<a th:href="@{commoditySelect}+'?num='+${commodityPageInfos.lastPage}"><button th:onclick="'window.location.href='+@{commoditySelect}+'?num='+${commodityPageInfos.lastPage}" class="layui-btn">末页</button></a>
+				</div>
     </div>
   </div>
   <div class="layui-footer">
     <!-- 底部固定区域 -->
   </div>
 </div>
-
 <script type="text/javascript">
 function chaxun() {
-	 var commodityname=$("input[name=commodityName]").val();
-	 window.location.href="commoditySelect?commodityName="+commodityname; 
-/* 	$.ajax({
-		url : "/repertoryParticulars?commodityName="+commodityname,
-		type : "POST",
-		dataType : "json",
-		contentType : "application/json;charset=UTF-8",
-	});  */
+	var commodityname=$("input[name=commodityName]").val();
+	location.href="commoditySelect?commodityName="+commodityname;
 }
-	/* */
 </script>
 </body>
 </html>

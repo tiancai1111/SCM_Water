@@ -57,7 +57,7 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                            <button class="layui-btn" type="submit">
+                            <button class="layui-btn" type="submit" onclick="guan()">
                             	立即提交
                             </button>
                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -72,6 +72,11 @@
 <script type="text/javascript" src="./javascript/jquery.min.js"></script>
 <script type="text/javascript" src="./layui/layui.js"></script>
 <script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
-
+<script type="text/javascript">
+function guan(){
+window.layer.close(1);
+window.parent.location.reload();
+}
+</script>
 </body>
 </html>

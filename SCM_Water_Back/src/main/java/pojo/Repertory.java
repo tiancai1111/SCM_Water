@@ -27,9 +27,40 @@ public class Repertory {
      * 空桶数量
      */
     private Integer repertoryemptybarrel;
+    /**
+     * 商品成本价
+     */
+    private Double commoditycost;
+    
+    private String state;
+    private int commodityQuantity;
 
 
-   private String commodityname;
+   public int getCommodityQuantity() {
+		return commodityQuantity;
+	}
+
+	public void setCommodityQuantity(int commodityQuantity) {
+		this.commodityQuantity = commodityQuantity;
+	}
+
+public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+public Double getCommoditycost() {
+		return commoditycost;
+	}
+
+	public void setCommoditycost(Double commoditycost) {
+		this.commoditycost = commoditycost;
+	}
+
+private String commodityname;
 	
 	public String getCommodityname() {
 	return commodityname;

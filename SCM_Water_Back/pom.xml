@@ -30,5 +30,16 @@
 	 		<artifactId>thymeleaf-extras-shiro</artifactId>
 	 		<version>2.0.0</version>
 	 	</dependency>
+	 	<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-scratchpad</artifactId>
+    <version>3.11-beta3</version>
+       </dependency>
+
+	 	<dependency>
+	 		<groupId>com.github.pagehelper</groupId>
+	 		<artifactId>pagehelper-spring-boot-starter</artifactId>
+	 		<version>1.2.3</version>
+	 	</dependency>
   </dependencies>
 </project>

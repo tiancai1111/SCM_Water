@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication(scanBasePackages = { "controller", "service", "shiro" })
 @MapperScan("mapper")
 @EnableCaching
-public class App {
+public class App {                       
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(App.class, args);
 	}

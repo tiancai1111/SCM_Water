@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import pojo.Commodity;
 import service.CommodityService;
 import util.FileUploadUtil;
@@ -46,11 +49,13 @@ public String commoditys(Model model) {
 	
 }
 @RequestMapping("/commoditySelect")
-public String commoditySelect(@RequestParam(value="commodityName",defaultValue="")String commodityName,Model model) {
+public String commoditySelect(@RequestParam(value="commodityName",defaultValue="")String commodityName,@RequestParam(value="num",defaultValue="1")int num,Model model) {
+    int pagesize=3;
+    PageHelper.startPage(num, pagesize);
 	List<Commodity> commoditySelect=commodityService.commoditySelect(commodityName);
-	model.addAttribute("commoditySelect", commoditySelect);
+	PageInfo<Commodity> commodityPageInfos = new PageInfo<Commodity>(commoditySelect); 
+	model.addAttribute("commodityPageInfos", commodityPageInfos);
 	return "repertorys";
-	
 }
 
 @RequestMapping("/Commodity")
@@ -134,7 +139,7 @@ public String commodityAdd(
 	
 	int commodityAdd=commodityService.commodityInsert(commodity);
 	if(commodityAdd>0) {
-		return "redirect:commoditys";
+		return "redirect:commoditySelect";
 	}else {
 	return "redirect:commodityadd";
 	}
@@ -180,7 +185,7 @@ public String update(
 	
 	int update=commodityService.commodityUpdate(commodity);
 	if(update>0) {
-		return "redirect:commoditys";
+		return "redirect:commoditySelect";
 	}else {
 	return "redirect:commodityadd";
 	}

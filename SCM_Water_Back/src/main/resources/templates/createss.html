@@ -52,10 +52,10 @@
                             <input th:value="${commodity.commodityQuantity}" type="text" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                          <label class="layui-form-label">商品图片</label>
-                          <div class="layui-input-inline">
-                          <input th:src="'image/'+${commodity.img}" width="140px" height="140px" type="file" name="myFile" />
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">商品图片</label>
+                            <div class="layui-input-inline">
+                           <img th:src="'../'+${commodity.img}" width="140px" height="140px">
                             </div>
                         </div>
                         <div class="layui-form-item">

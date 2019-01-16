@@ -48,4 +48,13 @@
     <insert id="commodityInsert" parameterType="pojo.Commodity">
     INSERT INTO`commodity`(`commodityName`,`commodityEnter`,`commoditySale`,`commodityCost`,`state`,`commodityQuantity`,`img`) VALUES (#{commodityname},#{commodityenter},#{commoditysale},#{commoditycost},#{state},#{commodityQuantity},#{img})
     </insert>
+    
+    <select id="count" resultType="pojo.Commodity">
+    SELECT COUNT(1) FROM `commodity`
+    <where>
+    <if test="commodityName != null and commodityName != ''">
+      commodityName  LIKE CONCAT('%',#{commodityName},'%')
+      </if>
+    </where>
+    </select>
 </mapper>
