@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>会员中心</title>
@@ -28,11 +28,11 @@
                 <div class="aui-center-head">
                     <div class="aui-center-box">
                         <div class="aui-center-logo">
-                            <a href="goPersonal_information" ><img src="D:\\T1.jpg" alt=""></a>
+                            <a href="goPersonal_information" ><img th:src="${user.portrait}" alt=""></a>
                         </div>
                         <div class="aui-center-text">
-                            <h2>我的名字</h2>
-                            <p>aui_cn@163.com</p>
+                            <h2 th:text="${user.name}"></h2>
+                            <p th:text="${user.email}"></p>
                         </div>
                     </div>
                     <div class="aui-center-news">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="aui-flex aui-flex-two b-line" style="padding:0">
                     <div class="aui-flex-box">我的订单</div>
-                    <div class="aui-flex-arrow">全部订单</div>
+                    <div class="aui-flex-arrow" onclick="myorder()">全部订单</div>
                 </div>
                 <div class="aui-palace">
                     <a href="javascript:;" class="aui-palace-grid">
@@ -54,7 +54,7 @@
                         </div>
                     </a>
                     <a href="javascript:;" class="aui-palace-grid">
-                        <div class="aui-palace-grid-icon">0
+                        <div class="aui-palace-grid-icon">
                             <img src="my/images/head-icon-002.png" alt="">
                         </div>
                         <div class="aui-palace-grid-text">
@@ -96,13 +96,13 @@
                         <div class="aui-flex-box-hd">
                             <img src="my/images/left-icon-003.png" alt="">
                         </div>
-                        <div class="aui-flex-box-bd">收货地址</div>
+                        <div class="aui-flex-box-bd" onclick="goAddress()">收货地址</div>
                     </a>
                     <a class="aui-flex-box" href="javascript:;">
                         <div class="aui-flex-box-hd">
                             <img src="my/images/left-icon-004.png" alt="">
                         </div>
-                        <div class="aui-flex-box-bd">积分商城</div>
+                        <div class="aui-flex-box-bd" onclick="cart()">积分商城</div>
                     </a>
                     <a class="aui-flex-box" href="javascript:;">
                         <div class="aui-flex-box-hd">
@@ -153,7 +153,7 @@
                     <span class="aui-tabBar-item-icon">
                         <i class="icon icon-car"></i>
                     </span>
-                    <span class="aui-tabBar-item-text">购物车</span>
+                    <span class="aui-tabBar-item-text" onclick="cart()">购物车</span>
                 </a>
                 <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active">
                     <span class="aui-tabBar-item-icon">
@@ -169,5 +169,15 @@
     function gointegral_mall() {
     	location = "/gointegral_mall";
 	}
+    function goAddress() {
+    	location = "/goAddress";
+	}
+    function cart() {
+    	location = "/cart";
+	}
+    function myorder() {
+    	location = "/myorder";
+	}
+    
     </script>
 </html>

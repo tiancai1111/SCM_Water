@@ -72,7 +72,7 @@ public class PayController {
 		out.print(result);
 		return null;
 	}
-
+	
 	@RequestMapping("return_url")
 	public String return_url(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		int userid=(int)request.getSession().getAttribute("userid");

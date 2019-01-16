@@ -30,8 +30,10 @@ public class IndexController {
 	return "register";	   
    }
    @GetMapping("goMy")
-   public String goMy(Model model,User user) {
-	  
+   public String goMy(Model model,HttpServletRequest request) {
+	   int userId=(int)request.getSession().getAttribute("userid") ;
+	   User user=userService.selectUser(userId);
+	   model.addAttribute("user",user);
 	return "my";	   
    }
    @GetMapping("goPersonal_information")
@@ -60,9 +62,10 @@ public class IndexController {
 	   if(users.getUserid()!=0) {
 		   System.out.println(users.getName());
 		   session.setAttribute("userid",users.getUserid());
+		   return "redirect:home";	
 		 
 	   }	  
-	return "redirect:home";	   
+	   return "redirect:gologin";
    }
    @ResponseBody
    @PostMapping("findByUser")

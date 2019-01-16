@@ -26,7 +26,7 @@
         <section class="aui-flexView">
             <header class="aui-navBar aui-navBar-fixed b-line">
                 <a href="javascript:;" class="aui-navBar-item">
-                    <i class="icon icon-return"></i>
+                    <i class="icon icon-return" onclick="go()"></i>
                 </a>
                 <div class="aui-center">
                     <span class="aui-center-title">积分商城</span>
@@ -86,5 +86,8 @@
              }
          });        
      }
+    function go(){
+		window.history.go(-1);
+	}
     </script>
 </html>
