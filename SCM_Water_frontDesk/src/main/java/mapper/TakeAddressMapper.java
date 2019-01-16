@@ -13,7 +13,6 @@ public interface TakeAddressMapper {
 
     int insertSelective(TakeAddress record);
 
-
     int updateByPrimaryKeySelective(TakeAddress record);
 
     int updateByPrimaryKey(TakeAddress record);
