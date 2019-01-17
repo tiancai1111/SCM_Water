@@ -21,6 +21,8 @@ public class IndexController {
    @Autowired
    private StaffService staffService;
 	
+   
+   
    @RequestMapping("index")
    public String index() {
 	return "index";

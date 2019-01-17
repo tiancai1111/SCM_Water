@@ -2,50 +2,52 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import mapper.ShoppingMapper;
+import service.ShoppingService;
 import pojo.Shopping;
 
 @Controller
 public class CartController {
 	@Autowired
-	private ShoppingMapper shoppingMapper;
+	private ShoppingService shoppingService;
 
 	@RequestMapping("cart")
-	public String cart(Model model) {
-		List<Shopping> list = shoppingMapper.selByUserId(2);
+	public String cart(Model model, HttpServletRequest request) {
+		int userid=(int) request.getSession().getAttribute("userid");
+		List<Shopping> list = shoppingService.selByUserId(userid);
 		model.addAttribute("shoppingList", list);
 		return "lm/cart";
 	}
 
 	@ResponseBody
 	@RequestMapping("addCart")
-	public int addCart(Shopping shopping) {
-		shopping.setUserId(2);
-		int result = shoppingMapper.addCart(shopping);
+	public int addCart(Shopping shopping,HttpServletRequest request) {
+		int userid=(int) request.getSession().getAttribute("userid");
+		shopping.setUserId(userid);
+		int result = shoppingService.addCart(shopping);
 		return result;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("delCart")
 	public int delCart(int shoppingId) {
-		int result = shoppingMapper.deleteShopping(shoppingId);
+		int result = shoppingService.deleteShopping(shoppingId);
 		return result;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("updCart")
 	public int updCart(Shopping shopping) {
-		int result = shoppingMapper.updateShopping(shopping);
+		int result = shoppingService.updateShopping(shopping);
 		return result;
 	}
-	
-	
-	
 
 }

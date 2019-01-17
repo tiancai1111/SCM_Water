@@ -28,11 +28,11 @@ layui.use(['element', 'layer'], function () {
     var dw_width = $(this).attr("dw-width");//弹出层宽度，如80%或500px；如果没有默认为屏幕宽度的50%
     var dw_height = $(this).attr("dw-height");//弹出层高度，如50%或500px；如果没有默认为屏幕高度的50%
     if (dw_url == undefined) {
-      layer.msg("请给button加上dw-url属性");
+    /*  layer.msg("请给button加上dw-url属性");*/
       return false;
     }
     if (dw_title == undefined) {
-      layer.msg("请给button加上dw-title属性");
+     /* layer.msg("请给button加上dw-title属性");*/
       return false;
     }
     if (dw_width == undefined) dw_width = '50%';
@@ -58,7 +58,7 @@ layui.use(['element', 'layer'], function () {
   $(".dw-batch-delete").click(function () {
     var dw_url = $(this).attr("dw-url");//URL地址，必填
     if (dw_url == undefined) {
-      layer.msg("请给button加上dw-url属性");
+    /*  layer.msg("请给button加上dw-url属性");*/
       return false;
     }
     var chk_value = [];
@@ -88,7 +88,7 @@ layui.use(['element', 'layer'], function () {
     var dw_url = $(this).attr("dw-url");//URL地址，必填
     var dw_title = $(this).attr("dw-title");//删除数据标识，如姓名，默认为'该数据'
     if (dw_url == undefined) {
-      layer.msg("请给button加上dw-url属性");
+    /*  layer.msg("请给button加上dw-url属性");*/
       return false;
     }
     if (dw_title == undefined) {

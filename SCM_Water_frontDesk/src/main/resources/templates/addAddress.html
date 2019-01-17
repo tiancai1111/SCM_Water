@@ -1,0 +1,116 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head design-width="750">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>Demo</title>
+<link rel="stylesheet" href="Personal_information/css/style.css" /><!--页面样式-->
+
+<script src="Personal_information/js/auto-size.js"></script><!--设置字体大小-->
+
+<script src="Personal_information/js/jquery-2.2.4.min.js"></script><!--设置字体大小-->
+
+</head>
+<body>
+	<div class="mobile-wrap center mobile-wrap-mb">
+        
+        <header>
+        	<span class="return">
+        		<a href="#" onClick="go()">返回</a>
+        	</span>
+        </header>
+                <div class="inform">
+                <th:block th:if="${status=='1'}"><h3>新增地址</h3></th:block>
+                <th:block th:if="${status=='2'}"><h3>修改地址</h3></th:block>   
+                <form id="fm1">    		
+        		<div class="inform-text show" style="display: inline">       			
+        			<p>
+        				<span>
+        					联系人
+        				</span>
+        				<input type="text" name="name"/>
+        			</p>
+        			<p>
+        				<span>
+        					电话
+        				</span>
+        				<input type="text" name="phone"/>
+        			</p>
+        			<p>
+        				<span>
+        					地址
+        				</span>
+        				<input type="text" name="address"/>
+        			</p>
+        			<h4>
+        			    <th:block th:if="${status=='1'}"><input onclick="addAddress()" type="submit" value="确定新增" /></th:block>
+        				<th:block th:if="${status=='2'}"><input onclick="updateAddress()" type="submit" value="确定修改" /></th:block>
+        			</h4>
+        		</div>
+        		</form> 
+   </div>
+
+   </div><!--mobile_wrap-->
+</body>
+
+<script type="text/javascript">
+	$('.inform-list ul li').click(function(){
+		var n=$(this).index();
+		$(this).addClass('acti').siblings().removeClass('acti');
+		$('.inform-text').fadeOut();
+		$('.inform-text').eq(n).fadeIn();
+	})
+	function go(){
+		window.history.go(-1);
+	}
+	/*增加*/
+	function addAddress(){
+         var form=new FormData(document.getElementById("fm1"));
+         $.ajax({
+             url:"addAddress",
+             type:"post",
+             data:form,
+             processData:false,
+             contentType:false,
+             success:function(data){
+                if(data=="1"){
+                	alert("新增成功");
+                	location = "/goAddress";
+                }else{
+                	alert("新增失败");
+                	
+                }
+             },
+             error:function(e){
+               alert(3);
+             }
+         });        
+     }
+	function binding(){
+		alert(1);
+         var form=new FormData(document.getElementById("fm1"));
+         $.ajax({
+             url:"findByPhone",
+             type:"post",
+             data:form,
+             processData:false,
+             contentType:false,
+             success:function(data){
+                alert(2);
+                if(data=="1"){
+                	$("#phoneCount").show();
+                }else{
+                	$("#phoneCount").hide();
+                	
+                }
+             },
+             error:function(e){
+               alert(3);
+             }
+         });        
+     }
+</script>
+</html>

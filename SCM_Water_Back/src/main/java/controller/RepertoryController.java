@@ -10,20 +10,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import pojo.Commodity;
 import pojo.Repertory;
 import service.RepertoryService;
+import util.Exportexcel;
 
 @Controller
 public class RepertoryController {
 	@Autowired
 	private RepertoryService repertoryService;
+	@ResponseBody
+	@RequestMapping("/export")
+	public int export() {
+		String title="仓库信息表";
+		String [] headers= {"商品Id","商品名","商品进价","商品销售价","商品成本价","商品说明","商品销量","库存数量","库存充裕状态"};
+		List<Repertory> dataset=repertoryService.list();
+		String fileName="D:/daochu.xls";
+		int result=Exportexcel.Excel(title, headers, dataset, fileName);
+		return result;
+		
+	}
 
 	@RequestMapping("/repertoryParticulars")
-	public String repertory(@RequestParam(value = "commodityName", defaultValue = "") String commodityName,
+	public String repertory(@RequestParam(value = "commodityName", defaultValue = "") String commodityName,@RequestParam(value="num",defaultValue="1")int num,
 			Model model) {
+		int pagesize=3;
+	    PageHelper.startPage(num, pagesize);
 		List<Repertory> repertory = repertoryService.repertory(commodityName);
-		model.addAttribute("repertorylist", repertory);
+		PageInfo<Repertory> commodityPageInfo = new PageInfo<Repertory>(repertory); 
+		model.addAttribute("commodityPageInfo", commodityPageInfo);
+	
 		return "repertory";
 	}
 

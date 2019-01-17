@@ -6,6 +6,7 @@ import java.util.List;
 import pojo.Repertory;
 
 public interface RepertoryService {
+	List<Repertory> list();
 	List<Repertory> repertory(String commodityName);
 	Repertory repertoryDetails(int repertoryid);
 	int repertoryDel(int repertoryid);

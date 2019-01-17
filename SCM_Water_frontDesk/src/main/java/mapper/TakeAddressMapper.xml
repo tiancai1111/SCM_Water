@@ -18,10 +18,10 @@
         select 
         <include refid="Base_Column_List" />
         from take_address
-        where ta_id = #{taId,jdbcType=INTEGER}
+        where user_id = #{userId,jdbcType=INTEGER}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="delete" parameterType="java.lang.Integer" >
         delete from take_address
         where ta_id = #{taId,jdbcType=INTEGER}
     </delete>
