@@ -14,8 +14,30 @@
 				<legend>用户管理 - 修改用户</legend>
 				<div class="layui-field-box">
 					<form class="layui-form" id="Update">
+			
+                       <div class="layui-form-item">
+                        <label class="layui-form-label">订单数量</label>
+                            <div class="layui-input-inline">
+                            <input type="text" value="4"   readonly="readonly"  class="layui-input">
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">订单商品</label>
+                            <div class="layui-input-inline">
+                            <input type="text" th:each="entries,stat:${orderAll}" th:value="${entries.state}+x+${entries.count}"   readonly="readonly"  class="layui-input">
+                        </div>
+                        </div> 
+                        
+                        
+                      
+                            <input type="hidden" th:each="entries,stat:${orderAll}" th:value="${entries.id}"   name="id" class="layui-input">
+
+                            <!-- <input type="hidden"  th:value="${order.id}"  height="height" name="id"  class="layui-input"> -->
+					
 						       <div class="layui-btn-group">
-                              <button  class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url=""  dw-title="编辑用户">
+                              <button  class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="" onclick="confirm()"  dw-title="编辑用户">
                                 <i class="layui-icon">&#xe642;</i>确定接单
                               </button>
                            
@@ -46,6 +68,27 @@
 					parent.layer.close(1);
 					window.parent.location.reload();
 					location.href = "customer";
+				}
+			},
+			error : function(e) {
+			}
+		});
+	}
+	 
+	 
+	 function confirm() {
+		var id = $("input[name='id']").val();
+		var status = "已接单";
+	 	$.ajax({
+			url : "OrderSeleId?id="+id+"&status="+status,
+			type : "post",
+			processData : false,
+			contentType : false,
+			success : function(data) {
+				if (data > 0) {
+					parent.layer.close(1);
+					window.parent.location.reload();
+					location.href = "order";
 				}
 			},
 			error : function(e) {

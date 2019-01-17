@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import pojo.CommodityOrder;
 import pojo.Order;
+import pojo.deliverypersonnel;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
@@ -26,7 +28,7 @@ public interface OrderMapper {
     
     List<Order> OrderAll(int id);
     
-    @Select("SELECT `delivery`.`deliveryman`,`delivery`.`deliverytime` FROM  `delivery`,`order` WHERE `order`.`id` = `delivery`.`order_id` AND `order`.`id`=#{id}")
+    @Select("SELECT `order`.`id`,`delivery`.`deliveryman`,`delivery`.`deliverytime` FROM  `delivery`,`order` WHERE `order`.`id` = `delivery`.`order_id` AND `order`.`id`=#{id}")
     Order OrderDelivery(int id);
     
     @Select("SELECT * FROM `order`,`user` WHERE `user`.`userid` = `order`.`userid` AND  `order`.`status` = '已下单'")
@@ -34,6 +36,18 @@ public interface OrderMapper {
     
     //修改订单状态
     @Update("UPDATE `order` SET `status` = #{status} WHERE `id` = #{id}")
-	int orderAlreadySelect();
+	int orderAlreadySelect(String status,int id);
+    
+    //查询已接单信息
+    @Select("SELECT * FROM `order` WHERE  status = '已接单'")
+	List<Order> DeloveryOrder();
+    
+    
+	//代办任务信息查询
+	List<Order> Ordercommission(int id);
+	
+	//查看派送员
+	@Select("SELECT * FROM deliverypersonnel")
+	List<deliverypersonnel> CommodityOrder();
 
 }

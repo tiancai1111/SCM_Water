@@ -16,7 +16,7 @@
                             <label class="layui-form-label"></label>
                             
                         
-                       <div class="layui-form-item">
+                        <div class="layui-form-item">
                         <label class="layui-form-label">订单派送员</label>
                             <div class="layui-input-inline">
                             <input type="text" th:value="${order.deliveryman}"   readonly="readonly"  class="layui-input">
@@ -45,14 +45,6 @@
                             <input type="text" th:each="entries,stat:${orderAll}" th:value="${entries.state}+x+${entries.count}"   readonly="readonly"  class="layui-input">
                         </div>
                         </div>
-                        
-                           <!--  <div>
-                            <tr th:each="entries,stat:${orderAll}">
-                            <div class="layui-input-inline">
-                              <input type="text" th:value="${entries.commodityname}+￥+${entries.commoditysale}*${entries.count}"   readonly="readonly"  class="layui-input">
-                            </div>
-                            </tr>
-                            </div> -->
                             
                                        
                 </div>

@@ -19,4 +19,12 @@ FROM `commodity`,`commodity_order`,`order`,`delivery`
 WHERE `order`.`id` = `commodity_order`.`orderId` 
 AND `commodity`.`commodityId`= `commodity_order`.`commodityId` AND  `delivery`.`order_id` = `order`.`id`  AND `order`.`id` = #{id}
     </select>
+    
+    
+ <select id="Ordercommission" resultMap="BaseResultMap" >
+SELECT  `order`.*,`commodity`.`state`,`commodity`.`commoditySale`,`commodity_order`.`count`
+FROM `commodity`,`commodity_order`,`order`
+WHERE `order`.`id` = `commodity_order`.`orderId` 
+AND `commodity`.`commodityId`= `commodity_order`.`commodityId` AND `order`.`id` = #{id}
+ </select>
 </mapper>

@@ -50,7 +50,7 @@
             <a href="javascript:;">订单管理</a>
             <dl class="layui-nav-child">
                 <dd><a href="order">客户订单</a></dd>
-                <dd><a href="role.html">派工处理</a></dd>
+                <dd><a href="delivery">派工处理</a></dd>
                 <dd><a href="orderAlready">待办任务</a></dd>
             </dl>
         </li>
@@ -125,24 +125,22 @@
                       <th style="text-align:center;">操作</th>
                       </tr> 
                   </thead>
-             <tr th:each="entries,stat:${sum}">
-              <!-- <td th:text="${entries.supplierid}"></td> -->
-                <td th:text="${entries.suppliername}"></td>
-                <td th:text="${entries.suppliephone}"></td>
-                <td th:text="${entries.suppliersite}"></td>
-                <td th:text="${entries.suppliercontacts}"></td>
+                 <tr th:each="entries,stat:${}">
+                 <td th:text="${entries.numberr}"></td>
+                 <td th:text="${entries.name}"></td>
+                 <td th:text="${entries.address}"></td>
+                 <td th:text="${entries.phone}"></td>
+                 <td th:text="${#dates.format(entries.ordertime,'yyyy-MM-dd')}"></td>
+                 <td th:text="${entries.money}"></td>
+                 <td th:text="${entries.status}"></td> 
                  <td class="text-center">
                            <div class="layui-btn-group">
-                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'supplieridUpdate_zf?supplierid='+${entries.supplierid}"  dw-title="编辑用户">
-                                <i class="layui-icon">&#xe642;</i>编辑
-                              </button>
-                              
-                             <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete" dw-url=""  th:onclick="'supplierdelete('+${entries.supplierid}+')'" dw-title="小明">
-                                <i class="layui-icon">&#xe640;</i>删除
+                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'orderSelectAll?id='+${entries.id}"  dw-title="编辑用户">
+                                <i class="layui-icon">&#xe642;</i>查看
                               </button>
                             </div>
-                      </td>
-                  </tr> 
+                      </td> 
+                  </tr>  
                   </th:block>
                   <tbody>
                   </tbody>

@@ -2,7 +2,9 @@ package service;
 
 import java.util.List;
 
+import pojo.CommodityOrder;
 import pojo.Order;
+import pojo.deliverypersonnel;
 
 public interface OrderService {
 	
@@ -19,6 +21,14 @@ public interface OrderService {
 	List<Order> OrderSele();
 
 	//修改订单状态
-	int orderAlreadySelect();
+	int orderAlreadySelect(String status,int id);
+
+	//查询已接单信息
+	List<Order> DeloveryOrder();
+
+	//代办任务信息查询
+	List<Order> Ordercommission(int id);
+
+	List<deliverypersonnel> CommodityOrder();
 	
 }

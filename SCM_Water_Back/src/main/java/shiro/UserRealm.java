@@ -31,7 +31,8 @@ public class UserRealm extends AuthorizingRealm{
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		return null;
-/*		// TODO Auto-generated method stub
+	/*	return null;
+		// TODO Auto-generated method stub
 		System.out.println("执行授权逻辑");
 		Object principal = principals.getPrimaryPrincipal();
 		List<Staff> user_roles = adminMapper.SeleName(principal.toString());

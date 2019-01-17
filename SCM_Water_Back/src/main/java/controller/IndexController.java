@@ -43,7 +43,6 @@ public class IndexController {
 		return "redirect:show.html";
    }
    
-
    
    //登录提交跳转地址
    @ResponseBody

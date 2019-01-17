@@ -49,7 +49,7 @@
             <a href="javascript:;">订单管理</a>
             <dl class="layui-nav-child">
                 <dd><a href="order">客户订单</a></dd>
-                <dd><a href="role.html">派工处理</a></dd>
+                <dd><a href="delivery">派工处理</a></dd>
                 <dd><a href="orderAlready">待办任务</a></dd>
             </dl>
         </li>
@@ -130,7 +130,7 @@
                  <td th:text="${entries.status}"></td> 
                  <td class="text-center">
                            <div class="layui-btn-group">
-                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="orderAlreadySelect"  dw-title="编辑用户">
+                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'orderAlreadySelect?id='+${entries.id}"  dw-title="编辑用户">
                               <i class="layui-icon">&#xe642;</i>审核
                               </button>
                             </div>

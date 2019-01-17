@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import mapper.OrderMapper;
 import pojo.Order;
 import pojo.Staff;
+import pojo.deliverypersonnel;
 @Service
 public class OrderServiceImpl implements OrderService{
 
@@ -35,8 +36,24 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public int orderAlreadySelect() {
-		return ordermapper.orderAlreadySelect();
+	public int orderAlreadySelect(String status,int id) {
+		return ordermapper.orderAlreadySelect(status,id);
+	}
+
+	@Override
+	public List<Order> DeloveryOrder() {
+		return ordermapper.DeloveryOrder();
+	}
+
+	@Override
+	public List<Order> Ordercommission(int id) {
+		// TODO Auto-generated method stub
+		return ordermapper.Ordercommission(id);
+	}
+
+	@Override
+	public List<deliverypersonnel> CommodityOrder() {
+		return ordermapper.CommodityOrder();
 	}
 	
 }
