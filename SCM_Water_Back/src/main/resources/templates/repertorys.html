@@ -37,25 +37,23 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item"><a href="index.html">控制台</a></li>
+             <li class="layui-nav-item">
+            <a href="javascript:;">基本信息</a>
+           <dl class="layui-nav-child">
+                <!--  <dd><a href="admin.html">客户基本信息</a></dd>
+                <dd><a href="role.html">员工基本信息</a></dd>
+                <dd><a href="adminRole.html">提供商基本信息</a></dd>
+                <dd><a href="adminRole.html">商品基本信息</a></dd>-->
+                <dd><a href="customer">客户基本信息</a></dd>
+                <dd><a href="show.html">员工基本信息</a></dd>
+                <dd><a href="supper.html">提供商基本信息</a></dd>
+           </dl> 
         <li class="layui-nav-item">
-          <a class="" href="javascript:;">系统设置</a>
-          <dl class="layui-nav-child">
-            <dd><a href="sysConfig.html">系统变量</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">用户管理</a>
-          <dl class="layui-nav-child">
-            <dd><a href="admin.html">用户列表</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">权限管理</a>
+            <a href="javascript:;">订单管理</a>
             <dl class="layui-nav-child">
-                <dd><a href="rule.html">规则列表</a></dd>
-                <dd><a href="role.html">角色列表</a></dd>
-                <dd><a href="adminRole.html">用户角色</a></dd>
+                <dd><a href="order">客户订单</a></dd>
+                <dd><a href="delivery">派工处理</a></dd>
+                <dd><a href="orderAlready">待办任务</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item layui-nav-itemed">
