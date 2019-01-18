@@ -87,4 +87,11 @@ public class OrderConteroller {
 		session.setAttribute("id", id);
 		return "deliverySelect_zf.html";
 	}
+	
+	
+	@RequestMapping("deliveryid")
+	public String deliveryid(int id) {
+		System.out.println(id);
+		return "deliverySelect_zf.html";
+	}
 }

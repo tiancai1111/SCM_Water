@@ -45,9 +45,19 @@ public class Staff {
     
     private int  roleId;
     
+    private String menuName;
+    
+    
 
+    public String getMenuName() {
+		return menuName;
+	}
 
-    public int getRoleId() {
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public int getRoleId() {
 		return roleId;
 	}
 

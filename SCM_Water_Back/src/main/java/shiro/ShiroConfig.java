@@ -27,7 +27,7 @@ public class ShiroConfig {
 		 * **authc:必须认证才能访问
 		 * **user:如果使用了rememberme的功能可以直接访问
 		 * **perms:该资源必须得到资源权限才可以访问
-		 * **role:该资源必须得到角色权限才可以访问
+		 * **roles:该资源必须得到角色权限才可以访问
 		 * ******//*
 		 * */		
 		    ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -39,6 +39,7 @@ public class ShiroConfig {
 	        //验证失败的跳转页面(authc)
 	        shiroFilterFactoryBean.setLoginUrl("/failure");
 	        
+	        
 	        filterChainDefinitionMap.put("/member.html", "anon");
 	        filterChainDefinitionMap.put("/show.html", "anon");
 	        filterChainDefinitionMap.put("/index", "anon");
@@ -46,7 +47,18 @@ public class ShiroConfig {
 	        filterChainDefinitionMap.put("/loginpresent", "anon");
 	        filterChainDefinitionMap.put("/static/**", "anon");
 	        
-/*	        filterChainDefinitionMap.put("/**", "authc");*/
+	        
+	        filterChainDefinitionMap.put("/show.html", "roles[admin]");
+	        filterChainDefinitionMap.put("/customer", "roles[admin]");
+	        filterChainDefinitionMap.put("/supper.html", "roles[admin]");
+	        filterChainDefinitionMap.put("/order", "roles[admin]");
+	        filterChainDefinitionMap.put("/delivery", "roles[admin]");
+	        filterChainDefinitionMap.put("/orderAlready", "roles[admin]");
+	        
+	        
+	        //设置未授权的页面
+	        shiroFilterFactoryBean.setUnauthorizedUrl("/unAuth");
+	        
 	        
 	        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 	        

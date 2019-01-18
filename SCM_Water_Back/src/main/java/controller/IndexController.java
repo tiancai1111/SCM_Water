@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import pojo.Commodity;
 import pojo.Staff;
 import service.StaffService;
 
@@ -22,6 +27,10 @@ public class IndexController {
    private StaffService staffService;
 	
    
+   @RequestMapping("unAuth")
+   public String unAuth() {
+	return "unAuth";
+   }
    
    @RequestMapping("index")
    public String index() {
@@ -76,9 +85,13 @@ public class IndexController {
    //跳转到主页面
    @RequestMapping("show.html")
    public String show(@RequestParam(value="staffname",required=false)String staffname
-		   ,Model model) {
+		,Model model,@RequestParam(value="num",defaultValue="1")int num) {
+	    int pagesize=3;
+	    PageHelper.startPage(num, pagesize);
 	List<Staff> list=staffService.staffAll(staffname);
+	PageInfo<Staff> commodityPageInfos = new PageInfo<Staff>(list); 
 	model.addAttribute("list",list);
+	model.addAttribute("commodityPageInfos", commodityPageInfos);
 	return "member_zf";
    }
    

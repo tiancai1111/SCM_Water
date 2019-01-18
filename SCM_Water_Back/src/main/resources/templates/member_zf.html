@@ -49,7 +49,7 @@
             <a href="javascript:;">订单管理</a>
             <dl class="layui-nav-child">
                 <dd><a href="order">客户订单</a></dd>
-                <dd><a href="role.html">派工处理</a></dd>
+                <dd><a href="delivery">派工处理</a></dd>
                 <dd><a href="orderAlready">待办任务</a></dd>
             </dl>
         </li>
@@ -148,6 +148,13 @@
               </table>
             </div>
         </fieldset>
+        
+         <div class="layui-btn-group"  style="display: block;text-align:center;">
+					<a th:href="@{show.html}+'?num='+${commodityPageInfos.firstPage}"><button th:onclick="'window.location.href='+@{show.html}+'?num='+${commodityPageInfos.firstPage}" class="layui-btn">首页</button></a>
+					<a th:href="@{show.html}+'?num='+${commodityPageInfos.prePage}"><button th:onclick="'window.location.href='+@{show.html}+'?num='+${commodityPageInfos.prePage}" class="layui-btn">上一页</button></a>
+					<a th:href="@{show.html}+'?num='+${commodityPageInfos.nextPage}"><button th:onclick="'window.location.href='+@{show.html}+'?num='+${commodityPageInfos.nextPage}"  class="layui-btn">下一页</button></a>
+					<a th:href="@{show.html}+'?num='+${commodityPageInfos.lastPage}"><button th:onclick="'window.location.href='+@{show.html}+'?num='+${commodityPageInfos.lastPage}" class="layui-btn">末页</button></a>
+		</div>
     </div>
   </div>
   <div class="layui-footer">

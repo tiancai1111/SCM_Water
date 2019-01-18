@@ -30,18 +30,17 @@ public class UserRealm extends AuthorizingRealm{
 	 * *******/
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		return null;
-	/*	return null;
 		// TODO Auto-generated method stub
 		System.out.println("执行授权逻辑");
-		Object principal = principals.getPrimaryPrincipal();
-		List<Staff> user_roles = adminMapper.SeleName(principal.toString());
+		Staff principal = (Staff) principals.getPrimaryPrincipal();
+		List<Staff> user_roles = staffMapper.SeleName(principal.getStaffname());
 		Set<String> roles = new HashSet<String>();
 		for (int i = 0; i < user_roles.size(); i++) {
-			roles.add(user_roles.get(i).getPermissionsName());
+			roles.add(user_roles.get(i).getMenuName());
 		}
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-		return info;*/
+
+		return info;
 	}
 
 	
@@ -51,6 +50,7 @@ public class UserRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 	    UsernamePasswordToken Token = (UsernamePasswordToken) token;
+	    System.out.println("进入认证逻辑");
 		String staffname;
 		Staff staff;
 		try {
@@ -65,7 +65,6 @@ public class UserRealm extends AuthorizingRealm{
 				SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(staff,staff.getPassword(),realmName);
 				return info;
 			}
-			
 		} catch (Exception e) {
 			System.out.println(e);
 		}

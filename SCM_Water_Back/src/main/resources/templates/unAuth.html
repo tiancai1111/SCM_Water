@@ -45,7 +45,6 @@
                 <dd><a href="supper.html">提供商基本信息</a></dd>
            </dl> 
         </li>
-        
         <li class="layui-nav-item">
             <a href="javascript:;">订单管理</a>
             <dl class="layui-nav-child">
@@ -84,21 +83,21 @@
                 <div class="layui-form-item" style="text-align:center;">
                   <div class="layui-inline">
                     <div class="layui-input-inline">
-                      <input autocomplete="off" class="layui-input" placeholder="请输入提供商名" type="text" name="suppliername" value="">
+                      <input autocomplete="off"  class="layui-input" placeholder="请输入名称" type="text" name="name" value="">
                     </div>
                   </div>
                   <div class="layui-inline" style="text-align:left;">
                     <div class="layui-input-inline">
-                      <button class="layui-btn" onclick="supplier()"><i class="layui-icon">&#xe615;</i>查询</button>
+                      <button class="layui-btn" onclick="names()"><i class="layui-icon">&#xe615;</i>查询</button>
                     </div>
                   </div>
                 </div>
               </form>
               <hr>
               <div class="layui-btn-group">
-                   <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="SupplierInsert" dw-title="新增用户" dw-width="100%" dw-height="100%">
+                  <!-- <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create_zf.html" dw-title="新增用户" dw-width="100%" dw-height="100%">
                       <i class="layui-icon">&#xe654;</i>新增
-                  </button> 
+                  </button> -->
 <!--                   <button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="./delete.json">
                       <i class="layui-icon">&#xe640;</i>删除
                   </button> -->
@@ -115,29 +114,8 @@
                       <col>
                       <col>
                   </colgroup>
+                  <h1>您没有权限访问该页面</h1>
                   <thead>
-                      <tr>
-                   <!--    <th class="selectAll"><input type="checkbox"></th> -->
-                      <th>提供商名</th>
-                      <th>提供商电话</th>
-                      <th>提供商地址</th>
-                      <th>联系人</th>
-                      <th style="text-align:center;">操作</th>
-                      </tr> 
-                  </thead>
-                 <tr th:each="entries,stat:${sum}">
-                 <td th:text="${entries.suppliername}"></td>
-                 <td th:text="${entries.suppliephone}"></td>
-                 <td th:text="${entries.suppliersite}"></td>
-                 <td th:text="${entries.suppliercontacts}"></td>
-                 <td class="text-center">
-                           <div class="layui-btn-group">
-                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'orderSelectAll?id='+${entries.supplierid}"  dw-title="编辑用户">
-                                <i class="layui-icon">&#xe642;</i>查看
-                              </button>
-                            </div>
-                      </td> 
-                  </tr>  
                   </th:block>
                   <tbody>
                   </tbody>
@@ -156,38 +134,6 @@
 <script type="text/javascript" src="./icheck/icheck.js"></script>
 <script type="text/javascript" src="./javascript/dw.js"></script>
 <script>
-   function supplierdelete(supplierid){
-    $.ajax({
-        url:"supplierdata?supplierid="+supplierid,
-        type:"post",
-        processData:false,
-        contentType:false,
-        success:function(data){
-       	 if(data>0){
-       		 location.href = "supper.html";
-       	 }
-        },
-        error:function(e)  {
-        }
-    });        
-}
-   
-   function supplier() {
-		  var suppliername = $("input[name='suppliername']").val();
-			$.ajax({
-		        url:"supper.html?suppliername="+suppliername,
-		        type:"post",
-		        processData:false,
-		        contentType:false,
-		        success:function(data){
-		       	 if(data>0){
-		       		 location.href = "customer";
-		       	 }
-		        },
-		        error:function(e){
-		        }
-		    });    
-		}
 </script>
 </body>
 </html>

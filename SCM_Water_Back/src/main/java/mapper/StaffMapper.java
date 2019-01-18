@@ -24,7 +24,7 @@ public interface StaffMapper {
     int updateByPrimaryKey(Staff record);
 
     //
-	List<Staff> SeleName(String string);
+	/*List<Staff> SeleName(String );*/
 
 	//查询管理员信息
 	List<Staff> staffAll(@Param(value="staffname")String staffname);
@@ -37,4 +37,6 @@ public interface StaffMapper {
 	//员工删除
 	@Delete("DELETE FROM `scm_water`.`staff` WHERE `staffid` = #{staffid}")
 	int createdelete(Staff staff);
+
+	List<Staff> SeleName(@Param(value = "staffname") String staffname);
 }

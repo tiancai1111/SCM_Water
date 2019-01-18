@@ -12,7 +12,16 @@
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="roleId" property="roleid" jdbcType="INTEGER" />
     </resultMap>
-
+    
+     <select id="SeleName" resultType="pojo.Staff" resultMap="BaseResultMap">
+      SELECT t5.`menuName` FROM 
+      staff t1,staffroleinfo t2,roleinfo t3,rolemenu t4,menuinfo t5 WHERE
+       t1.`roleId` = t2.`staffId` AND t3.`roleId` = t2.`RoleId`
+       AND t3.`menuinfoId`  = t4.`roleId` 
+       AND t4.`menuId` = t5.`menuId`
+       AND t1.`staffName` = #{staffname}
+     </select>
+     
     <sql id="Base_Column_List" >
         staffId, staffName, staffPhone, staffSex, staffSite, staff, password, roleId
     </sql>
