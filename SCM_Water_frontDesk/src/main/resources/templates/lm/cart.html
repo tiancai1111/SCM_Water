@@ -137,13 +137,18 @@
 							.find(".amount").text();
 					var oldValue = $button.parent().find('input').val();
 					if ($button.hasClass('inc')) {
-						newVal= parseFloat(oldValue) + 1;
+						if(oldValue<10){
+							newVal= parseFloat(oldValue) + 1;
+						}else{
+							newVal = 10;
+						}
 					} else {
-						if (oldValue > 0) {
+						if (oldValue > 1) {
 							 newVal = parseFloat(oldValue) - 1;
 						} else {
-							newVal = 0;
+							newVal = 1;
 						}
+						
 					}
 					$button.parent().find('.cartCount').val(newVal);
 					var total = price * newVal;

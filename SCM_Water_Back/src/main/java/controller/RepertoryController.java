@@ -41,7 +41,6 @@ public class RepertoryController {
 		List<Repertory> repertory = repertoryService.repertory(commodityName);
 		PageInfo<Repertory> commodityPageInfo = new PageInfo<Repertory>(repertory); 
 		model.addAttribute("commodityPageInfo", commodityPageInfo);
-	
 		return "repertory";
 	}
 

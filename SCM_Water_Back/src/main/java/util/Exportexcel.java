@@ -12,13 +12,13 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import pojo.Repertory;
 
 public class Exportexcel {
-	public static  int Excel(String title, String[] headers, List<Repertory> dataset, String fileName) {
+	public static int Excel(String title, String[] headers, List<Repertory> dataset, String fileName) {
 		int result = 1;
-		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet(title);
+		HSSFWorkbook workbook = new HSSFWorkbook();//文档对象
+		HSSFSheet sheet = workbook.createSheet(title);//表格
 		// 起始行，起始列，结束行，结束列
-		  HSSFRow row = sheet.createRow(0);
-		  HSSFCell cell = null;
+		  HSSFRow row = sheet.createRow(0);//表格行
+		  HSSFCell cell = null;//单元格
 	/*	  {"商品Id","商品名","商品进价","商品销售价","商品成本价",
 			  "商品说明","商品销量","库存数量","库存充裕状态"}*/
 		for (int i = 0; i < headers.length; i++) {

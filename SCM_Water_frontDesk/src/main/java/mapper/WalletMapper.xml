@@ -39,10 +39,8 @@
 	</insert>
 
 	<delete id="delUserGiftcouponById">
-		<if test="id != 0">
 			DELETE
 			FROM `user_giftcoupon`
 			WHERE `id` = #{id};
-		</if>
 	</delete>
 </mapper>
