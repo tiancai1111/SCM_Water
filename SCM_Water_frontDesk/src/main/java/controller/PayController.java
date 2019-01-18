@@ -90,7 +90,6 @@ public class PayController {
 		return user;
 	}
 
-
 	@ResponseBody
 	@RequestMapping("placeOrder")
 	public int selByUserId(HttpServletRequest request,Order order, @RequestParam("way") int way, @RequestParam("giftcouponId") int giftcouponId,
@@ -105,8 +104,11 @@ public class PayController {
 			User user = walletService.selUserById(userid);
 			// 修改用户钱包余额
 			walletService.updUserMoney(user.getMoney() - order.getMoney(), userid);
-			// 删除使用的优惠卷
-			walletService.delUserGiftcouponById(giftcouponId);
+			//使用了优惠卷
+			if(giftcouponId!=0) {
+				// 删除使用的优惠卷
+				walletService.delUserGiftcouponById(giftcouponId);
+			}
 			// 添加订单
 			walletService.addOrder(order);
 			// 查询刚下的订单

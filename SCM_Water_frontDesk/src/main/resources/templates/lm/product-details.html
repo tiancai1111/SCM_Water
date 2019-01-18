@@ -98,7 +98,16 @@
 		$(".headerpage").load("lm/header.html");
 		$(".footerpage").load("lm/footer.html");
 		function tatol() {
+			
 			var count = $(".product-quantity input").val();
+			if(count!=Number(count)||count==0){
+				$(".product-quantity input").val(1);
+			}
+			
+			if(count>10){
+				$(".product-quantity input").val(10);
+			}
+			 count = $(".product-quantity input").val();
 			var price = $(".unit span").text();
 			var total = count * price + ".00";
 			$(".tatol").html(total);
