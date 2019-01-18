@@ -178,7 +178,7 @@
 						</table>
 					</div>
 				</fieldset>
-				<div class="layui-btn-group" style="display: block;">
+				<div class="layui-btn-group" style="display: block;text-align: center;">
 					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.firstPage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.firstPage}" class="layui-btn">首页</button></a>
 					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.prePage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.prePage}" class="layui-btn">上一页</button></a>
 					<a th:href="@{repertoryParticulars}+'?num='+${commodityPageInfo.nextPage}"><button th:onclick="'window.location.href='+@{repertoryParticulars}+'?num='+${commodityPageInfo.nextPage}"  class="layui-btn">下一页</button></a>
