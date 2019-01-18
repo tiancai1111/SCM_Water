@@ -55,5 +55,15 @@ public class OrderServiceImpl implements OrderService{
 	public List<deliverypersonnel> CommodityOrder() {
 		return ordermapper.CommodityOrder();
 	}
+
+	@Override
+	public int deliveryAdd(String deliveryman) {
+		return ordermapper.deliveryAdd(deliveryman);
+	}
+
+	@Override
+	public int deliveryUp(int id,String status) {
+		return ordermapper.deliveryUp(id,status);
+	}
 	
 }

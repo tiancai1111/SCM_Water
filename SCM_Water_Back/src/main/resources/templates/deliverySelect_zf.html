@@ -13,7 +13,7 @@
 			<fieldset class="layui-elem-field">
 				<legend>用户管理 - 订单人员派送</legend>
 				<div class="layui-field-box">
-					<form class="layui-form" id="Update">
+					<form class="layui-form" id="Update" onsubmit="return  disabled()">
 					  <table class="layui-table">
                   <colgroup>
                       <col width="150">
@@ -30,15 +30,15 @@
                       <th style="text-align:center;">操作</th>
                       </tr> 
                   </thead>
-                    <tr th:each="entries,stat:${lis}">
+                    <tr  th:each="entries,stat:${lis}" th:class="'abc'+${entries.id}">
                     <td th:text="${entries.deliverynumber}"></td>
-                    <td th:text="${entries.deliverypersonnel}"></td>
+                    <td class="def" th:text="${entries.deliverypersonnel}"></td>
                     <td th:text="${entries.deliverystate}"></td>
-                    <input type="hidden" th:value="${session.id}" name="id"/>
                     
+                  <input type="hidden" th:value="${session.id}" name="id"/>
                      <td class="text-center">
                           <div class="layui-btn-group">
-                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'deliveryid?id='+${session.id}"  dw-title="编辑用户">
+                              <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" th:dw-url="'deliveryid?id='+${session.id}" type="button" th:onclick="'asdfdv('+${entries.id}+')'" dw-title="编辑用户">
                                 <i class="layui-icon">&#xe642;</i>派送
                               </button>
                             </div>
@@ -59,7 +59,10 @@
 <script type="text/javascript" src="./layui/layui.js"></script>
 <script type="text/javascript" src="./javascript/dw_form_submit.js"></script>
 <script type="text/javascript">
-	 
+	 function asdfdv(id) {
+		 var deliveryman=$(".abc"+id).find(".def").text();
+		 location.href="deliveryid?id="+id+"&deliveryman="+deliveryman;
+	}
 </script>
 </body>
 </html>

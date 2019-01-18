@@ -30,5 +30,11 @@ public interface OrderService {
 	List<Order> Ordercommission(int id);
 
 	List<deliverypersonnel> CommodityOrder();
+
+	//派送人员增加
+	int deliveryAdd(String deliveryman);
+
+	//派送状态修改
+	int deliveryUp(int id, String status);
 	
 }

@@ -2,6 +2,8 @@ package mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -50,4 +52,13 @@ public interface OrderMapper {
 	@Select("SELECT * FROM deliverypersonnel")
 	List<deliverypersonnel> CommodityOrder();
 
+	
+	//派送人员增加
+	@Insert("INSERT INTO `delivery`(`deliverytime`,`deliveryman`,`order_id`)VALUES (NOW(),#{deliveryman},1)")
+	int deliveryAdd(@Param("deliveryman")String deliveryman);
+	
+
+	//派送状态修改
+	@Update("UPDATE `order` SET `status` =  #{status} WHERE `id` = #{id}")
+	int deliveryUp(@Param("id")int id,@Param("status")String status);
 }

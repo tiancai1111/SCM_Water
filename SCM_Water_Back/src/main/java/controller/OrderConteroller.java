@@ -63,10 +63,7 @@ public class OrderConteroller {
 	@RequestMapping("orderAlreadySelect")
 	public String orderAlreadySelect(int id,Model model) {
 		List<Order> orderAll = orderservice.Ordercommission(id);
-		 /*List<Order> orderAll = orderservice.OrderAll(id);*/
-		/* Order order = orderservice.OrderDelivery(id);*/
 		 model.addAttribute("orderAll", orderAll);
-	     /*model.addAttribute("order", order);*/
 		return "orderAlreadySelect.html";
 	}
 	
@@ -90,8 +87,13 @@ public class OrderConteroller {
 	
 	
 	@RequestMapping("deliveryid")
-	public String deliveryid(int id) {
-		System.out.println(id);
+	public String deliveryid(int id,String deliveryman) {
+		String status = "已签收";
+		int add = orderservice.deliveryAdd(deliveryman);
+		int update = orderservice.deliveryUp(id,status);
+		if(add==0 && update==0) {
+			return null;
+		}
 		return "deliverySelect_zf.html";
 	}
 }
