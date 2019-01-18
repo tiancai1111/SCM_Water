@@ -25,8 +25,7 @@ public class IndexController {
 	
    @Autowired
    private StaffService staffService;
-	
-   
+	  
    @RequestMapping("unAuth")
    public String unAuth() {
 	return "unAuth";
